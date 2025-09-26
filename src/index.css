@@ -140,16 +140,7 @@
   100% { background-position: 200% 0; }
 }
 
-@keyframes led-pulse {
-  0%, 100% { 
-    opacity: 0.8; 
-    box-shadow: 0 0 8px hsl(var(--primary-glow) / 0.4); 
-  }
-  50% { 
-    opacity: 1; 
-    box-shadow: 0 0 12px hsl(var(--primary-glow) / 0.6); 
-  }
-}
+/* Remove all flashing animations */
 
 @keyframes circuit-flow {
   0% { 
@@ -220,7 +211,7 @@
   }
 
   .animate-glow-pulse {
-    animation: glow-pulse 3s ease-in-out infinite;
+    animation: glow-pulse 6s ease-in-out infinite;
   }
 
   .animate-slide-up {
@@ -237,9 +228,7 @@
     animation: shimmer 2s infinite;
   }
 
-  .animate-led-pulse {
-    animation: led-pulse 4s ease-in-out infinite;
-  }
+  /* Remove all pulse animations */
 
   .animate-circuit-flow {
     animation: circuit-flow 3s linear infinite;
@@ -289,10 +278,7 @@
     animation: circuit-flow 12s linear infinite;
   }
 
-  /* Neural Glow Animation */
-  .animate-neural-glow {
-    animation: glow-pulse 6s ease-in-out infinite;
-  }
+  /* Remove neural glow */
 
   .cyber-grid {
     background-image: 

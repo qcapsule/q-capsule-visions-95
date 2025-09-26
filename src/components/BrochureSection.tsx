@@ -22,7 +22,7 @@ export const BrochureSection = () => {
   };
 
   return (
-    <section id="brochure" className="py-24 relative overflow-hidden">
+    <section id="brochure" className="py-24 relative overflow-hidden bg-black/95 cyber-grid">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5">
@@ -41,11 +41,11 @@ export const BrochureSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-            <span className="text-gradient">Product Brochure</span>
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6 font-mono">
+            <span className="text-gradient">PRODUCT BROCHURE</span>
           </h2>
 
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-mono tracking-wide">
             Get all the details on our Q Capsules models and specifications.
           </p>
         </motion.div>
@@ -59,31 +59,31 @@ export const BrochureSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-glow transition-all duration-500">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-glow transition-all duration-500 holographic-card neural-border">
                 <img
                   src={brochureImage}
                   alt="Q Capsules Brochure"
-                  className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500 animate-hologram"
                 />
 
                 {/* Overlay with view button */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <motion.button
                     onClick={handleView}
-                    className="glass-card px-6 py-3 rounded-2xl text-white font-medium hover:bg-primary/20 transition-all duration-300"
+                    className="holographic-card neural-border px-6 py-3 rounded-2xl text-white font-medium font-mono tracking-wider hover:bg-primary/20 transition-all duration-300"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Eye className="w-5 h-5 inline mr-2" />
-                    View Full Size
+                    VIEW FULL SIZE
                   </motion.button>
                 </div>
               </div>
 
               {/* Decorative elements */}
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary/20 rounded-full blur-xl"></div>
               <div
-                className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent/20 rounded-full blur-xl animate-pulse"
+                className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent/20 rounded-full blur-xl"
                 style={{ animationDelay: "1s" }}
               ></div>
             </motion.div>
@@ -96,10 +96,10 @@ export const BrochureSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <div className="text-center">
-                <h3 className="text-2xl lg:text-3xl font-bold text-gradient mb-4">
-                  Download Our Brochure
+                <h3 className="text-2xl lg:text-3xl font-bold text-gradient mb-4 font-mono tracking-wider">
+                  DOWNLOAD OUR BROCHURE
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground font-mono">
                   View specifications, designs, and customization options for
                   all Q Capsule models.
                 </p>
@@ -109,7 +109,7 @@ export const BrochureSection = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.button
                   onClick={handleDownload}
-                  className="flex-1 bg-gradient-primary text-primary-foreground px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-glow transition-all duration-500 border border-primary/20 hover:border-primary/40 flex items-center justify-center gap-3"
+                  className="flex-1 bg-gradient-primary text-primary-foreground px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-glow transition-all duration-500 border border-primary/20 hover:border-primary/40 flex items-center justify-center gap-3 font-mono tracking-wider"
                   whileHover={{
                     scale: 1.05,
                     boxShadow: "0 0 50px hsl(var(--primary) / 0.4)",
@@ -117,17 +117,17 @@ export const BrochureSection = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Download className="w-5 h-5" />
-                  Download PDF
+                  DOWNLOAD PDF
                 </motion.button>
 
                 <motion.button
                   onClick={handleView}
-                  className="flex-1 glass-card text-foreground px-8 py-4 rounded-2xl font-bold text-lg hover:bg-accent/10 transition-all duration-300 border border-border/50 hover:border-accent/30 flex items-center justify-center gap-3"
+                  className="flex-1 holographic-card neural-border text-foreground px-8 py-4 rounded-2xl font-bold text-lg hover:bg-accent/10 transition-all duration-300 border border-border/50 hover:border-accent/30 flex items-center justify-center gap-3 font-mono tracking-wider"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Eye className="w-5 h-5" />
-                  View Online
+                  VIEW ONLINE
                 </motion.button>
               </div>
             </motion.div>
