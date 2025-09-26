@@ -336,7 +336,13 @@ export const CapsuleExplorationSection = () => {
             <div className="flex items-center gap-6 p-4 bg-black/80 rounded-2xl border border-primary-glow/20 backdrop-blur-xl">
               <div className="font-mono text-primary-glow tracking-wider">MATRIX_01</div>
               <div className="flex gap-1">
-                {[...Array(8)].map((_, i) => ( 
+                {[...Array(8)].map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      i <= selectedModel ? 'bg-primary-glow animate-led-pulse' : 'bg-primary-glow/20'
+                    }`} 
+                  />
                 ))}
               </div>
               <div className="font-mono text-primary-glow tracking-wider">MATRIX_08</div>
