@@ -122,6 +122,39 @@ export default {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        "led-pulse": {
+          "0%, 100%": { 
+            opacity: "0.6", 
+            boxShadow: "0 0 5px hsl(var(--primary-glow) / 0.3)" 
+          },
+          "50%": { 
+            opacity: "1", 
+            boxShadow: "0 0 20px hsl(var(--primary-glow) / 0.8), 0 0 40px hsl(var(--primary-glow) / 0.4)" 
+          },
+        },
+        "circuit-flow": {
+          "0%": { 
+            backgroundPosition: "0% 0%", 
+            opacity: "0.3" 
+          },
+          "50%": { 
+            opacity: "0.8" 
+          },
+          "100%": { 
+            backgroundPosition: "100% 0%", 
+            opacity: "0.3" 
+          },
+        },
+        "hologram": {
+          "0%, 100%": { 
+            transform: "translateY(0px) rotateX(0deg)", 
+            opacity: "0.8" 
+          },
+          "50%": { 
+            transform: "translateY(-2px) rotateX(1deg)", 
+            opacity: "1" 
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -131,6 +164,9 @@ export default {
         "slide-up": "slide-up 0.6s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
         "shimmer": "shimmer 2s infinite",
+        "led-pulse": "led-pulse 2s ease-in-out infinite",
+        "circuit-flow": "circuit-flow 3s linear infinite",
+        "hologram": "hologram 4s ease-in-out infinite",
       },
     },
   },
