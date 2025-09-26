@@ -336,14 +336,7 @@ export const CapsuleExplorationSection = () => {
             <div className="flex items-center gap-6 p-4 bg-black/80 rounded-2xl border border-primary-glow/20 backdrop-blur-xl">
               <div className="font-mono text-primary-glow tracking-wider">MATRIX_01</div>
               <div className="flex gap-1">
-                {[...Array(8)].map((_, i) => (
-                  <div 
-                    key={i}
-                    className={`w-1 h-8 rounded-full ${
-                      i < 3 ? 'bg-primary-glow animate-led-pulse' : 'bg-primary-glow/20'
-                    }`}
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                  />
+                {[...Array(8)].map((_, i) => ( 
                 ))}
               </div>
               <div className="font-mono text-primary-glow tracking-wider">MATRIX_08</div>
