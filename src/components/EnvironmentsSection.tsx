@@ -41,10 +41,10 @@ export const EnvironmentsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6 font-mono">
-            <span className="text-gradient">PERFECT ENVIRONMENTS</span>
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+            <span className="text-gradient">Perfect Environments</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono tracking-wide">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Q Capsules adapt to any location, bringing comfort and luxury to every environment.
           </p>
         </motion.div>
@@ -59,15 +59,15 @@ export const EnvironmentsSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="aspect-square overflow-hidden rounded-2xl mb-4 holographic-card neural-border">
+              <div className="aspect-square overflow-hidden rounded-2xl mb-4">
                 <img
                   src={environment.image}
                   alt={environment.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 animate-hologram"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-center font-mono tracking-wider">{environment.title}</h3>
-              <p className="text-muted-foreground text-center text-sm font-mono">{environment.description}</p>
+              <h3 className="text-xl font-bold mb-2 text-center">{environment.title}</h3>
+              <p className="text-muted-foreground text-center text-sm">{environment.description}</p>
             </motion.div>
           ))}
         </div>

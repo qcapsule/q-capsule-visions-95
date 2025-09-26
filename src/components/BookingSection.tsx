@@ -32,7 +32,7 @@ export const BookingSection = () => {
   ];
 
   return (
-    <section id="booking" className="py-24 relative overflow-hidden bg-black/95 cyber-grid">
+    <section id="booking" className="py-24 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 to-accent/5"></div>
@@ -47,19 +47,19 @@ export const BookingSection = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center px-4 py-2 rounded-full holographic-card neural-border text-sm text-primary font-medium mb-6 font-mono tracking-wider"
+            className="inline-flex items-center px-4 py-2 rounded-full glass-card text-sm text-primary font-medium mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            SCHEDULE YOUR MEETING
+            Schedule Your Meeting
           </motion.div>
           
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6 font-mono">
-            <span className="text-gradient">BOOK YOUR CONSULTATION</span>
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+            <span className="text-gradient">Book Your Consultation</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono tracking-wide">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Ready to bring your vision to life? Schedule a personalized consultation 
             with our experts to explore possibilities and get started.
           </p>
@@ -73,38 +73,38 @@ export const BookingSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h3 className="text-2xl font-bold mb-8 font-mono tracking-wider">CHOOSE YOUR MEETING TYPE</h3>
+            <h3 className="text-2xl font-bold mb-8">Choose Your Meeting Type</h3>
             
             {meetingTypes.map((meeting, index) => (
               <motion.div
                 key={meeting.title}
-                className="holographic-card neural-border p-6 hover-lift group cursor-pointer"
+                className="glass-card p-6 hover-lift group cursor-pointer"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-md group-hover:shadow-glow transition-all duration-300 holographic-card">
+                  <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-md group-hover:shadow-glow transition-all duration-300">
                     <meeting.icon className="h-6 w-6 text-primary-foreground" />
                   </div>
                   
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-lg font-semibold group-hover:text-gradient transition-all duration-300 font-mono tracking-wider">
+                      <h4 className="text-lg font-semibold group-hover:text-gradient transition-all duration-300">
                         {meeting.title}
                       </h4>
-                      <div className="flex items-center space-x-3 text-sm text-muted-foreground font-mono">
+                      <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                         <div className="flex items-center space-x-1">
                           <Clock className="h-4 w-4" />
                           <span>{meeting.duration}</span>
                         </div>
-                        <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-mono tracking-wider">
+                        <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs">
                           {meeting.type}
                         </span>
                       </div>
                     </div>
                     
-                    <p className="text-muted-foreground font-mono">
+                    <p className="text-muted-foreground">
                       {meeting.description}
                     </p>
                   </div>
@@ -113,17 +113,17 @@ export const BookingSection = () => {
             ))}
 
             <motion.div
-              className="holographic-card neural-border p-6 bg-gradient-primary/5 border-primary/20"
+              className="glass-card p-6 bg-gradient-primary/5 border-primary/20"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <div className="flex items-center space-x-3 mb-3">
-                <div className="w-3 h-3 bg-primary rounded-full"></div>
-                <h4 className="font-semibold text-primary font-mono tracking-wider">WHAT TO EXPECT</h4>
+                <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
+                <h4 className="font-semibold text-primary">What to Expect</h4>
               </div>
               
-              <ul className="space-y-2 text-sm text-muted-foreground font-mono">
+              <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Personalized design consultation</li>
                 <li>• Technical specifications review</li>
                 <li>• Pricing and timeline discussion</li>
@@ -134,28 +134,28 @@ export const BookingSection = () => {
 
           {/* Calendly Embed */}
           <motion.div
-            className="holographic-card neural-border p-8"
+            className="glass-card p-8"
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold mb-2 font-mono tracking-wider">SCHEDULE NOW</h3>
-              <p className="text-muted-foreground text-sm font-mono">
+              <h3 className="text-xl font-semibold mb-2">Schedule Now</h3>
+              <p className="text-muted-foreground text-sm">
                 Select a time that works for you
               </p>
             </div>
 
             {/* Calendly Widget Placeholder */}
-            <div className="w-full h-[500px] bg-gradient-secondary rounded-lg flex items-center justify-center border border-border/50 holographic-card neural-border">
+            <div className="w-full h-[500px] bg-gradient-secondary rounded-lg flex items-center justify-center border border-border/50">
               <div className="text-center space-y-4">
                 <Calendar className="h-16 w-16 text-primary mx-auto" />
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 font-mono tracking-wider">CALENDLY INTEGRATION</h4>
-                  <p className="text-muted-foreground text-sm mb-4 font-mono">
+                  <h4 className="text-lg font-semibold mb-2">Calendly Integration</h4>
+                  <p className="text-muted-foreground text-sm mb-4">
                     Connect your Calendly account to enable booking
                   </p>
-                  <div className="text-xs text-muted-foreground bg-muted/50 p-3 rounded font-mono">
+                  <div className="text-xs text-muted-foreground bg-muted/50 p-3 rounded">
                     Replace this placeholder with your actual Calendly embed code:<br/>
                     <code className="text-primary">
                       &lt;iframe src="https://calendly.com/your-account" ...&gt;
@@ -167,20 +167,20 @@ export const BookingSection = () => {
 
             {/* Alternative Contact */}
             <div className="mt-6 pt-6 border-t border-border/50 text-center">
-              <p className="text-muted-foreground text-sm mb-3 font-mono">
+              <p className="text-muted-foreground text-sm mb-3">
                 Prefer to talk directly?
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a 
                   href="tel:+97412345678" 
-                  className="text-primary hover:text-primary-glow transition-colors font-medium font-mono tracking-wider"
+                  className="text-primary hover:text-primary-glow transition-colors font-medium"
                 >
                   +974 1234 5678
                 </a>
                 <a 
                   href="mailto:hello@qcapsules.qa" 
-                  className="text-primary hover:text-primary-glow transition-colors font-medium font-mono tracking-wider"
+                  className="text-primary hover:text-primary-glow transition-colors font-medium"
                 >
                   ✉️ hello@qcapsules.qa
                 </a>

@@ -173,7 +173,7 @@ export const StatisticsSection = () => {
   };
 
   return (
-    <section id="statistics" className="py-32 relative overflow-hidden bg-black/95 cyber-grid">
+    <section id="statistics" className="py-32 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 z-0">
         {/* Animated gradient background */}
@@ -227,7 +227,7 @@ export const StatisticsSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full holographic-card neural-border text-sm font-medium mb-8 border border-primary/20"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card text-sm font-medium mb-8 border border-primary/20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -236,20 +236,20 @@ export const StatisticsSection = () => {
             whileHover={{ scale: 1.05 }}
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-gradient font-mono tracking-wider">IMPACT & RESULTS</span>
+            <span className="text-gradient">Impact & Results</span>
           </motion.div>
 
           <motion.h2
-            className="text-5xl lg:text-7xl font-bold mb-6 leading-tight font-mono"
+            className="text-5xl lg:text-7xl font-bold mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span className="text-gradient glow-text">PROVEN PERFORMANCE</span>
+            <span className="text-gradient glow-text">Proven Performance</span>
           </motion.h2>
 
           <motion.p
-            className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-mono tracking-wide"
+            className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -278,7 +278,7 @@ export const StatisticsSection = () => {
               }}
               style={{ perspective: 1000 }}
             >
-              <div className="holographic-card neural-border p-8 text-center relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-500 h-full flex flex-col justify-between">
+              <div className="glass-card p-8 text-center relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-500 h-full flex flex-col justify-between">
                 {/* Dynamic background effect */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-100 transition-all duration-500`}
@@ -290,7 +290,7 @@ export const StatisticsSection = () => {
                 <div className="relative z-10">
                   {/* Enhanced Icon with glow effect */}
                   <motion.div
-                    className="w-20 h-20 mx-auto mb-6 holographic-card neural-border backdrop-blur-sm rounded-3xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-500 border border-border/30 group-hover:border-primary/30"
+                    className="w-20 h-20 mx-auto mb-6 bg-card/50 backdrop-blur-sm rounded-3xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-500 border border-border/30 group-hover:border-primary/30"
                     whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                   >
@@ -302,7 +302,7 @@ export const StatisticsSection = () => {
                   {/* Enhanced Counter with better typography */}
                   <div className="mb-6">
                     <motion.div
-                      className="text-5xl lg:text-6xl font-black text-gradient mb-3 tracking-tight font-mono"
+                      className="text-5xl lg:text-6xl font-black text-gradient mb-3 tracking-tight"
                       initial={{ scale: 0 }}
                       animate={isInView ? { scale: 1 } : { scale: 0 }}
                       transition={{
@@ -314,13 +314,13 @@ export const StatisticsSection = () => {
                       {counters[stat.key as keyof typeof counters]}
                       {stat.suffix}
                     </motion.div>
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-all duration-300 font-mono tracking-wider">
+                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-all duration-300">
                       {stat.title}
                     </h3>
                   </div>
 
                   {/* Enhanced Description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/80 transition-all duration-300 font-mono">
+                  <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/80 transition-all duration-300">
                     {stat.description}
                   </p>
                 </div>
@@ -369,7 +369,7 @@ export const StatisticsSection = () => {
           ].map((insight, index) => (
             <motion.div
               key={insight.title}
-              className={`holographic-card neural-border p-8 ${insight.gradient} border ${insight.border} group hover-lift`}
+              className={`glass-card p-8 ${insight.gradient} border ${insight.border} group hover-lift`}
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
               animate={
                 isInView
@@ -381,11 +381,11 @@ export const StatisticsSection = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <insight.icon className="w-6 h-6 text-primary" />
-                <h3 className="text-xl font-bold text-gradient font-mono tracking-wider">
+                <h3 className="text-xl font-bold text-gradient">
                   {insight.title}
                 </h3>
               </div>
-              <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-all duration-300 font-mono">
+              <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-all duration-300">
                 {insight.description}
               </p>
             </motion.div>
@@ -399,26 +399,26 @@ export const StatisticsSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 2.5 }}
         >
-          <div className="holographic-card neural-border p-12 max-w-3xl mx-auto border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+          <div className="glass-card p-12 max-w-3xl mx-auto border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
             <motion.h3
-              className="text-3xl lg:text-4xl font-bold mb-6 text-gradient font-mono tracking-wider"
+              className="text-3xl lg:text-4xl font-bold mb-6 text-gradient"
               whileHover={{ scale: 1.05 }}
             >
-              READY TO EXPERIENCE THESE BENEFITS?
+              Ready to Experience These Benefits?
             </motion.h3>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-mono">
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               Join hundreds of satisfied clients who've transformed their
               projects with Q Capsules.
             </p>
             <motion.button
-              className="bg-gradient-primary text-primary-foreground px-12 py-4 rounded-2xl font-bold text-lg hover:shadow-glow transition-all duration-500 border border-primary/20 hover:border-primary/40 font-mono tracking-wider"
+              className="bg-gradient-primary text-primary-foreground px-12 py-4 rounded-2xl font-bold text-lg hover:shadow-glow transition-all duration-500 border border-primary/20 hover:border-primary/40"
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 0 50px hsl(var(--primary) / 0.4)",
               }}
               whileTap={{ scale: 0.95 }}
             >
-              START YOUR PROJECT
+              Start Your Project
             </motion.button>
           </div>
         </motion.div>

@@ -71,20 +71,20 @@ export const CustomizationSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
         >
-              <div className="bg-gradient-to-br from-background via-accent/10 to-background rounded-3xl p-8 lg:p-16 shadow-xl holographic-card neural-border">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  {/* Left Content */}
-                  <div>
-                <Badge className="mb-6 bg-primary-glow/20 text-primary-glow border-primary-glow/40 font-mono uppercase tracking-wider">
+          <div className="bg-gradient-to-br from-background via-accent/10 to-background rounded-3xl p-8 lg:p-16 shadow-xl">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div>
+                <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
                   FEATURED
                 </Badge>
                 
-                <h2 className="text-4xl lg:text-6xl font-bold mb-6 font-mono">
-                  WHY CHOOSE <br />
-                  <span className="text-gradient">Q CAPSULES?</span>
+                <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+                  Why Choose <br />
+                  <span className="text-gradient">Q Capsules?</span>
                 </h2>
                 
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed font-mono">
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Discover the future of modular living with our innovative Q Capsule collection. 
                   Each unit combines cutting-edge design with sustainable technology, offering 
                   unparalleled flexibility and comfort for modern lifestyles. From compact efficiency 
@@ -93,23 +93,23 @@ export const CustomizationSection = () => {
                 
                 <Button 
                   size="lg"
-                  className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow font-mono tracking-wider"
+                  className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow"
                   onClick={() => scrollToSection('#booking')}
                 >
-                  ENGAGE NOW
+                  Why Us Today
                 </Button>
               </div>
               
-                  {/* Right Image */}
-                  <div className="relative">
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden holographic-card neural-border">
-                      <img 
-                        src={q95xImage} 
-                        alt="Featured Q95X Capsule"
-                        className="w-full h-full object-cover animate-hologram"
-                      />
-                    </div>
-                  </div>
+              {/* Right Image */}
+              <div className="relative">
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                  <img 
+                    src={q95xImage} 
+                    alt="Featured Q95X Capsule"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -122,25 +122,25 @@ export const CustomizationSection = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           {capsuleStyles.map((capsule, index) => (
-            <Card key={capsule.id} className="group hover:shadow-lg transition-all duration-300 holographic-card neural-border">
+            <Card key={capsule.id} className="group hover:shadow-lg transition-all duration-300 bg-background/50 backdrop-blur-sm border-muted">
               <div className="aspect-square overflow-hidden rounded-t-lg">
                 <img 
                   src={capsule.image} 
                   alt={capsule.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 animate-hologram"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-2 font-mono tracking-wider">{capsule.name}</h3>
+                <h3 className="text-xl font-bold mb-2">{capsule.name}</h3>
                 
-                <div className="flex items-center gap-4 mb-3 text-sm text-muted-foreground font-mono">
+                <div className="flex items-center gap-4 mb-3 text-sm text-muted-foreground">
                   <span>{capsule.size}</span>
                   <span>•</span>
                   <span>{capsule.rooms}</span>
                 </div>
                 
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-3 font-mono">
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
                   {capsule.description}
                 </p>
                 
@@ -148,18 +148,18 @@ export const CustomizationSection = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="flex-1 hover:bg-primary hover:text-primary-foreground font-mono tracking-wider"
+                    className="flex-1 hover:bg-primary hover:text-primary-foreground"
                     onClick={() => scrollToSection('#booking')}
                   >
-                    VISIT TODAY
+                    Visit Today
                   </Button>
                   {index === 1 && (
                     <Button 
                       size="sm" 
-                      className="flex-1 bg-gradient-primary text-primary-foreground border-none hover:shadow-glow font-mono tracking-wider"
+                      className="flex-1 bg-gradient-primary text-primary-foreground border-none hover:shadow-glow"
                       onClick={() => scrollToSection('#booking')}
                     >
-                      MOST POPULAR
+                      Most Popular
                     </Button>
                   )}
                 </div>

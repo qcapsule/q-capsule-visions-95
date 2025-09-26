@@ -41,9 +41,9 @@ export const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="inline-flex items-center rounded-full holographic-card text-sm text-primary font-medium font-mono">
+              <div className="inline-flex items-center  rounded-full glass-card text-sm text-primary font-medium">
                 <span className="animate-shimmer px-4 py-2 rounded-full">
-                  MADE IN QATAR
+                  Made in Qatar
                 </span>
               </div>
 
@@ -67,7 +67,7 @@ export const HeroSection = () => {
             >
               <Button
                 size="lg"
-                className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow hover-lift text-lg px-8 py-4 font-mono tracking-wider"
+                className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow hover-lift text-lg px-8 py-4"
                 onClick={() => scrollToSection("#customization")}
               >
                 Explore Capsules
@@ -77,7 +77,7 @@ export const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-primary text-primary hover:bg-primary/10 text-lg px-8 py-4 font-mono tracking-wider"
+                className="border-primary text-primary hover:bg-primary/10 text-lg px-8 py-4"
                 onClick={() => scrollToSection("#booking")}
               >
                 <Calendar className="mr-2 h-5 w-5" />
@@ -123,15 +123,15 @@ export const HeroSection = () => {
 
             {/* Floating Info Cards */}
             <motion.div
-              className="absolute top-20 -left-4 holographic-card neural-border p-4 max-w-xs"
+              className="absolute top-20 -left-4 glass-card p-4 max-w-xs"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.2, duration: 0.5 }}
             >
               <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-primary rounded-full animate-neural-glow"></div>
+                <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
                 <div>
-                  <div className="font-semibold text-sm font-mono">
+                  <div className="font-semibold text-sm">
                     Smart Climate Control
                   </div>
                   <div className="text-xs text-muted-foreground">
@@ -142,15 +142,15 @@ export const HeroSection = () => {
             </motion.div>
 
             <motion.div
-              className="absolute bottom-32 -right-4 holographic-card neural-border p-4 max-w-xs"
+              className="absolute bottom-32 -right-4 glass-card p-4 max-w-xs"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.4, duration: 0.5 }}
             >
               <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-accent rounded-full animate-neural-glow"></div>
+                <div className="w-3 h-3 bg-accent rounded-full animate-glow-pulse"></div>
                 <div>
-                  <div className="font-semibold text-sm font-mono">Modular Design</div>
+                  <div className="font-semibold text-sm">Modular Design</div>
                   <div className="text-xs text-muted-foreground">
                     Infinite possibilities
                   </div>

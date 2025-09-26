@@ -126,7 +126,7 @@ export const CapsuleExplorationSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="relative">
-            <Badge className="mb-8 bg-primary-glow/20 text-primary-glow border-primary-glow/40 animate-neural-glow font-mono uppercase tracking-wider">
+            <Badge className="mb-8 bg-primary-glow/20 text-primary-glow border-primary-glow/40 animate-led-pulse font-mono uppercase tracking-wider">
               &gt;&gt; NEURAL EXPLORATION INTERFACE
             </Badge>
             
@@ -149,13 +149,13 @@ export const CapsuleExplorationSection = () => {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
         >
-          <div className="holographic-card rounded-3xl p-2 neural-border animate-circuit-flow">
+          <div className="holographic-card rounded-3xl p-2 led-border animate-circuit-flow">
             <div className="bg-black/80 rounded-3xl overflow-hidden backdrop-blur-xl">
               {/* Neural Header Interface */}
               <div className="flex items-center justify-between p-8 border-b border-primary-glow/20">
-                      <div className="flex items-center gap-6">
-                    <div className="w-3 h-3 rounded-full bg-primary-glow animate-neural-glow" />
-                    <div className="font-mono">
+                <div className="flex items-center gap-6">
+                  <div className="w-3 h-3 rounded-full bg-primary-glow animate-led-pulse" />
+                  <div className="font-mono">
                     <h3 className="text-2xl font-bold text-white">CAPSULE.{capsuleModels[selectedModel].codename}</h3>
                     <p className="text-primary-glow text-sm tracking-wider">NEURAL_LINK_ESTABLISHED</p>
                   </div>
@@ -197,20 +197,20 @@ export const CapsuleExplorationSection = () => {
                     >
                       {/* Neural Node */}
                       <div className="relative">
-                        <div className={`w-12 h-12 rounded-full bg-black/80 border-2 border-primary-glow/60 flex items-center justify-center animate-neural-glow hover:scale-110 transition-all duration-300 backdrop-blur-sm ${feature.color}`}>
+                        <div className={`w-12 h-12 rounded-full bg-black/80 border-2 border-primary-glow/60 flex items-center justify-center animate-led-pulse hover:scale-110 transition-all duration-300 backdrop-blur-sm ${feature.color}`}>
                           <feature.icon className="h-5 w-5" />
                         </div>
                         
-                        {/* Neural Rings */}
-                        <div className="absolute inset-0 rounded-full border-2 border-primary-glow/20 animate-neural-glow" />
-                        <div className="absolute -inset-2 rounded-full border border-primary-glow/10" />
+                        {/* Pulse Rings */}
+                        <div className="absolute inset-0 rounded-full border-2 border-primary-glow/30 animate-ping" />
+                        <div className="absolute -inset-2 rounded-full border border-primary-glow/20 animate-pulse" />
                         
                         {/* Neural Interface Tooltip */}
                         {activeHotspot === feature.id && (
                           <motion.div
                             initial={{ opacity: 0, scale: 0.8, x: -20 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
-                            className="absolute z-20 -top-4 left-16 holographic-card p-4 min-w-[280px] neural-border"
+                            className="absolute z-20 -top-4 left-16 holographic-card p-4 min-w-[280px] led-border"
                           >
                             <div className="bg-black/90 p-4 rounded-lg backdrop-blur-xl">
                               <div className="flex items-center gap-3 mb-3">
@@ -240,7 +240,7 @@ export const CapsuleExplorationSection = () => {
                           variant={activeRoom === room.id ? "default" : "outline"}
                           className={`rounded-xl font-mono tracking-wider transition-all duration-300 ${
                             activeRoom === room.id 
-                              ? "bg-primary-glow text-black shadow-glow animate-neural-glow" 
+                              ? "bg-primary-glow text-black shadow-glow animate-led-pulse" 
                               : "bg-transparent border-primary-glow/30 text-primary-glow hover:bg-primary-glow/10"
                           }`}
                           onClick={() => setActiveRoom(room.id)}
@@ -270,8 +270,8 @@ export const CapsuleExplorationSection = () => {
                 initial={{ opacity: 0, rotateX: 30 }}
                 animate={isInView ? { opacity: 1, rotateX: 0 } : { opacity: 0, rotateX: 30 }}
                 transition={{ duration: 0.8, delay: 0.8 + index * 0.2 }}
-                className={`holographic-card overflow-hidden neural-border cursor-pointer transition-all duration-500 ${
-                  selectedModel === index ? 'animate-neural-glow scale-105' : 'hover:scale-102'
+                className={`holographic-card overflow-hidden led-border cursor-pointer transition-all duration-500 ${
+                  selectedModel === index ? 'animate-glow-pulse scale-105' : 'hover:scale-102'
                 }`}
                 onClick={() => setSelectedModel(index)}
               >
@@ -292,7 +292,7 @@ export const CapsuleExplorationSection = () => {
                       <Badge variant="outline" className="bg-primary-glow/10 border-primary-glow/40 text-primary-glow font-mono">
                         {model.codename}
                       </Badge>
-                      <div className="w-2 h-2 rounded-full bg-green-400 animate-neural-glow" />
+                      <div className="w-2 h-2 rounded-full bg-green-400 animate-led-pulse" />
                     </div>
                     
                     <h4 className="font-bold text-xl mb-2 text-white font-mono tracking-wide">
@@ -340,7 +340,7 @@ export const CapsuleExplorationSection = () => {
                   <div 
                     key={i} 
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      i <= selectedModel ? 'bg-primary-glow animate-neural-glow' : 'bg-primary-glow/20'
+                      i <= selectedModel ? 'bg-primary-glow animate-led-pulse' : 'bg-primary-glow/20'
                     }`} 
                   />
                 ))}

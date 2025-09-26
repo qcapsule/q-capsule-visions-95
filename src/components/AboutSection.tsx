@@ -24,7 +24,7 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-black/95 cyber-grid">
+    <section id="about" className="py-24 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
@@ -39,16 +39,16 @@ export const AboutSection = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center px-4 py-2 rounded-full holographic-card neural-border text-sm text-primary font-medium mb-6 font-mono tracking-wider"
+            className="inline-flex items-center px-4 py-2 rounded-full glass-card text-sm text-primary font-medium mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            OUR STORY
+            Our Story
           </motion.div>
           
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6 font-mono">
-            <span className="text-gradient">ABOUT Q CAPSULES</span>
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+            <span className="text-gradient">About Q Capsules</span>
           </h2>
         </motion.div>
 
@@ -61,22 +61,22 @@ export const AboutSection = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed font-mono">
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 Born from a vision to revolutionize the way we think about living spaces, 
                 Q Capsules emerged as Qatar's pioneering force in modular architecture. 
                 Our journey began with a simple question: "What if homes could adapt to people, 
                 rather than people adapting to homes?"
               </p>
               
-              <p className="text-lg text-muted-foreground leading-relaxed font-mono">
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 Founded by a team of architects, engineers, and visionaries, we've transformed 
                 this question into reality. Every Q Capsule represents our commitment to 
                 sustainable innovation, combining cutting-edge technology with timeless design 
                 principles.
               </p>
 
-              <p className="text-lg text-muted-foreground leading-relaxed font-mono">
-                Today, we stand proudly as a <span className="text-gradient font-semibold">MADE IN QATAR</span> company, 
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Today, we stand proudly as a <span className="text-gradient font-semibold">Made in Qatar</span> company, 
                 contributing to the nation's vision of sustainable development while serving 
                 clients across the globe.
               </p>
@@ -84,7 +84,7 @@ export const AboutSection = () => {
 
             {/* Made in Qatar Logo */}
             <motion.div
-              className="flex items-center space-x-4 holographic-card neural-border p-6"
+              className="flex items-center space-x-4 glass-card p-6"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -95,8 +95,8 @@ export const AboutSection = () => {
                 className="w-16 h-16 object-contain"
               />
               <div>
-                <h3 className="text-xl font-bold text-gradient mb-1 font-mono tracking-wider">MADE IN QATAR</h3>
-                <p className="text-muted-foreground font-mono">
+                <h3 className="text-xl font-bold text-gradient mb-1">Made in Qatar</h3>
+                <p className="text-muted-foreground">
                   Proudly contributing to Qatar's sustainable future
                 </p>
               </div>
@@ -114,7 +114,7 @@ export const AboutSection = () => {
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={achievement.label}
-                  className="holographic-card neural-border p-6 text-center hover-lift group relative overflow-hidden"
+                  className="glass-card p-6 text-center hover-lift group relative overflow-hidden"
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
                   transition={{ 
@@ -137,20 +137,20 @@ export const AboutSection = () => {
                   
                   <div className="relative z-10">
                     <motion.div 
-                      className="w-12 h-12 mx-auto mb-4 bg-gradient-primary rounded-xl flex items-center justify-center shadow-md group-hover:shadow-glow transition-all duration-300 holographic-card"
+                      className="w-12 h-12 mx-auto mb-4 bg-gradient-primary rounded-xl flex items-center justify-center shadow-md group-hover:shadow-glow transition-all duration-300"
                       whileHover={{ rotate: 5, scale: 1.1 }}
                     >
                       <achievement.icon className="h-6 w-6 text-primary-foreground" />
                     </motion.div>
                     <motion.div 
-                      className="text-3xl font-bold text-gradient mb-2 font-mono"
+                      className="text-3xl font-bold text-gradient mb-2"
                       initial={{ scale: 0.5 }}
                       animate={isInView ? { scale: 1 } : { scale: 0.5 }}
                       transition={{ delay: 0.8 + index * 0.1, duration: 0.5, type: "spring" }}
                     >
                       {achievement.value}
                     </motion.div>
-                    <div className="text-sm text-muted-foreground font-mono tracking-wider">
+                    <div className="text-sm text-muted-foreground">
                       {achievement.label}
                     </div>
                   </div>
@@ -163,13 +163,13 @@ export const AboutSection = () => {
 
             {/* Vision Statement */}
             <motion.div
-              className="holographic-card neural-border p-8 bg-gradient-primary/5 border-primary/20"
+              className="glass-card p-8 bg-gradient-primary/5 border-primary/20"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 1 }}
             >
-              <h3 className="text-xl font-bold text-gradient mb-4 font-mono tracking-wider">OUR VISION</h3>
-              <p className="text-muted-foreground leading-relaxed font-mono">
+              <h3 className="text-xl font-bold text-gradient mb-4">Our Vision</h3>
+              <p className="text-muted-foreground leading-relaxed">
                 "To be the global leader in modular living solutions, creating sustainable, 
                 innovative spaces that enhance quality of life while respecting our planet."
               </p>
@@ -184,7 +184,7 @@ export const AboutSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          <h3 className="text-3xl font-bold text-center mb-12 text-gradient font-mono tracking-wider">OUR JOURNEY</h3>
+          <h3 className="text-3xl font-bold text-center mb-12 text-gradient">Our Journey</h3>
           
           <div className="relative">
             {/* Timeline Line */}
@@ -200,10 +200,10 @@ export const AboutSection = () => {
                   transition={{ duration: 0.6, delay: 1 + index * 0.2 }}
                 >
                   <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
-                    <div className="holographic-card neural-border p-6 hover-lift">
-                      <div className="text-2xl font-bold text-gradient mb-2 font-mono">{item.year}</div>
-                      <h4 className="text-lg font-semibold mb-2 font-mono tracking-wider">{item.event}</h4>
-                      <p className="text-muted-foreground text-sm font-mono">{item.description}</p>
+                    <div className="glass-card p-6 hover-lift">
+                      <div className="text-2xl font-bold text-gradient mb-2">{item.year}</div>
+                      <h4 className="text-lg font-semibold mb-2">{item.event}</h4>
+                      <p className="text-muted-foreground text-sm">{item.description}</p>
                     </div>
                   </div>
                   

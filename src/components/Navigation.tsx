@@ -36,7 +36,7 @@ export const Navigation = () => {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'holographic-card neural-border' : ''
+        isScrolled ? 'glass-card shadow-glow' : ''
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -75,7 +75,7 @@ export const Navigation = () => {
             
             <Button
               variant="outline"
-              className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow font-mono tracking-wider"
+              className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow"
               onClick={() => scrollToSection('#booking')}
             >
               Book Meeting
@@ -98,7 +98,7 @@ export const Navigation = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden holographic-card border-t border-border/50"
+            className="md:hidden glass-card border-t border-border/50"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -117,7 +117,7 @@ export const Navigation = () => {
                 ))}
                 
                 <Button
-                  className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow w-full mt-4 font-mono tracking-wider"
+                  className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow w-full mt-4"
                   onClick={() => scrollToSection('#booking')}
                 >
                   Book Meeting

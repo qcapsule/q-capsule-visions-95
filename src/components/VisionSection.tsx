@@ -50,7 +50,7 @@ export const VisionSection = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center px-4 py-2 rounded-full holographic-card neural-border text-sm text-primary font-medium font-mono mb-6"
+            className="inline-flex items-center px-4 py-2 rounded-full glass-card text-sm text-primary font-medium mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -75,7 +75,7 @@ export const VisionSection = () => {
           {visionItems.map((item, index) => (
             <motion.div
               key={item.title}
-              className="holographic-card neural-border p-8 hover-lift group relative overflow-hidden rounded-3xl"
+              className="glass-card p-8 hover-lift group relative overflow-hidden rounded-3xl"
               initial={{ opacity: 0, y: 50, rotateY: -15 }}
               animate={
                 isInView
@@ -137,7 +137,7 @@ export const VisionSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
         >
           <motion.div
-            className="holographic-card neural-border p-12 max-w-4xl mx-auto relative overflow-hidden"
+            className="glass-card p-12 max-w-4xl mx-auto relative overflow-hidden"
             whileHover={{ y: -5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
