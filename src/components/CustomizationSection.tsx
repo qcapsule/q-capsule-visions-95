@@ -5,7 +5,9 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Home, Building2, Maximize, Users, Calendar, Star, ArrowRight, CheckCircle } from 'lucide-react';
+import { Home, Building2, Maximize, Users, Calendar, Star, ArrowRight, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import q56xImage from '@/assets/q56x-capsule.png';
 import q75xImage from '@/assets/q75x-capsule.png';
 import q95xImage from '@/assets/q95x-capsule.png';
@@ -14,8 +16,20 @@ import q115xImage from '@/assets/q115x-capsule.png';
 export const CustomizationSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const [selectedCapsule, setSelectedCapsule] = useState('q75x');
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { 
+      loop: true,
+      align: 'start',
+      skipSnaps: false,
+      dragFree: false,
+    },
+    [Autoplay({ delay: 4000, stopOnInteraction: true })]
+  );
+
+  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
+  const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
   const capsuleStyles = [
     {
@@ -213,130 +227,158 @@ export const CustomizationSection = () => {
           ))}
         </motion.div>
 
-        {/* All Capsules Grid */}
+        {/* All Capsules Carousel */}
         <motion.div
           className="space-y-8"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <h3 className="text-2xl font-bold text-center">All Models</h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {capsuleStyles.map((capsule, index) => (
-              <motion.div
-                key={capsule.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-2xl font-bold">All Models</h3>
+            
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={scrollPrev}
+                className="h-10 w-10 p-0 border-primary/20 hover:border-primary hover:bg-primary/10"
               >
-                <Card 
-                  className={`group hover:shadow-xl transition-all duration-500 cursor-pointer border-2 ${
-                    selectedCapsule === capsule.id 
-                      ? 'border-primary shadow-glow' 
-                      : 'border-border hover:border-primary/50'
-                  }`}
-                  onClick={() => setSelectedCapsule(capsule.id)}
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={scrollNext}
+                className="h-10 w-10 p-0 border-primary/20 hover:border-primary hover:bg-primary/10"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+          
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {capsuleStyles.map((capsule, index) => (
+                <div
+                  key={capsule.id}
+                  className="flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.333%] xl:flex-[0_0_25%] pl-6 first:pl-0"
                 >
-                  <div className="relative">
-                    <div className="aspect-[4/3] overflow-hidden rounded-t-lg">
-                      <img 
-                        src={capsule.image} 
-                        alt={capsule.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                    </div>
-                    
-                    {capsule.popular && (
-                      <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
-                        POPULAR
-                      </Badge>
-                    )}
-                    
-                    <div className="absolute top-3 left-3">
-                      <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        <span className="text-xs text-white font-medium">{capsule.rating}</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <CardContent className="p-6">
-                    <div className="mb-4">
-                      <h4 className="text-xl font-bold mb-1">{capsule.name}</h4>
-                      <p className="text-sm text-primary font-medium tracking-wide">{capsule.tagline}</p>
-                    </div>
-                    
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Size</span>
-                        <span className="font-medium">{capsule.size}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Capacity</span>
-                        <span className="font-medium">{capsule.capacity}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Layout</span>
-                        <span className="font-medium">{capsule.rooms}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-3 mb-6">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
-                        Key Features
-                      </p>
-                      <div className="space-y-1">
-                        {capsule.features.slice(0, 2).map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm">
-                            <CheckCircle className="w-3 h-3 text-primary flex-shrink-0" />
-                            <span>{feature}</span>
-                          </div>
-                        ))}
-                        {capsule.features.length > 2 && (
-                          <p className="text-xs text-muted-foreground">
-                            +{capsule.features.length - 2} more features
-                          </p>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.6, delay: 0.1 * index }}
+                    className="mr-6"
+                  >
+                    <Card 
+                      className={`group hover:shadow-xl transition-all duration-500 cursor-pointer border-2 h-full ${
+                        selectedCapsule === capsule.id 
+                          ? 'border-primary shadow-glow' 
+                          : 'border-border hover:border-primary/50'
+                      }`}
+                      onClick={() => setSelectedCapsule(capsule.id)}
+                    >
+                      <div className="relative">
+                        <div className="aspect-[4/3] overflow-hidden rounded-t-lg">
+                          <img 
+                            src={capsule.image} 
+                            alt={capsule.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          />
+                        </div>
+                        
+                        {capsule.popular && (
+                          <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
+                            POPULAR
+                          </Badge>
                         )}
+                        
+                        <div className="absolute top-3 left-3">
+                          <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
+                            <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                            <span className="text-xs text-white font-medium">{capsule.rating}</span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <p className="text-lg font-bold text-gradient">{capsule.price}</p>
-                        <p className="text-xs text-muted-foreground">{capsule.bestFor}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-xs text-muted-foreground">{capsule.reviews} reviews</p>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Button 
-                        className="w-full bg-gradient-primary text-primary-foreground border-none hover:shadow-glow"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          scrollToSection('#booking');
-                        }}
-                      >
-                        Configure & Order
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="w-full"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          scrollToSection('#booking');
-                        }}
-                      >
-                        View Details
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                      
+                      <CardContent className="p-6">
+                        <div className="mb-4">
+                          <h4 className="text-xl font-bold mb-1">{capsule.name}</h4>
+                          <p className="text-sm text-primary font-medium tracking-wide">{capsule.tagline}</p>
+                        </div>
+                        
+                        <div className="space-y-3 mb-6">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-muted-foreground">Size</span>
+                            <span className="font-medium">{capsule.size}</span>
+                          </div>
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-muted-foreground">Capacity</span>
+                            <span className="font-medium">{capsule.capacity}</span>
+                          </div>
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-muted-foreground">Layout</span>
+                            <span className="font-medium">{capsule.rooms}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-3 mb-6">
+                          <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
+                            Key Features
+                          </p>
+                          <div className="space-y-1">
+                            {capsule.features.slice(0, 2).map((feature, idx) => (
+                              <div key={idx} className="flex items-center gap-2 text-sm">
+                                <CheckCircle className="w-3 h-3 text-primary flex-shrink-0" />
+                                <span>{feature}</span>
+                              </div>
+                            ))}
+                            {capsule.features.length > 2 && (
+                              <p className="text-xs text-muted-foreground">
+                                +{capsule.features.length - 2} more features
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between mb-4">
+                          <div>
+                            <p className="text-lg font-bold text-gradient">{capsule.price}</p>
+                            <p className="text-xs text-muted-foreground">{capsule.bestFor}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-xs text-muted-foreground">{capsule.reviews} reviews</p>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <Button 
+                            className="w-full bg-gradient-primary text-primary-foreground border-none hover:shadow-glow"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              scrollToSection('#booking');
+                            }}
+                          >
+                            Configure & Order
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            className="w-full"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              scrollToSection('#booking');
+                            }}
+                          >
+                            View Details
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
