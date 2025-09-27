@@ -15,13 +15,6 @@ export const AboutSection = () => {
     { icon: Globe, label: "Countries Served", value: "12" }
   ];
 
-  const timeline = [
-    { year: "2020", event: "Q Capsules Founded", description: "Started with a vision to revolutionize modular living" },
-    { year: "2021", event: "First Prototype", description: "Developed our first fully functional capsule prototype" },
-    { year: "2022", event: "Market Launch", description: "Launched our first commercial capsule line in Qatar" },
-    { year: "2023", event: "International Expansion", description: "Expanded to serve clients across the Middle East" },
-    { year: "2024", event: "Innovation Awards", description: "Recognized for sustainable design and innovation" }
-  ];
 
   return (
     <section id="about" className="py-24 relative overflow-hidden">
@@ -177,46 +170,6 @@ export const AboutSection = () => {
           </motion.div>
         </div>
 
-        {/* Timeline */}
-        <motion.div
-          className="mt-20"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-        >
-          <h3 className="text-3xl font-bold text-center mb-12 text-gradient">Our Journey</h3>
-          
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-primary"></div>
-            
-            <div className="space-y-12">
-              {timeline.map((item, index) => (
-                <motion.div
-                  key={item.year}
-                  className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  transition={{ duration: 0.6, delay: 1 + index * 0.2 }}
-                >
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
-                    <div className="glass-card p-6 hover-lift">
-                      <div className="text-2xl font-bold text-gradient mb-2">{item.year}</div>
-                      <h4 className="text-lg font-semibold mb-2">{item.event}</h4>
-                      <p className="text-muted-foreground text-sm">{item.description}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="w-2/12 flex justify-center">
-                    <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-glow"></div>
-                  </div>
-                  
-                  <div className="w-5/12"></div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
