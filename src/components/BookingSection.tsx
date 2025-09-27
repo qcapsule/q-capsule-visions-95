@@ -118,17 +118,6 @@ export const BookingSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
-                <h4 className="font-semibold text-primary">What to Expect</h4>
-              </div>
-              
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Personalized design consultation</li>
-                <li>• Technical specifications review</li>
-                <li>• Pricing and timeline discussion</li>
-                <li>• Next steps and project planning</li>
-              </ul>
             </motion.div>
           </motion.div>
 
