@@ -17,14 +17,14 @@ export const HeroSection = () => {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Dramatic Background */}
+      {/* Hero Capsule Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-float"></div>
-        <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-float"
-          style={{ animationDelay: "3s" }}
-        ></div>
+        <img 
+          src={heroCapsuleImage} 
+          alt="Q Capsule" 
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -57,20 +57,6 @@ export const HeroSection = () => {
               Revolutionary modular capsules that adapt to any environment.
               Sustainable, intelligent, and beautifully designed.
             </motion.p>
-          </motion.div>
-
-          {/* Featured Capsule Image */}
-          <motion.div
-            className="relative max-w-4xl w-full"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-          >
-            <img 
-              src={heroCapsuleImage} 
-              alt="Q Capsule - Revolutionary Modular Living" 
-              className="w-full h-auto rounded-2xl shadow-glow"
-            />
           </motion.div>
 
           {/* CTA Buttons */}
