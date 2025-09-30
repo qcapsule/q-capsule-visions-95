@@ -44,7 +44,7 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden">
+    <section id="about" className="relative overflow-hidden my-20">
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <motion.div
           className="text-center mb-16"

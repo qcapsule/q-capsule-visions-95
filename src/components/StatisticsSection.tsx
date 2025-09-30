@@ -173,7 +173,7 @@ export const StatisticsSection = () => {
   };
 
   return (
-    <section id="statistics" className="relative overflow-hidden">
+    <section id="statistics" className="relative overflow-hidden my-20">
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <div
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"
