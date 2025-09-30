@@ -1,15 +1,16 @@
 import { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useScroll, useTransform, motion } from 'framer-motion';
+import { Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Simple Capsule 3D Mesh
-function Capsule3D({ targetRotation }: { targetRotation: [number, number, number] }) {
+// Capsule Geometry - same design as CapsuleModel3D
+function CapsuleGeometry({ targetRotation }: { targetRotation: [number, number, number] }) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame(() => {
     if (groupRef.current) {
-      // Smooth rotation lerp
+      // Smooth rotation transition
       groupRef.current.rotation.x += (targetRotation[0] - groupRef.current.rotation.x) * 0.1;
       groupRef.current.rotation.y += (targetRotation[1] - groupRef.current.rotation.y) * 0.1;
       groupRef.current.rotation.z += (targetRotation[2] - groupRef.current.rotation.z) * 0.1;
@@ -18,47 +19,84 @@ function Capsule3D({ targetRotation }: { targetRotation: [number, number, number
 
   return (
     <group ref={groupRef}>
-      {/* Main capsule body */}
-      <mesh castShadow>
-        <capsuleGeometry args={[1, 3, 32, 64]} />
-        <meshStandardMaterial
-          color="#c9a068"
-          metalness={0.7}
+      {/* Main Capsule Body */}
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[4, 1.2, 1.5]} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          metalness={0.8} 
           roughness={0.2}
+          emissive="#ffb84d"
+          emissiveIntensity={0.1}
         />
       </mesh>
-
-      {/* Windows - side panels */}
-      <mesh position={[1.05, 0, 0]} castShadow>
-        <boxGeometry args={[0.05, 2, 1.5]} />
-        <meshStandardMaterial
-          color="#4a9eff"
-          metalness={0.9}
-          roughness={0.1}
-          transparent
-          opacity={0.6}
+      
+      {/* Rounded Ends */}
+      <mesh position={[2, 0, 0]}>
+        <cylinderGeometry args={[0.75, 0.75, 1.2, 16]} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          metalness={0.8} 
+          roughness={0.2}
+          emissive="#ffb84d"
+          emissiveIntensity={0.1}
         />
       </mesh>
-
-      <mesh position={[-1.05, 0, 0]} castShadow>
-        <boxGeometry args={[0.05, 2, 1.5]} />
-        <meshStandardMaterial
-          color="#4a9eff"
-          metalness={0.9}
-          roughness={0.1}
-          transparent
-          opacity={0.6}
+      
+      <mesh position={[-2, 0, 0]}>
+        <cylinderGeometry args={[0.75, 0.75, 1.2, 16]} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          metalness={0.8} 
+          roughness={0.2}
+          emissive="#ffb84d"
+          emissiveIntensity={0.1}
         />
       </mesh>
-
-      {/* Base platform */}
-      <mesh position={[0, -2.5, 0]} castShadow>
-        <cylinderGeometry args={[1.3, 1.3, 0.3, 32]} />
-        <meshStandardMaterial
-          color="#8b7355"
-          metalness={0.4}
-          roughness={0.6}
+      
+      {/* Windows */}
+      <mesh position={[0.5, 0.1, 0.76]}>
+        <boxGeometry args={[2, 0.8, 0.02]} />
+        <meshStandardMaterial 
+          color="#87ceeb" 
+          transparent 
+          opacity={0.3}
+          emissive="#87ceeb"
+          emissiveIntensity={0.2}
         />
+      </mesh>
+      
+      {/* LED Strip Lighting */}
+      <mesh position={[0, -0.6, 0]}>
+        <boxGeometry args={[4.2, 0.05, 1.6]} />
+        <meshStandardMaterial 
+          color="#ffb84d" 
+          transparent 
+          opacity={0.8}
+          emissive="#ffb84d"
+          emissiveIntensity={1}
+        />
+      </mesh>
+      
+      {/* Support Pillars */}
+      <mesh position={[1.5, -1.2, 0.5]}>
+        <cylinderGeometry args={[0.05, 0.05, 0.8, 8]} />
+        <meshStandardMaterial color="#444" metalness={0.9} roughness={0.1} />
+      </mesh>
+      
+      <mesh position={[-1.5, -1.2, 0.5]}>
+        <cylinderGeometry args={[0.05, 0.05, 0.8, 8]} />
+        <meshStandardMaterial color="#444" metalness={0.9} roughness={0.1} />
+      </mesh>
+      
+      <mesh position={[1.5, -1.2, -0.5]}>
+        <cylinderGeometry args={[0.05, 0.05, 0.8, 8]} />
+        <meshStandardMaterial color="#444" metalness={0.9} roughness={0.1} />
+      </mesh>
+      
+      <mesh position={[-1.5, -1.2, -0.5]}>
+        <cylinderGeometry args={[0.05, 0.05, 0.8, 8]} />
+        <meshStandardMaterial color="#444" metalness={0.9} roughness={0.1} />
       </mesh>
     </group>
   );
@@ -124,25 +162,32 @@ export const Scrolling3DCapsule = () => {
       animate={{ opacity: 0.9, x: 0 }}
       transition={{ duration: 1.2, ease: 'easeOut' }}
     >
-      <Canvas shadows camera={{ position: [0, 0, 10], fov: 35 }}>
+      <Canvas shadows camera={{ position: [8, 2, 8], fov: 50 }}>
+        <Environment preset="night" />
         {/* Lights */}
-        <ambientLight intensity={0.4} />
+        <ambientLight intensity={0.3} />
         <directionalLight
-          position={[5, 8, 5]}
-          intensity={1.2}
+          position={[10, 10, 5]}
+          intensity={1}
+          color="#ffb84d"
           castShadow
         />
-        <pointLight position={[-5, 5, -5]} intensity={0.5} color="#ffd700" />
+        <pointLight
+          position={[0, -2, 0]}
+          intensity={2}
+          color="#ffb84d"
+          distance={10}
+        />
         
         {/* 3D Capsule */}
-        <Capsule3D targetRotation={rotation} />
+        <CapsuleGeometry targetRotation={rotation} />
       </Canvas>
 
       {/* Subtle background glow */}
       <div
         className="absolute inset-0 -z-10"
         style={{
-          background: 'radial-gradient(circle, rgba(201, 160, 104, 0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255, 184, 77, 0.15) 0%, transparent 70%)',
           filter: 'blur(30px)',
         }}
       />
