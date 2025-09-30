@@ -22,18 +22,7 @@ export const BrochureSection = () => {
   };
 
   return (
-    <section id="brochure" className="py-24 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5">
-          <div className="absolute top-1/3 left-1/5 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float"></div>
-          <div
-            className="absolute bottom-1/3 right-1/5 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-float"
-            style={{ animationDelay: "2s" }}
-          ></div>
-        </div>
-      </div>
-
+    <section id="brochure" className="py-16 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <motion.div
           className="text-center mb-16"

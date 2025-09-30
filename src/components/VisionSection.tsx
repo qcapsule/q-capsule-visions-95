@@ -35,12 +35,7 @@ export const VisionSection = () => {
   ];
 
   return (
-    <section id="vision" className="py-24 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
-      </div>
+    <section id="vision" className="py-16 relative overflow-hidden">
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <motion.div
