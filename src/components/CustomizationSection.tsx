@@ -103,7 +103,7 @@ export const CustomizationSection = () => {
   }, [capsuleStyles.length]);
 
   return (
-    <section id="customization" className="relative overflow-hidden my-20">
+    <section id="customization" className="relative overflow-hidden my-32">
 
       <div
         className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-7xl"

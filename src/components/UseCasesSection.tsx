@@ -111,7 +111,7 @@ export const UseCasesSection = () => {
   ];
 
   return (
-    <section id="use-cases" className="relative overflow-hidden my-20">
+    <section id="use-cases" className="relative overflow-hidden my-32">
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         {/* Enhanced Header */}
         <motion.div
