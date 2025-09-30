@@ -33,7 +33,7 @@ export const BackgroundOrbs = () => {
   ];
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {orbs.map((orb, index) => (
         <motion.div
           key={index}

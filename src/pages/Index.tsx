@@ -18,10 +18,11 @@ import { BackgroundOrbs } from "@/components/BackgroundOrbs";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative">
       <BackgroundOrbs />
-      <ScrollProgress />
-      <Navigation />
+      <div className="relative z-10">
+        <ScrollProgress />
+        <Navigation />
       <HeroSection />
       <VisionSection />
       {/* <ScrollCapsuleSection /> */}
@@ -40,6 +41,7 @@ const Index = () => {
       <BookingSection />
 
       <Footer />
+      </div>
     </div>
   );
 };
