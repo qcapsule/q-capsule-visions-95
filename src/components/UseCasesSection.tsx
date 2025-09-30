@@ -10,7 +10,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Building2, TreePine, Tent, Heart, Shield } from "lucide-react";
+import {
+  Building2,
+  TreePine,
+  Tent,
+  Heart,
+  Shield,
+  Sparkles,
+} from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 
 // Import use case images
@@ -29,216 +36,305 @@ export const UseCasesSection = () => {
     {
       icon: Building2,
       title: "Office Spaces",
-      description: "Modern workspaces that adapt to your business needs, from startups to enterprise operations.",
-      applications: ["Remote Offices", "Startup Hubs", "Meeting Spaces", "Co-working"],
+      description:
+        "Modern workspaces that adapt to your business needs, from startups to enterprise operations.",
+      applications: [
+        "Remote Offices",
+        "Startup Hubs",
+        "Meeting Spaces",
+        "Co-working",
+      ],
       color: "from-blue-500 to-indigo-600",
       image: officeImage,
-      stats: "50+ Deployments"
+      stats: "50+ Deployments",
     },
     {
       icon: TreePine,
       title: "Eco Resorts",
-      description: "Sustainable luxury retreats that blend seamlessly with natural environments.",
-      applications: ["Glamping", "Safari Lodges", "Eco Hotels", "Wellness Retreats"],
+      description:
+        "Sustainable luxury retreats that blend seamlessly with natural environments.",
+      applications: [
+        "Glamping",
+        "Safari Lodges",
+        "Eco Hotels",
+        "Wellness Retreats",
+      ],
       color: "from-emerald-500 to-teal-600",
       image: ecoResortImage,
-      stats: "Zero Carbon Footprint"
+      stats: "Zero Carbon Footprint",
     },
     {
       icon: Tent,
       title: "Emergency Relief",
-      description: "Rapid deployment shelters providing immediate safety and comfort in crisis situations.",
-      applications: ["Disaster Housing", "Medical Units", "Command Centers", "Refugee Support"],
+      description:
+        "Rapid deployment shelters providing immediate safety and comfort in crisis situations.",
+      applications: [
+        "Disaster Housing",
+        "Medical Units",
+        "Command Centers",
+        "Refugee Support",
+      ],
       color: "from-red-500 to-orange-600",
       image: disasterReliefImage,
-      stats: "15 Min Setup"
+      stats: "15 Min Setup",
     },
     {
       icon: Heart,
       title: "Healthcare",
-      description: "Mobile medical facilities bringing advanced healthcare to underserved communities.",
-      applications: ["Mobile Clinics", "Telemedicine", "Emergency Care", "Wellness Centers"],
+      description:
+        "Mobile medical facilities bringing advanced healthcare to underserved communities.",
+      applications: [
+        "Mobile Clinics",
+        "Telemedicine",
+        "Emergency Care",
+        "Wellness Centers",
+      ],
       color: "from-pink-500 to-rose-600",
       image: healthcareImage,
-      stats: "Medical Grade"
+      stats: "Medical Grade",
     },
     {
       icon: Shield,
-      title: "Secure Banking", 
-      description: "Fortified financial facilities providing secure, private banking services with cutting-edge technology.",
-      applications: ["Private Banking", "Secure Vaults", "Financial Consulting", "Digital Banking"],
+      title: "Secure Banking",
+      description:
+        "Fortified financial facilities providing secure, private banking services with cutting-edge technology.",
+      applications: [
+        "Private Banking",
+        "Secure Vaults",
+        "Financial Consulting",
+        "Digital Banking",
+      ],
       color: "from-purple-500 to-violet-600",
       image: secureBankingImage,
-      stats: "Bank-Grade Security"
+      stats: "Bank-Grade Security",
     },
   ];
 
   return (
     <section id="use-cases" className="py-32 relative overflow-hidden">
-      {/* Minimal Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/50 to-background"></div>
-      
+      {/* Enhanced Background Elements */}
+      <div className="absolute inset-0 z-0">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_20%)] opacity-5"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent))_0%,transparent_20%)] opacity-5"></div>
+        </div>
+
+        {/* Floating geometric shapes */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+        <div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "3s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
+
+        {/* Animated particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-primary/30 rounded-full"
+              initial={{
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                opacity: 0,
+              }}
+              animate={{
+                y: [null, -50, -100],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeOut",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        {/* Header */}
+        {/* Enhanced Header */}
         <motion.div
           className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
-          <motion.span
-            className="inline-block px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <motion.div
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card text-sm font-medium mb-8 border border-primary/20"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+            }
+            transition={{ duration: 0.8, delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
           >
-            Use Cases
-          </motion.span>
-          
-          <h2 className="text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-gradient">Built for Every Vision</span>
-          </h2>
-          
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover how Q Capsules transform ideas into reality across industries and applications.
-          </p>
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-gradient">Use Cases</span>
+          </motion.div>
+
+          <motion.h2
+            className="text-5xl lg:text-7xl font-bold mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <span className="text-gradient glow-text">
+              Built for Every Vision
+            </span>
+          </motion.h2>
+
+          <motion.p
+            className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            Discover how Q Capsules transform ideas into reality across
+            industries and applications.
+          </motion.p>
         </motion.div>
 
-        {/* Cards Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {/* Screen-Fit Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-7xl mx-auto">
           {useCases.map((useCase, index) => (
             <motion.div
               key={useCase.title}
-              className={`group relative overflow-hidden rounded-3xl bg-card border transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 ${
-                index === 0 ? 'lg:col-span-2' : ''
-              }`}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-2xl bg-card/80 backdrop-blur-sm border border-white/10 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 hover:bg-card/90"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              whileHover={{ y: -8 }}
-              style={{ minHeight: index === 0 ? '500px' : '400px' }}
+              whileHover={{ y: -4 }}
+              style={{ minHeight: "320px" }}
             >
-              {/* Image Container */}
-              <div className={`relative overflow-hidden ${index === 0 ? 'h-64' : 'h-48'}`}>
-                <motion.img
+              {/* Compact Image Header */}
+              <div className="relative overflow-hidden h-32">
+                <img
                   src={useCase.image}
                   alt={useCase.title}
                   className="w-full h-full object-cover"
-                  animate={{
-                    scale: hoveredIndex === index ? 1.1 : 1,
-                  }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
                 />
-                
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${useCase.color} opacity-60 group-hover:opacity-40 transition-opacity duration-500`}></div>
-                
-                {/* Icon & Stats */}
-                <div className="absolute top-6 left-6 flex items-center gap-4">
-                  <motion.div 
-                    className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    <useCase.icon className="h-6 w-6 text-white" />
-                  </motion.div>
-                  
-                  <motion.span 
-                    className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/30"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: hoveredIndex === index ? 1 : 0.8, x: 0 }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    {useCase.stats}
-                  </motion.span>
+
+                {/* Light Gradient Overlay */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t ${useCase.color} opacity-40`}
+                ></div>
+
+                {/* Icon */}
+                <div className="absolute top-3 left-3">
+                  <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
+                    <useCase.icon className="h-4 w-4 text-white" />
+                  </div>
                 </div>
 
-                {/* Title on Image */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <motion.h3 
-                    className={`font-bold text-white mb-2 ${index === 0 ? 'text-4xl' : 'text-3xl'}`}
-                    animate={{ y: hoveredIndex === index ? -5 : 0 }}
-                  >
+                {/* Stats Badge */}
+                <div className="absolute top-3 right-3">
+                  <span className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-md border border-white/30">
+                    {useCase.stats}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <div className="absolute bottom-3 left-3 right-3">
+                  <h3 className="font-bold text-white text-lg leading-tight">
                     {useCase.title}
-                  </motion.h3>
+                  </h3>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-8">
-                <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
+              {/* Compact Content */}
+              <div className="p-4 flex-1 flex flex-col">
+                <p className="text-muted-foreground mb-3 leading-relaxed text-xs flex-1">
                   {useCase.description}
                 </p>
 
                 {/* Applications */}
-                <motion.div
-                  className="space-y-4"
-                  animate={{ opacity: hoveredIndex === index ? 1 : 0.7 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h4 className="text-sm font-semibold text-foreground/60 uppercase tracking-wide">
+                <div className="space-y-2">
+                  <h4 className="text-xs font-semibold text-foreground/60 uppercase tracking-wide">
                     Applications
                   </h4>
-                  
-                  <div className="flex flex-wrap gap-2">
+
+                  <div className="flex flex-wrap gap-1">
                     {useCase.applications.map((app, i) => (
-                      <motion.span
+                      <span
                         key={app}
-                        className="px-3 py-2 bg-muted/50 text-muted-foreground text-sm rounded-lg border border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300"
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.05 + 0.2 }}
+                        className="px-2 py-1 bg-muted/40 text-muted-foreground text-xs rounded-sm border border-border/30 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-200"
                       >
                         {app}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
-                </motion.div>
+                </div>
 
-                {/* Hover CTA */}
-                <motion.div
-                  className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-lg">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                {/* Hover Arrow */}
+                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="w-6 h-6 bg-primary/80 rounded-full flex items-center justify-center text-primary-foreground shadow-md">
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA Section */}
+        {/* Enhanced Call to Action */}
         <motion.div
-          className="mt-24 text-center"
+          className="text-center mt-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 1.5 }}
         >
-          <div className="glass-card p-12 max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold mb-4 text-gradient">
-              Have a Custom Vision?
-            </h3>
-            <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-              Every project is unique. Let's collaborate to create a Q Capsule solution 
-              tailored specifically to your needs and vision.
+          <div className="glass-card p-12 max-w-3xl mx-auto border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+            <motion.h3
+              className="text-3xl lg:text-4xl font-bold mb-6 text-gradient"
+              whileHover={{ scale: 1.05 }}
+            >
+              Ready to Bring Your Vision to Life?
+            </motion.h3>
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              Every project is unique. Let's collaborate to create a Q Capsule
+              solution tailored specifically to your needs and vision.
             </p>
-            
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               whileHover={{ scale: 1.02 }}
             >
-              <button className="bg-gradient-primary text-primary-foreground px-8 py-4 rounded-2xl font-semibold hover:shadow-glow transition-all duration-300">
+              <motion.button
+                className="bg-gradient-primary text-primary-foreground px-12 py-4 rounded-2xl font-bold text-lg hover:shadow-glow transition-all duration-500 border border-primary/20 hover:border-primary/40"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 0 50px hsl(var(--primary) / 0.4)",
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Discuss Your Project
-              </button>
-              <button className="border border-primary text-primary px-8 py-4 rounded-2xl font-semibold hover:bg-primary/5 transition-all duration-300">
+              </motion.button>
+              <motion.button
+                className="border border-primary text-primary px-12 py-4 rounded-2xl font-bold text-lg hover:bg-primary/5 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 View Portfolio
-              </button>
+              </motion.button>
             </motion.div>
           </div>
         </motion.div>

@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -54,20 +59,21 @@ export default {
         warning: "hsl(var(--warning))",
       },
       backgroundImage: {
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-secondary': 'var(--gradient-secondary)',
-        'gradient-accent': 'var(--gradient-accent)',
-        'gradient-hero': 'var(--gradient-hero)',
+        "gradient-primary": "var(--gradient-primary)",
+        "gradient-secondary": "var(--gradient-secondary)",
+        "gradient-accent": "var(--gradient-accent)",
+        "gradient-hero": "var(--gradient-hero)",
       },
       boxShadow: {
-        'glow': 'var(--shadow-glow)',
-        'card': 'var(--shadow-card)',
-        'accent': 'var(--shadow-accent)',
+        glow: "var(--shadow-glow)",
+        card: "var(--shadow-card)",
+        accent: "var(--shadow-accent)",
       },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Menlo', 'monospace'],
-      },
+        fontFamily: {
+          sans: ["Inter", "system-ui", "sans-serif"],
+          mono: ["JetBrains Mono", "Menlo", "monospace"],
+          luxury: ["Playfair Display", "serif"],
+        },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -90,7 +96,7 @@ export default {
             height: "0",
           },
         },
-        "float": {
+        float: {
           "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
           "50%": { transform: "translateY(-10px) rotate(1deg)" },
         },
@@ -99,26 +105,26 @@ export default {
           "50%": { boxShadow: "0 0 60px hsl(var(--primary-glow) / 0.4)" },
         },
         "slide-up": {
-          from: { 
-            opacity: "0", 
-            transform: "translateY(30px)" 
+          from: {
+            opacity: "0",
+            transform: "translateY(30px)",
           },
-          to: { 
-            opacity: "1", 
-            transform: "translateY(0)" 
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
           },
         },
         "scale-in": {
-          from: { 
-            opacity: "0", 
-            transform: "scale(0.8)" 
+          from: {
+            opacity: "0",
+            transform: "scale(0.8)",
           },
-          to: { 
-            opacity: "1", 
-            transform: "scale(1)" 
+          to: {
+            opacity: "1",
+            transform: "scale(1)",
           },
         },
-        "shimmer": {
+        shimmer: {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
@@ -126,11 +132,11 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "float": "float 6s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
         "slide-up": "slide-up 0.6s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
-        "shimmer": "shimmer 2s infinite",
+        shimmer: "shimmer 2s infinite",
       },
     },
   },

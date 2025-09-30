@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { VisionSection } from "@/components/VisionSection";
-import { CapsuleExplorationSection } from "@/components/CapsuleExplorationSection";
 import { CustomizationSection } from "@/components/CustomizationSection";
 import { BrochureSection } from "@/components/BrochureSection";
 import { BookingSection } from "@/components/BookingSection";
@@ -14,6 +13,7 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { Footer } from "@/components/Footer";
 import { ScrollCapsuleSection } from "@/components/ScrollCapsuleSection";
 import { EnvironmentsSection } from "@/components/EnvironmentsSection";
+import { FloorPlanSpotlightExample } from "@/components/FloorPlanSpotlight";
 
 const Index = () => {
   return (
@@ -22,17 +22,21 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <VisionSection />
-      <CapsuleExplorationSection />
       {/* <ScrollCapsuleSection /> */}
-      <EnvironmentsSection />
       <CustomizationSection />
-      <BrochureSection />
+      <FloorPlanSpotlightExample />
+
+      <EnvironmentsSection />
+
       <UseCasesSection />
+
       <CrossSectionDiagram />
       <StatisticsSection />
+      <BrochureSection />
       {/* <CertificationsSection /> */}
-      <BookingSection />
       <AboutSection />
+      <BookingSection />
+
       <Footer />
     </div>
   );

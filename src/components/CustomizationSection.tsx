@@ -1,188 +1,381 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
-import q56xImage from '@/assets/q56x-capsule.png';
-import q75xImage from '@/assets/q75x-capsule.png';
-import q95xImage from '@/assets/q95x-capsule.png';
-import q115xImage from '@/assets/q115x-capsule.png';
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Home,
+  Building2,
+  Store,
+  TreePine,
+  Palette,
+  Maximize,
+  Zap,
+  Shield,
+} from "lucide-react";
+import q56xImage from "@/assets/q56x-capsule.png";
+import q75xImage from "@/assets/q75x-capsule.png";
+import q95xImage from "@/assets/q95x-capsule.png";
+import q115xImage from "@/assets/q115x-capsule.png";
+import floorplanBgImage from "@/assets/floorplan-bg.jpg";
+import mostAttractiveThumbnail from "@/assets/Most_Attractive_Youtube_Thumbnail.png";
 
 export const CustomizationSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true,
-      align: 'center',
-      skipSnaps: false,
-      dragFree: false,
-    },
-    [Autoplay({ delay: 3000, stopOnInteraction: true })]
-  );
-
-  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
-  const scrollNext = () => emblaApi && emblaApi.scrollNext();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const capsuleStyles = [
     {
-      id: 'q56x',
-      name: 'Q56X',
-      size: '18m²',
-      capacity: '1-2 People',
-      layout: '1 Room',
-      image: q56xImage
+      id: "q56x",
+      name: "Q56X",
+      size: "18m²",
+      dimensions: "3.2 x 3.2 x 5.6m",
+      rooms: "1 Room",
+      image: q56xImage,
     },
     {
-      id: 'q75x',
-      name: 'Q75X',
-      size: '24m²',
-      capacity: '2-3 People',
-      layout: '2 Rooms',
-      image: q75xImage
+      id: "q75x",
+      name: "Q75X",
+      size: "24m²",
+      dimensions: "3.2 x 3.2 x 7.5m",
+      rooms: "2 Rooms",
+      image: q75xImage,
     },
     {
-      id: 'q95x',
-      name: 'Q95X',
-      size: '30m²',
-      capacity: '2-4 People',
-      layout: '2 Rooms + Deck',
-      image: q95xImage
+      id: "q95x",
+      name: "Q95X",
+      size: "30m²",
+      dimensions: "3.2 x 3.2 x 9.5m",
+      rooms: "2 Rooms + Deck",
+      image: q95xImage,
     },
     {
-      id: 'q115x',
-      name: 'Q115X',
-      size: '38m²',
-      capacity: '4-6 People',
-      layout: '3 Rooms',
-      image: q115xImage
-    }
+      id: "q115x",
+      name: "Q115X",
+      size: "38m²",
+      dimensions: "3.2 x 3.2 x 11.5m",
+      rooms: "3 Rooms",
+      image: q115xImage,
+    },
+    {
+      id: "premium",
+      name: "Premium",
+      size: "45m²",
+      dimensions: "4.0 x 4.0 x 12.0m",
+      rooms: "3 Rooms + Terrace",
+      image: mostAttractiveThumbnail,
+    },
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.querySelector(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const customizationOptions = [
+    {
+      icon: Palette,
+      title: "Interior Design",
+      description: "Choose from curated design themes",
+    },
+    {
+      icon: Maximize,
+      title: "Space Configuration",
+      description: "Flexible layouts for any need",
+    },
+    {
+      icon: Zap,
+      title: "Smart Technology",
+      description: "Integrated IoT and automation",
+    },
+    {
+      icon: Shield,
+      title: "Security Features",
+      description: "Advanced security systems",
+    },
+  ];
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % capsuleStyles.length);
+    }, 9000);
+
+    return () => clearInterval(timer);
+  }, [capsuleStyles.length]);
 
   return (
-    <section id="customization" className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6" ref={ref}>
-        {/* Header */}
+    <section id="customization" className="py-32 relative overflow-hidden">
+      {/* Enhanced Background Elements with Desert Background */}
+      <div className="absolute inset-0 z-0">
+        {/* Desert Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${floorplanBgImage})`,
+          }}
+        />
+
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/15 to-black/18"></div>
+
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_20%)] opacity-5"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent))_0%,transparent_20%)] opacity-5"></div>
+        </div>
+
+        {/* Floating geometric shapes */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+        <div
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "3s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary-glow/5 rounded-full blur-2xl animate-float"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
+
+        {/* Animated particles */}
+        <div className="absolute inset-0">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-primary/30 rounded-full"
+              initial={{
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                opacity: 0,
+              }}
+              animate={{
+                y: [null, -50, -100],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeOut",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div
+        className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-7xl"
+        ref={ref}
+      >
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
         >
-          <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
-            CAPSULE COLLECTION
-          </Badge>
-          
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-            Choose Your Perfect
-            <span className="text-gradient block">Living Space</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8">
+            <span className="text-gradient">The Capsule Collection</span>
           </h2>
-          
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            From compact efficiency to luxury living, our Q Capsule collection offers modular 
-            solutions designed for every lifestyle and budget.
+
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto px-4">
+            Every Q Capsule is designed to your exact specifications. Choose
+            from our signature styles or create something completely unique.
           </p>
         </motion.div>
 
-        {/* Capsules Carousel */}
-        <motion.div
-          className="space-y-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-2xl font-bold">Our Models</h3>
-            
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={scrollPrev}
-                className="h-10 w-10 p-0 border-primary/20 hover:border-primary hover:bg-primary/10"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={scrollNext}
-                className="h-10 w-10 p-0 border-primary/20 hover:border-primary hover:bg-primary/10"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </Button>
+        {/* Center Image with Surrounding Text Carousel */}
+        <div className="relative mb-12 sm:mb-16 lg:mb-20 max-w-full mx-auto">
+          <div className="relative">
+            {/* Center Capsule Image */}
+            <div className="relative mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={capsuleStyles[currentSlide].id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.1 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="relative"
+                >
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden">
+                    <img
+                      src={capsuleStyles[currentSlide].image}
+                      alt={capsuleStyles[currentSlide].name}
+                      className="w-full h-[200px] sm:h-[280px] md:h-[320px] lg:h-[360px] xl:h-[400px] 2xl:h-[450px] object-cover"
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Surrounding Text Labels */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Top Left - Model */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`model-${currentSlide}`}
+                  className="absolute top-2 left-2 sm:top-4 sm:left-4 lg:top-8 lg:left-8"
+                  initial={{ opacity: 0, x: -20, scale: 0.8 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -20, scale: 0.8 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                      Model
+                    </div>
+                    <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
+                      {capsuleStyles[currentSlide].name}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Top Right - Dimensions */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`dimensions-${currentSlide}`}
+                  className="absolute top-2 right-2 sm:top-4 sm:right-4 lg:top-8 lg:right-8"
+                  initial={{ opacity: 0, x: 20, scale: 0.8 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: 20, scale: 0.8 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                      Dimensions
+                    </div>
+                    <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
+                      {capsuleStyles[currentSlide].dimensions}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Bottom Left - Size */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`size-${currentSlide}`}
+                  className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 lg:bottom-8 lg:left-8"
+                  initial={{ opacity: 0, x: -20, scale: 0.8 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -20, scale: 0.8 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                >
+                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                      Size
+                    </div>
+                    <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
+                      {capsuleStyles[currentSlide].size}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Bottom Right - Rooms */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`rooms-${currentSlide}`}
+                  className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 lg:bottom-8 lg:right-8"
+                  initial={{ opacity: 0, x: 20, scale: 0.8 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: 20, scale: 0.8 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                      Rooms
+                    </div>
+                    <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
+                      {capsuleStyles[currentSlide].rooms}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
-          
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
-              {capsuleStyles.map((capsule, index) => (
-                <div
-                  key={capsule.id}
-                  className="flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.333%] xl:flex-[0_0_25%] pl-6 first:pl-0"
+
+          {/* Navigation Arrows */}
+          <div className="absolute inset-y-0 left-0 flex items-center -ml-8 sm:-ml-12 lg:-ml-16">
+            <button
+              onClick={() =>
+                setCurrentSlide((prev) =>
+                  prev === 0 ? capsuleStyles.length - 1 : prev - 1
+                )
+              }
+              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+            >
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div className="absolute inset-y-0 right-0 flex items-center -mr-8 sm:-mr-12 lg:-mr-16">
+            <button
+              onClick={() =>
+                setCurrentSlide((prev) => (prev + 1) % capsuleStyles.length)
+              }
+              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+            >
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* Bottom Indicators */}
+          <div className="flex justify-center mt-6 sm:mt-8 space-x-2 sm:space-x-3">
+            {capsuleStyles.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 backdrop-blur-xl border ${
+                  currentSlide === index
+                    ? "bg-primary scale-125 border-primary/50 shadow-lg shadow-primary/50"
+                    : "bg-white/10 border-white/20 hover:bg-white/20 hover:border-white/30"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Model Names Bar */}
+          <div className="flex justify-center mt-4 sm:mt-6">
+            <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 rounded-full">
+              {capsuleStyles.map((style, index) => (
+                <button
+                  key={style.id}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`text-xs sm:text-sm font-medium transition-all duration-300 ${
+                    currentSlide === index
+                      ? "text-primary font-bold"
+                      : "text-white/70 hover:text-white"
+                  }`}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.6, delay: 0.1 * index }}
-                    className="mr-6"
-                  >
-                    <Card className="group hover:shadow-xl transition-all duration-500 border-border hover:border-primary/50 h-full">
-                      <div className="relative">
-                        <div className="aspect-[4/3] overflow-hidden rounded-t-lg">
-                          <img 
-                            src={capsule.image} 
-                            alt={capsule.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                          />
-                        </div>
-                      </div>
-                      
-                      <CardContent className="p-6 text-center">
-                        <h4 className="text-2xl font-bold mb-6 text-gradient">{capsule.name}</h4>
-                        
-                        <div className="space-y-4 mb-6">
-                          <div className="flex items-center justify-between py-2 border-b border-border/50">
-                            <span className="text-muted-foreground">Size</span>
-                            <span className="font-semibold">{capsule.size}</span>
-                          </div>
-                          <div className="flex items-center justify-between py-2 border-b border-border/50">
-                            <span className="text-muted-foreground">Capacity</span>
-                            <span className="font-semibold">{capsule.capacity}</span>
-                          </div>
-                          <div className="flex items-center justify-between py-2">
-                            <span className="text-muted-foreground">Layout</span>
-                            <span className="font-semibold">{capsule.layout}</span>
-                          </div>
-                        </div>
-                        
-                        <Button 
-                          className="w-full bg-gradient-primary text-primary-foreground border-none hover:shadow-glow"
-                          onClick={() => scrollToSection('#booking')}
-                        >
-                          Learn More
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </div>
+                  {style.name}
+                </button>
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
