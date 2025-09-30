@@ -24,7 +24,7 @@ export const HeroSection = () => {
           alt="Q Capsule" 
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/20 to-background/80"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -43,8 +43,8 @@ export const HeroSection = () => {
               transition={{ duration: 1.2, delay: 0.5 }}
             >
               <h1 className="text-6xl lg:text-8xl xl:text-9xl font-bold leading-tight tracking-tight">
-                <span className="block text-gradient glow-text">The Future</span>
-                <span className="block text-gradient glow-text">of Living</span>
+                <span className="block text-gradient glow-text">luxury living...</span>
+                <span className="block text-gradient glow-text">anywhere</span>
               </h1>
             </motion.div>
 
@@ -106,67 +106,6 @@ export const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Floating Feature Tags */}
-      <motion.div
-        className="absolute top-32 left-12 glass-card p-4 max-w-xs hidden lg:block"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.8, duration: 0.8 }}
-      >
-        <div className="flex items-center space-x-3">
-          <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
-          <div>
-            <div className="font-semibold text-sm">Made in Qatar</div>
-            <div className="text-xs text-muted-foreground">Certified Excellence</div>
-          </div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="absolute top-32 right-12 glass-card p-4 max-w-xs hidden lg:block"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 2, duration: 0.8 }}
-      >
-        <div className="flex items-center space-x-3">
-          <div className="w-3 h-3 bg-accent rounded-full animate-glow-pulse"></div>
-          <div>
-            <div className="font-semibold text-sm">Smart Technology</div>
-            <div className="text-xs text-muted-foreground">AI-Powered Systems</div>
-          </div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-32 left-12 glass-card p-4 max-w-xs hidden lg:block"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 2.2, duration: 0.8 }}
-      >
-        <div className="flex items-center space-x-3">
-          <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
-          <div>
-            <div className="font-semibold text-sm">100% Sustainable</div>
-            <div className="text-xs text-muted-foreground">Eco-Friendly Design</div>
-          </div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-32 right-12 glass-card p-4 max-w-xs hidden lg:block"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 2.4, duration: 0.8 }}
-      >
-        <div className="flex items-center space-x-3">
-          <div className="w-3 h-3 bg-accent rounded-full animate-glow-pulse"></div>
-          <div>
-            <div className="font-semibold text-sm">Rapid Deployment</div>
-            <div className="text-xs text-muted-foreground">Install in Days</div>
-          </div>
-        </div>
-      </motion.div>
     </section>
   );
 };
