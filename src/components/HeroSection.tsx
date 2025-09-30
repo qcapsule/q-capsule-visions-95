@@ -16,145 +16,156 @@ export const HeroSection = () => {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background Elements */}
+      {/* Dramatic Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-float"></div>
         <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "2s" }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-float"
+          style={{ animationDelay: "3s" }}
         ></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-primary/5 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+        {/* Centered Content Layout */}
+        <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-12">
+          {/* Main Heading */}
           <motion.div
-            className="space-y-8 text-center lg:text-left"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="block text-gradient glow-text">Future of</span>
-                <span className="block text-foreground">Modular Living</span>
-              </h1>
-
-              <p className="text-xl text-muted-foreground max-w-2xl">
-                Revolutionary capsule homes that adapt to your lifestyle.
-                Sustainable, customizable, and ready to deploy anywhere in the
-                world.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <Button
-                size="lg"
-                className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow hover-lift text-lg px-8 py-4"
-                onClick={() => scrollToSection("#customization")}
-              >
-                Explore Capsules
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary/10 text-lg px-8 py-4"
-                onClick={() => scrollToSection("#booking")}
-              >
-                <Calendar className="mr-2 h-5 w-5" />
-                Book Meeting
-              </Button>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              className="grid grid-cols-3 gap-8 pt-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-gradient">50%</div>
-                <div className="text-sm text-muted-foreground">
-                  Faster Build
-                </div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-gradient">30%</div>
-                <div className="text-sm text-muted-foreground">
-                  Cost Savings
-                </div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-gradient">100%</div>
-                <div className="text-sm text-muted-foreground">Sustainable</div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Content - 3D Model */}
-          <motion.div
-            className="relative h-[600px] lg:h-[700px]"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            className="space-y-6 max-w-5xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <div className="absolute inset-0 bg-gradient-radial from-primary/20 to-transparent rounded-3xl"></div>
-            <CapsuleModel3D className="relative z-10" />
-
-            {/* Floating Info Cards */}
             <motion.div
-              className="absolute top-20 -left-4 glass-card p-4 max-w-xs"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2, duration: 0.5 }}
+              transition={{ duration: 1.2, delay: 0.5 }}
             >
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
-                <div>
-                  <div className="font-semibold text-sm">
-                    Smart Climate Control
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    AI-powered efficiency
-                  </div>
-                </div>
-              </div>
+              <h1 className="text-6xl lg:text-8xl xl:text-9xl font-bold leading-tight tracking-tight">
+                <span className="block text-gradient glow-text">The Future</span>
+                <span className="block text-gradient glow-text">of Living</span>
+              </h1>
             </motion.div>
 
-            <motion.div
-              className="absolute bottom-32 -right-4 glass-card p-4 max-w-xs"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.4, duration: 0.5 }}
+            <motion.p
+              className="text-xl lg:text-2xl xl:text-3xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
             >
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-accent rounded-full animate-glow-pulse"></div>
-                <div>
-                  <div className="font-semibold text-sm">Modular Design</div>
-                  <div className="text-xs text-muted-foreground">
-                    Infinite possibilities
-                  </div>
-                </div>
+              Revolutionary modular capsules that adapt to any environment.
+              Sustainable, intelligent, and beautifully designed.
+            </motion.p>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            <Button
+              size="lg"
+              className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow hover-lift text-xl px-12 py-6 h-auto"
+              onClick={() => scrollToSection("#customization")}
+            >
+              Explore Models
+              <ArrowRight className="ml-3 h-6 w-6" />
+            </Button>
+
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary/50 text-foreground hover:bg-primary/10 text-xl px-12 py-6 h-auto backdrop-blur-sm"
+              onClick={() => scrollToSection("#booking")}
+            >
+              <Calendar className="mr-3 h-6 w-6" />
+              Book Consultation
+            </Button>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.5, repeat: Infinity, repeatType: "reverse" }}
+          >
+            <div className="flex flex-col items-center space-y-2">
+              <div className="text-sm text-muted-foreground">Scroll to explore</div>
+              <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex items-start justify-center p-2">
+                <motion.div
+                  className="w-1.5 h-3 bg-primary rounded-full"
+                  animate={{ y: [0, 12, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Floating Feature Tags */}
+      <motion.div
+        className="absolute top-32 left-12 glass-card p-4 max-w-xs hidden lg:block"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1.8, duration: 0.8 }}
+      >
+        <div className="flex items-center space-x-3">
+          <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
+          <div>
+            <div className="font-semibold text-sm">Made in Qatar</div>
+            <div className="text-xs text-muted-foreground">Certified Excellence</div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="absolute top-32 right-12 glass-card p-4 max-w-xs hidden lg:block"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 2, duration: 0.8 }}
+      >
+        <div className="flex items-center space-x-3">
+          <div className="w-3 h-3 bg-accent rounded-full animate-glow-pulse"></div>
+          <div>
+            <div className="font-semibold text-sm">Smart Technology</div>
+            <div className="text-xs text-muted-foreground">AI-Powered Systems</div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-32 left-12 glass-card p-4 max-w-xs hidden lg:block"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 2.2, duration: 0.8 }}
+      >
+        <div className="flex items-center space-x-3">
+          <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
+          <div>
+            <div className="font-semibold text-sm">100% Sustainable</div>
+            <div className="text-xs text-muted-foreground">Eco-Friendly Design</div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-32 right-12 glass-card p-4 max-w-xs hidden lg:block"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 2.4, duration: 0.8 }}
+      >
+        <div className="flex items-center space-x-3">
+          <div className="w-3 h-3 bg-accent rounded-full animate-glow-pulse"></div>
+          <div>
+            <div className="font-semibold text-sm">Rapid Deployment</div>
+            <div className="text-xs text-muted-foreground">Install in Days</div>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 };
