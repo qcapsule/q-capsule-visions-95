@@ -41,11 +41,6 @@ export const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="inline-flex items-center  rounded-full glass-card text-sm text-primary font-medium">
-                <span className="animate-shimmer px-4 py-2 rounded-full">
-                  Made in Qatar
-                </span>
-              </div>
 
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                 <span className="block text-gradient glow-text">Future of</span>
