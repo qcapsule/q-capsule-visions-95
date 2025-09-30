@@ -20,43 +20,28 @@ import { Scrolling3DCapsule } from "@/components/Scrolling3DCapsule";
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative snap-y snap-mandatory overflow-y-scroll h-screen">
+    <div className="min-h-screen relative">
       <BackgroundOrbs />
       <Scrolling3DCapsule />
       <div className="relative z-10">
-        <ScrollProgress />
-        <Navigation />
-        <section className="snap-start">
-          <HeroSection />
-        </section>
-        <section className="snap-start">
-          <CustomizationSection />
-        </section>
-        <section className="snap-start">
-          <FloorPlanSpotlightExample />
-        </section>
-        <section className="snap-start">
-          <EnvironmentsSection />
-        </section>
-        <section className="snap-start">
-          <UseCasesSection />
-        </section>
-        <section className="snap-start">
-          <CrossSectionDiagram />
-        </section>
-        <section className="snap-start">
-          <StatisticsSection />
-        </section>
-        <section className="snap-start">
-          <BrochureSection />
-        </section>
-        <section className="snap-start">
-          <AboutSection />
-        </section>
-        <section className="snap-start">
-          <BookingSection />
-        </section>
-        <Footer />
+      <ScrollProgress />
+      <Navigation />
+      <HeroSection />
+      <CustomizationSection />
+      <FloorPlanSpotlightExample />
+
+      <EnvironmentsSection />
+
+      <UseCasesSection />
+
+      <CrossSectionDiagram />
+      <StatisticsSection />
+      <BrochureSection />
+      {/* <CertificationsSection /> */}
+      <AboutSection />
+      <BookingSection />
+
+      <Footer />
       </div>
     </div>
   );
