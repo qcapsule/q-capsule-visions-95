@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CapsuleModel3D } from "./CapsuleModel3D";
 import { ArrowRight, Play, Calendar } from "lucide-react";
+import heroCapsuleImage from "@/assets/hero-capsule-reference.png";
 
 export const HeroSection = () => {
   const scrollToSection = (id: string) => {
@@ -56,6 +57,20 @@ export const HeroSection = () => {
               Revolutionary modular capsules that adapt to any environment.
               Sustainable, intelligent, and beautifully designed.
             </motion.p>
+          </motion.div>
+
+          {/* Featured Capsule Image */}
+          <motion.div
+            className="relative max-w-4xl w-full"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+          >
+            <img 
+              src={heroCapsuleImage} 
+              alt="Q Capsule - Revolutionary Modular Living" 
+              className="w-full h-auto rounded-2xl shadow-glow"
+            />
           </motion.div>
 
           {/* CTA Buttons */}
