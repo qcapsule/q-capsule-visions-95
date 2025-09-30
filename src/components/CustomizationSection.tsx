@@ -162,7 +162,7 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: -20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
                     <div className="text-xs sm:text-sm text-white/80 font-light text-center">
                       Model
                     </div>
@@ -183,7 +183,7 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: 20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
                     <div className="text-xs sm:text-sm text-white/80 font-light text-center">
                       Dimensions
                     </div>
@@ -204,7 +204,7 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: -20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
-                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
                     <div className="text-xs sm:text-sm text-white/80 font-light text-center">
                       Size
                     </div>
@@ -225,7 +225,7 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: 20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
-                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
                     <div className="text-xs sm:text-sm text-white/80 font-light text-center">
                       Rooms
                     </div>
@@ -246,7 +246,7 @@ export const CustomizationSection = () => {
                   prev === 0 ? capsuleStyles.length - 1 : prev - 1
                 )
               }
-              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-transparent border border-white/40 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white"
@@ -269,7 +269,7 @@ export const CustomizationSection = () => {
               onClick={() =>
                 setCurrentSlide((prev) => (prev + 1) % capsuleStyles.length)
               }
-              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-transparent border border-white/40 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white"
@@ -304,7 +304,7 @@ export const CustomizationSection = () => {
 
           {/* Model Names Bar */}
           <div className="flex justify-center mt-4 sm:mt-6">
-            <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 rounded-full">
+            <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 bg-transparent border border-white/30 shadow-2xl px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 rounded-full">
               {capsuleStyles.map((style, index) => (
                 <button
                   key={style.id}

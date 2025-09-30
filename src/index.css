@@ -163,8 +163,7 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-xl bg-card/80 border border-border/50;
-    box-shadow: var(--shadow-card);
+    @apply bg-transparent border-0;
   }
 
   .golden-border {
