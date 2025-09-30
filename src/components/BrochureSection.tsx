@@ -22,7 +22,7 @@ export const BrochureSection = () => {
   };
 
   return (
-    <section id="brochure" className="relative overflow-hidden my-64">
+    <section id="brochure" className="relative overflow-hidden my-32">
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <motion.div
           className="text-center mb-16"
