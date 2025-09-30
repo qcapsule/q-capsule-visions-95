@@ -115,7 +115,7 @@ export const UseCasesSection = () => {
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         {/* Enhanced Header */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1, ease: "easeOut" }}
