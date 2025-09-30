@@ -35,7 +35,7 @@ export const VisionSection = () => {
   ];
 
   return (
-    <section id="vision" className="py-16 relative overflow-hidden">
+    <section id="vision" className="relative overflow-hidden">
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <motion.div

@@ -111,7 +111,7 @@ export const UseCasesSection = () => {
   ];
 
   return (
-    <section id="use-cases" className="py-16 relative overflow-hidden">
+    <section id="use-cases" className="relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         {/* Enhanced Header */}
         <motion.div
