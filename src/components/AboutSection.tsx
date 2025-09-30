@@ -100,14 +100,6 @@ export const AboutSection = () => {
                 cutting-edge technology with timeless design principles.
               </p>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Today, we stand proudly as a{" "}
-                <span className="text-gradient font-semibold">
-                  Made in Qatar
-                </span>{" "}
-                company, contributing to the nation's vision of sustainable
-                development while serving clients across the globe.
-              </p>
             </div>
 
             {/* Made in Qatar Logo */}
