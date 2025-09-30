@@ -103,25 +103,28 @@ export const CustomizationSection = () => {
   }, [capsuleStyles.length]);
 
   return (
-    <section id="customization" className="relative overflow-hidden my-32">
-
+    <section id="customization" className="relative overflow-hidden py-32 bg-[#0a0a0a]">
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
+      
       <div
         className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-7xl"
         ref={ref}
       >
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8">
-            <span className="text-gradient">The Capsule Collection</span>
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 tracking-tighter">
+            <span className="bg-gradient-to-r from-white via-white to-white/40 bg-clip-text text-transparent">
+              COLLECTION
+            </span>
           </h2>
 
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto px-4">
-            Every Q Capsule is designed to your exact specifications. Choose
-            from our signature styles or create something completely unique.
+          <p className="text-lg sm:text-xl lg:text-2xl text-white/50 max-w-4xl mx-auto px-4 font-light">
+            Five signature models. Infinite possibilities.
           </p>
         </motion.div>
 
@@ -139,11 +142,13 @@ export const CustomizationSection = () => {
                   transition={{ duration: 0.8, ease: "easeInOut" }}
                   className="relative"
                 >
-                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden">
+                  <div className="relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10">
+                    {/* Dramatic Glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 blur-3xl"></div>
                     <img
                       src={capsuleStyles[currentSlide].image}
                       alt={capsuleStyles[currentSlide].name}
-                      className="w-full h-[200px] sm:h-[280px] md:h-[320px] lg:h-[360px] xl:h-[400px] 2xl:h-[450px] object-cover"
+                      className="relative w-full h-[200px] sm:h-[280px] md:h-[320px] lg:h-[360px] xl:h-[400px] 2xl:h-[450px] object-cover"
                     />
                   </div>
                 </motion.div>
@@ -162,8 +167,8 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: -20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
-                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                  <div className="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                    <div className="text-xs sm:text-sm text-white/50 font-light text-center uppercase tracking-wider">
                       Model
                     </div>
                     <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
@@ -183,8 +188,8 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: 20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
-                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                  <div className="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                    <div className="text-xs sm:text-sm text-white/50 font-light text-center uppercase tracking-wider">
                       Dimensions
                     </div>
                     <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
@@ -204,8 +209,8 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: -20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
-                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
-                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                  <div className="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                    <div className="text-xs sm:text-sm text-white/50 font-light text-center uppercase tracking-wider">
                       Size
                     </div>
                     <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
@@ -225,8 +230,8 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: 20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
-                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
-                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                  <div className="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
+                    <div className="text-xs sm:text-sm text-white/50 font-light text-center uppercase tracking-wider">
                       Rooms
                     </div>
                     <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
@@ -246,7 +251,7 @@ export const CustomizationSection = () => {
                   prev === 0 ? capsuleStyles.length - 1 : prev - 1
                 )
               }
-              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-transparent border border-white/40 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white/5 border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/30 transition-all duration-300"
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white"
@@ -269,7 +274,7 @@ export const CustomizationSection = () => {
               onClick={() =>
                 setCurrentSlide((prev) => (prev + 1) % capsuleStyles.length)
               }
-              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-transparent border border-white/40 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white/5 border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/30 transition-all duration-300"
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white"
@@ -304,7 +309,7 @@ export const CustomizationSection = () => {
 
           {/* Model Names Bar */}
           <div className="flex justify-center mt-4 sm:mt-6">
-            <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 bg-transparent border border-white/30 shadow-2xl px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 rounded-full">
+            <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 bg-white/5 backdrop-blur-md border border-white/20 px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 rounded-full">
               {capsuleStyles.map((style, index) => (
                 <button
                   key={style.id}
