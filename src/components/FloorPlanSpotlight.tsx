@@ -115,62 +115,6 @@ export const FloorPlanSpotlight = ({
 
   return (
     <section className={`py-32 relative overflow-hidden ${className}`}>
-      {/* Enhanced Background Elements with Desert Background */}
-      <div className="absolute inset-0 z-0">
-        {/* Desert Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${floorplanBgImage})`,
-          }}
-        />
-
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/40 to-white/50"></div>
-
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_20%)] opacity-5"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent))_0%,transparent_20%)] opacity-5"></div>
-        </div>
-
-        {/* Floating geometric shapes */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float"></div>
-        <div
-          className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "3s" }}
-        ></div>
-        <div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary-glow/5 rounded-full blur-2xl animate-float"
-          style={{ animationDelay: "1.5s" }}
-        ></div>
-
-        {/* Animated particles */}
-        <div className="absolute inset-0">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-primary/30 rounded-full"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                opacity: 0,
-              }}
-              animate={{
-                y: [null, -50, -100],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 4,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeOut",
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         {/* Enhanced Header - Matching Statistics Section */}
         <motion.div
