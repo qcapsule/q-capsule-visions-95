@@ -102,7 +102,7 @@ export const AboutSection = () => {
 
             </div>
 
-            {/* Made in Qatar Logo */}
+            {/* Made in Qatar Logo 
             <motion.div
               className="flex items-center space-x-4 glass-card p-6"
               initial={{ opacity: 0, y: 30 }}
@@ -122,7 +122,7 @@ export const AboutSection = () => {
                   Proudly contributing to Qatar's sustainable future
                 </p>
               </div>
-            </motion.div>
+            </motion.div>*/}
           </motion.div>
 
           {/* Achievements Grid */}
