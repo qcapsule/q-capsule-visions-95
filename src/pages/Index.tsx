@@ -21,11 +21,9 @@ const Index = () => {
     <div className="min-h-screen relative">
       <BackgroundOrbs />
       <div className="relative z-10">
-        <ScrollProgress />
-        <Navigation />
+      <ScrollProgress />
+      <Navigation />
       <HeroSection />
-      <VisionSection />
-      {/* <ScrollCapsuleSection /> */}
       <CustomizationSection />
       <FloorPlanSpotlightExample />
 
