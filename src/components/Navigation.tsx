@@ -35,8 +35,8 @@ export const Navigation = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'glass-card shadow-glow' : ''
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-3xl bg-background/30 ${
+        isScrolled ? 'shadow-glow' : ''
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -98,7 +98,7 @@ export const Navigation = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden glass-card border-t border-border/50"
+            className="md:hidden backdrop-blur-3xl bg-background/30 border-t border-border/50"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
