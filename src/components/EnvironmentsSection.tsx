@@ -59,13 +59,6 @@ export const EnvironmentsSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="aspect-square overflow-hidden rounded-2xl mb-4">
-                <img
-                  src={environment.image}
-                  alt={environment.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
               <h3 className="text-xl font-bold mb-2 text-center">{environment.title}</h3>
               <p className="text-muted-foreground text-center text-sm">{environment.description}</p>
             </motion.div>
