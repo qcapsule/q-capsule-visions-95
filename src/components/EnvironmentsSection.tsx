@@ -32,7 +32,7 @@ export const EnvironmentsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="environments" className="relative overflow-hidden my-48" ref={ref}>
+    <section id="environments" className="relative overflow-hidden my-64" ref={ref}>
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div

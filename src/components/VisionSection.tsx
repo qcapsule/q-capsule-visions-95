@@ -35,7 +35,7 @@ export const VisionSection = () => {
   ];
 
   return (
-    <section id="vision" className="relative overflow-hidden my-48">
+    <section id="vision" className="relative overflow-hidden my-64">
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <motion.div

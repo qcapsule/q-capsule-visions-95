@@ -32,7 +32,7 @@ export const BookingSection = () => {
   ];
 
   return (
-    <section id="booking" className="relative overflow-hidden my-48">
+    <section id="booking" className="relative overflow-hidden my-64">
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <motion.div
