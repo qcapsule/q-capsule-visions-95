@@ -14,10 +14,12 @@ import { Footer } from "@/components/Footer";
 import { ScrollCapsuleSection } from "@/components/ScrollCapsuleSection";
 import { EnvironmentsSection } from "@/components/EnvironmentsSection";
 import { FloorPlanSpotlightExample } from "@/components/FloorPlanSpotlight";
+import { BackgroundOrbs } from "@/components/BackgroundOrbs";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <BackgroundOrbs />
       <ScrollProgress />
       <Navigation />
       <HeroSection />
