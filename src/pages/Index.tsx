@@ -16,13 +16,10 @@ import { EnvironmentsSection } from "@/components/EnvironmentsSection";
 import { FloorPlanSpotlightExample } from "@/components/FloorPlanSpotlight";
 import { BackgroundOrbs } from "@/components/BackgroundOrbs";
 
-import { ScrollingCapsule3D } from "@/components/ScrollingCapsule3D";
-
 const Index = () => {
   return (
     <div className="min-h-screen relative">
       <BackgroundOrbs />
-      <ScrollingCapsule3D />
       <div className="relative z-10">
       <ScrollProgress />
       <Navigation />
