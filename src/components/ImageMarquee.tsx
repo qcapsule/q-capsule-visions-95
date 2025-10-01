@@ -10,7 +10,7 @@ const ImageMarqueeRow = ({ images, speed = 40 }: ImageMarqueeRowProps) => {
     <div className="relative w-full overflow-hidden">
       <motion.div
         animate={{
-          x: ["-50%", "0%"],
+          x: ["0%", "-50%"],
         }}
         transition={{
           repeat: Infinity,
@@ -57,12 +57,9 @@ export const ImageMarquee = () => {
   ];
 
   return (
-    <div className="relative h-full w-full flex flex-col justify-center gap-6">
-      {/* Fade overlay on left */}
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-      
-      {/* Fade overlay on right */}
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+    <div className="relative h-full w-[120%] -ml-[20%] flex flex-col justify-center gap-6">
+      {/* Fade overlay in the middle */}
+      <div className="absolute inset-y-0 left-1/3 w-64 bg-gradient-to-r from-background via-background/50 to-transparent z-10 pointer-events-none" />
 
       <ImageMarqueeRow images={row1Images} speed={30} />
       <ImageMarqueeRow images={row2Images} speed={35} />
