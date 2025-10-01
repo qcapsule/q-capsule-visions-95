@@ -162,11 +162,11 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: -20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
-                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                  <div className="bg-card/95 border border-border rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center backdrop-blur-sm">
+                    <div className="text-xs sm:text-sm text-muted-foreground font-light text-center">
                       Model
                     </div>
-                    <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
+                    <div className="text-sm sm:text-base lg:text-lg text-foreground font-bold text-center">
                       {capsuleStyles[currentSlide].name}
                     </div>
                   </div>
@@ -183,11 +183,11 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: 20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
-                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                  <div className="bg-card/95 border border-border rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center backdrop-blur-sm">
+                    <div className="text-xs sm:text-sm text-muted-foreground font-light text-center">
                       Dimensions
                     </div>
-                    <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
+                    <div className="text-sm sm:text-base lg:text-lg text-foreground font-bold text-center">
                       {capsuleStyles[currentSlide].dimensions}
                     </div>
                   </div>
@@ -204,11 +204,11 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: -20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
-                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
-                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                  <div className="bg-card/95 border border-border rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center backdrop-blur-sm">
+                    <div className="text-xs sm:text-sm text-muted-foreground font-light text-center">
                       Size
                     </div>
-                    <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
+                    <div className="text-sm sm:text-base lg:text-lg text-foreground font-bold text-center">
                       {capsuleStyles[currentSlide].size}
                     </div>
                   </div>
@@ -225,11 +225,11 @@ export const CustomizationSection = () => {
                   exit={{ opacity: 0, x: 20, scale: 0.8 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
-                  <div className="bg-transparent border border-white/40 rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center">
-                    <div className="text-xs sm:text-sm text-white/80 font-light text-center">
+                  <div className="bg-card/95 border border-border rounded-lg px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 w-32 h-16 sm:w-40 sm:h-20 lg:w-48 lg:h-24 flex flex-col items-center justify-center backdrop-blur-sm">
+                    <div className="text-xs sm:text-sm text-muted-foreground font-light text-center">
                       Rooms
                     </div>
-                    <div className="text-sm sm:text-base lg:text-lg text-white font-bold text-center">
+                    <div className="text-sm sm:text-base lg:text-lg text-foreground font-bold text-center">
                       {capsuleStyles[currentSlide].rooms}
                     </div>
                   </div>
@@ -304,7 +304,7 @@ export const CustomizationSection = () => {
 
           {/* Model Names Bar */}
           <div className="flex justify-center mt-4 sm:mt-6">
-            <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 bg-transparent border border-white/30 shadow-2xl px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 rounded-full">
+            <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 bg-card/95 border border-border shadow-2xl px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-4 rounded-full backdrop-blur-sm">
               {capsuleStyles.map((style, index) => (
                 <button
                   key={style.id}
@@ -312,7 +312,7 @@ export const CustomizationSection = () => {
                   className={`text-xs sm:text-sm font-medium transition-all duration-300 ${
                     currentSlide === index
                       ? "text-primary font-bold"
-                      : "text-white/70 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {style.name}
