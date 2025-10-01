@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 interface ImageMarqueeRowProps {
-  images: { src: string; aspectRatio: string }[];
+  images: { src: string }[];
   speed?: number;
 }
 
@@ -23,7 +23,7 @@ const ImageMarqueeRow = ({ images, speed = 40 }: ImageMarqueeRowProps) => {
         {[...images, ...images].map((image, index) => (
           <div
             key={index}
-            className={`relative ${image.aspectRatio} h-96 rounded-2xl overflow-hidden shadow-lg`}
+            className="relative w-72 h-96 rounded-2xl overflow-hidden shadow-lg"
           >
             <img
               src={image.src}
@@ -39,21 +39,31 @@ const ImageMarqueeRow = ({ images, speed = 40 }: ImageMarqueeRowProps) => {
 
 export const ImageMarquee = () => {
   const row1Images = [
-    { src: "/src/assets/modern-interior-capsule.png", aspectRatio: "w-64" },
-    { src: "/src/assets/desert-oasis-capsules.png", aspectRatio: "w-80" },
-    { src: "/src/assets/residential-capsule.jpg", aspectRatio: "w-56" },
+    { src: "/src/assets/modern-interior-capsule.png" },
+    { src: "/src/assets/desert-oasis-capsules.png" },
+    { src: "/src/assets/residential-capsule.jpg" },
+    { src: "/src/assets/snowy-forest-capsules.png" },
   ];
 
   const row2Images = [
-    { src: "/src/assets/snowy-forest-capsules.png", aspectRatio: "w-72" },
-    { src: "/src/assets/island-paradise-capsules.png", aspectRatio: "w-60" },
-    { src: "/src/assets/creative-studio-capsule.jpg", aspectRatio: "w-96" },
+    { src: "/src/assets/island-paradise-capsules.png" },
+    { src: "/src/assets/creative-studio-capsule.jpg" },
+    { src: "/src/assets/eco-resort-capsule.jpg" },
+    { src: "/src/assets/office-capsule.jpg" },
   ];
 
   const row3Images = [
-    { src: "/src/assets/eco-resort-capsule.jpg", aspectRatio: "w-56" },
-    { src: "/src/assets/office-capsule.jpg", aspectRatio: "w-80" },
-    { src: "/src/assets/educational-capsule.jpg", aspectRatio: "w-64" },
+    { src: "/src/assets/educational-capsule.jpg" },
+    { src: "/src/assets/disaster-relief-capsule.jpg" },
+    { src: "/src/assets/healthcare-capsule.jpg" },
+    { src: "/src/assets/retail-capsule.jpg" },
+  ];
+
+  const row4Images = [
+    { src: "/src/assets/secure-banking-capsule.jpg" },
+    { src: "/src/assets/modern-interior-capsule.png" },
+    { src: "/src/assets/desert-oasis-capsules.png" },
+    { src: "/src/assets/residential-capsule.jpg" },
   ];
 
   return (
@@ -61,6 +71,7 @@ export const ImageMarquee = () => {
       <ImageMarqueeRow images={row1Images} speed={30} />
       <ImageMarqueeRow images={row2Images} speed={35} />
       <ImageMarqueeRow images={row3Images} speed={32} />
+      <ImageMarqueeRow images={row4Images} speed={38} />
     </div>
   );
 };
