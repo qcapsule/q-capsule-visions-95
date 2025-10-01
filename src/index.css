@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Q Capsules Design System - Custom Color Palette */
-/* #443627 - #D98324 - #EFDCAB - #F2F6D0 */
+/* #443627 (Background) - #D98324 (Primary) - #EFDCAB (Secondary) - #F2F6D0 (Accent) */
 
 @layer base {
   :root {
@@ -11,32 +11,32 @@
     --background: 28 30% 21%;
     --foreground: 68 67% 90%;
 
-    /* Card Components */
-    --card: 28 35% 26%;
-    --card-foreground: 68 67% 90%;
+    /* Card Components - Cream (#EFDCAB) */
+    --card: 42 62% 81%;
+    --card-foreground: 28 30% 21%;
 
     /* Popover Components */
-    --popover: 28 32% 23%;
-    --popover-foreground: 68 67% 90%;
+    --popover: 42 62% 81%;
+    --popover-foreground: 28 30% 21%;
 
     /* Primary Brand Colors - Orange (#D98324) */
     --primary: 32 71% 50%;
-    --primary-foreground: 28 30% 21%;
+    --primary-foreground: 68 67% 90%;
     --primary-glow: 32 71% 60%;
     --primary-dark: 32 71% 40%;
 
-    /* Secondary Colors - Dark Brown (#443627) */
-    --secondary: 28 30% 21%;
-    --secondary-foreground: 68 67% 90%;
+    /* Secondary Colors - Cream (#EFDCAB) */
+    --secondary: 42 62% 81%;
+    --secondary-foreground: 28 30% 21%;
 
     /* Muted Colors */
     --muted: 28 25% 30%;
-    --muted-foreground: 42 40% 70%;
+    --muted-foreground: 42 50% 75%;
 
-    /* Accent Colors - Cream (#EFDCAB) */
-    --accent: 42 62% 81%;
+    /* Accent Colors - Light Cream (#F2F6D0) */
+    --accent: 68 67% 90%;
     --accent-foreground: 28 30% 21%;
-    --accent-glow: 42 62% 88%;
+    --accent-glow: 68 70% 95%;
 
     /* Status Colors */
     --destructive: 0 84% 60%;
@@ -45,23 +45,23 @@
     --warning: 32 71% 50%;
 
     /* Form Elements */
-    --border: 28 25% 35%;
-    --input: 28 28% 26%;
+    --border: 32 40% 40%;
+    --input: 28 25% 30%;
     --ring: 32 71% 50%;
 
     /* Radius */
     --radius: 0.75rem;
 
     /* Custom Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(32 71% 50%), hsl(42 62% 81%));
-    --gradient-secondary: linear-gradient(135deg, hsl(28 30% 21%), hsl(28 35% 26%));
-    --gradient-accent: linear-gradient(135deg, hsl(42 62% 81%), hsl(68 67% 90%));
-    --gradient-hero: linear-gradient(135deg, hsl(28 30% 21%) 0%, hsl(28 35% 26%) 50%, hsl(32 71% 50% / 0.15) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(32 71% 50%), hsl(32 71% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(42 62% 81%), hsl(68 67% 90%));
+    --gradient-accent: linear-gradient(135deg, hsl(28 30% 21%), hsl(28 30% 28%));
+    --gradient-hero: linear-gradient(135deg, hsl(28 30% 21%) 0%, hsl(28 30% 18%) 50%, hsl(32 71% 50% / 0.15) 100%);
     
     /* Shadows & Glows */
-    --shadow-glow: 0 0 40px hsl(32 71% 50% / 0.3);
-    --shadow-card: 0 10px 30px -5px hsl(28 30% 15% / 0.7);
-    --shadow-accent: 0 0 30px hsl(42 62% 81% / 0.4);
+    --shadow-glow: 0 0 40px hsl(32 71% 50% / 0.4);
+    --shadow-card: 0 10px 30px -5px hsl(28 30% 10% / 0.8);
+    --shadow-accent: 0 0 30px hsl(32 71% 50% / 0.5);
 
     /* Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
