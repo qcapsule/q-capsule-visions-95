@@ -18,6 +18,7 @@ export const Navigation = () => {
 
   const navItems = [
     { label: 'Home', href: '#hero' },
+    { label: 'Vision', href: '#vision' },
     { label: 'Capsules', href: '#customization' },
     { label: 'Use Cases', href: '#use-cases' },
     { label: 'About', href: '#about' },
@@ -34,10 +35,8 @@ export const Navigation = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-black/80 backdrop-blur-xl border-b border-white/5' 
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-3xl bg-background/30 ${
+        isScrolled ? 'shadow-glow' : ''
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -54,18 +53,18 @@ export const Navigation = () => {
             <img 
               src={qcapsuleLogo} 
               alt="QCapsule Logo" 
-              className="h-12 w-auto brightness-0 invert"
+              className="h-14 w-auto"
             />
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-white/60 hover:text-white transition-colors duration-300 font-light text-sm uppercase tracking-wider"
-                whileHover={{ scale: 1.05 }}
+                className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
+                whileHover={{ scale: 1.1 }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -76,7 +75,7 @@ export const Navigation = () => {
             
             <Button
               variant="outline"
-              className="bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30 rounded-full px-6"
+              className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow"
               onClick={() => scrollToSection('#booking')}
             >
               Book Meeting
@@ -87,7 +86,7 @@ export const Navigation = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-white"
+            className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X /> : <Menu />}
@@ -99,7 +98,7 @@ export const Navigation = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10"
+            className="md:hidden backdrop-blur-3xl bg-background/30 border-t border-border/50"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -111,14 +110,14 @@ export const Navigation = () => {
                   <button
                     key={item.label}
                     onClick={() => scrollToSection(item.href)}
-                    className="text-left text-white/60 hover:text-white transition-colors duration-300 font-light py-2 uppercase tracking-wider text-sm"
+                    className="text-left text-foreground/80 hover:text-primary transition-colors duration-300 font-medium py-2"
                   >
                     {item.label}
                   </button>
                 ))}
                 
                 <Button
-                  className="bg-white/10 text-white border border-white/20 hover:bg-white/20 w-full mt-4 rounded-full"
+                  className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow w-full mt-4"
                   onClick={() => scrollToSection('#booking')}
                 >
                   Book Meeting
