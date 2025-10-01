@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { memo } from "react";
 import modernInterior from "@/assets/modern-interior-capsule.png";
 import desertOasis from "@/assets/desert-oasis-capsules.png";
 import residential from "@/assets/residential-capsule.jpg";
@@ -18,12 +19,36 @@ import q95x from "@/assets/q95x-capsule.png";
 import q115x from "@/assets/q115x-capsule.png";
 import livingRoom from "@/assets/living-room1.png";
 
+const row1Images = [
+  { src: modernInterior, aspectRatio: "w-60 h-40" },
+  { src: desertOasis, aspectRatio: "w-80 h-40" },
+  { src: residential, aspectRatio: "w-56 h-40" },
+];
+
+const row2Images = [
+  { src: snowyForest, aspectRatio: "w-72 h-40" },
+  { src: islandParadise, aspectRatio: "w-60 h-40" },
+  { src: creativeStudio, aspectRatio: "w-96 h-40" },
+];
+
+const row3Images = [
+  { src: ecoResort, aspectRatio: "w-56 h-40" },
+  { src: office, aspectRatio: "w-80 h-40" },
+  { src: educational, aspectRatio: "w-64 h-40" },
+];
+
+const row4Images = [
+  { src: retail, aspectRatio: "w-72 h-36" },
+  { src: healthcare, aspectRatio: "w-60 h-36" },
+  { src: disasterRelief, aspectRatio: "w-80 h-36" },
+];
+
 interface ImageMarqueeRowProps {
   images: { src: string; aspectRatio: string }[];
   speed?: number;
 }
 
-const ImageMarqueeRow = ({ images, speed = 40 }: ImageMarqueeRowProps) => {
+const ImageMarqueeRow = memo(({ images, speed = 40 }: ImageMarqueeRowProps) => {
   return (
     <div className="relative w-full overflow-hidden">
       <motion.div
@@ -54,57 +79,11 @@ const ImageMarqueeRow = ({ images, speed = 40 }: ImageMarqueeRowProps) => {
       </motion.div>
     </div>
   );
-};
+});
 
-export const ImageMarquee = () => {
-  const row1Images = [
-    {
-      src: modernInterior,
-      aspectRatio: "w-60 h-40",
-    },
-    { src: desertOasis, aspectRatio: "w-80 h-40" },
-    { src: residential, aspectRatio: "w-56 h-40" },
-  ];
+ImageMarqueeRow.displayName = "ImageMarqueeRow";
 
-  const row2Images = [
-    { src: snowyForest, aspectRatio: "w-72 h-40" },
-    {
-      src: islandParadise,
-      aspectRatio: "w-60 h-40",
-    },
-    {
-      src: creativeStudio,
-      aspectRatio: "w-96 h-40",
-    },
-  ];
-
-  const row3Images = [
-    { src: ecoResort, aspectRatio: "w-56 h-40" },
-    { src: office, aspectRatio: "w-80 h-40" },
-    { src: educational, aspectRatio: "w-64 h-40" },
-  ];
-
-  const row4Images = [
-    { src: retail, aspectRatio: "w-72 h-36  " },
-    { src: healthcare, aspectRatio: "w-60 h-36" },
-    {
-      src: disasterRelief,
-      aspectRatio: "w-80 h-36",
-    },
-  ];
-
-  const row5Images = [
-    { src: secureBanking, aspectRatio: "w-64 h-80" },
-    { src: q56x, aspectRatio: "w-56 h-80" },
-    { src: q75x, aspectRatio: "w-72 h-80" },
-  ];
-
-  const row6Images = [
-    { src: q95x, aspectRatio: "w-80 h-80" },
-    { src: q115x, aspectRatio: "w-96 h-80" },
-    { src: livingRoom, aspectRatio: "w-64" },
-  ];
-
+export const ImageMarquee = memo(() => {
   return (
     <div className="relative h-full w-[150%] -ml-[20%] flex flex-col justify-center gap-4">
       <ImageMarqueeRow images={row1Images} speed={30} />
@@ -115,4 +94,6 @@ export const ImageMarquee = () => {
       <ImageMarqueeRow images={row6Images} speed={31} /> */}
     </div>
   );
-};
+});
+
+ImageMarquee.displayName = "ImageMarquee";
