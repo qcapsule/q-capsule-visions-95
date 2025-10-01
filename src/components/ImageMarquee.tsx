@@ -23,7 +23,7 @@ const ImageMarqueeRow = ({ images, speed = 40 }: ImageMarqueeRowProps) => {
         {[...images, ...images].map((image, index) => (
           <div
             key={index}
-            className={`relative ${image.aspectRatio} h-48 rounded-2xl overflow-hidden shadow-lg`}
+            className={`relative ${image.aspectRatio} h-96 rounded-2xl overflow-hidden shadow-lg`}
           >
             <img
               src={image.src}
@@ -57,10 +57,7 @@ export const ImageMarquee = () => {
   ];
 
   return (
-    <div className="relative h-full w-[120%] -ml-[20%] flex flex-col justify-center gap-6">
-      {/* Fade overlay in the middle */}
-      <div className="absolute inset-y-0 left-1/3 w-64 bg-gradient-to-r from-background via-background/50 to-transparent z-10 pointer-events-none" />
-
+    <div className="relative h-full w-[120%] -ml-[20%] flex flex-col justify-center gap-6 -z-10">
       <ImageMarqueeRow images={row1Images} speed={30} />
       <ImageMarqueeRow images={row2Images} speed={35} />
       <ImageMarqueeRow images={row3Images} speed={32} />
