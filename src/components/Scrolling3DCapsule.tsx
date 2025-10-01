@@ -103,23 +103,23 @@ function CapsuleGeometry({ targetRotation }: { targetRotation: [number, number, 
 }
 
 export const Scrolling3DCapsule = () => {
-  const [rotation, setRotation] = useState<[number, number, number]>([0.15, Math.PI / 4, 0]);
-  const [position, setPosition] = useState({ x: '50%', y: '50%', scale: 1 });
+  const [rotation, setRotation] = useState<[number, number, number]>([0.2, 0, 0]);
+  const [position, setPosition] = useState({ x: '8%', y: '15%' });
 
   // Map sections to rotations and positions
   const sectionSettings: Record<string, { 
     rotation: [number, number, number]; 
-    position: { x: string; y: string; scale: number } 
+    position: { x: string; y: string } 
   }> = {
-    hero: { rotation: [0.15, Math.PI / 4, 0], position: { x: '50%', y: '50%', scale: 1.5 } },
-    customization: { rotation: [-0.1, Math.PI / 1.5, 0.05], position: { x: '75%', y: '30%', scale: 1 } },
-    floorplan: { rotation: [0.2, Math.PI, -0.05], position: { x: '20%', y: '40%', scale: 0.9 } },
-    environments: { rotation: [-0.15, Math.PI * 1.3, 0.1], position: { x: '80%', y: '55%', scale: 1.1 } },
-    'use-cases': { rotation: [0.25, Math.PI * 1.7, -0.1], position: { x: '15%', y: '35%', scale: 0.95 } },
-    statistics: { rotation: [-0.2, Math.PI / 5, 0.15], position: { x: '70%', y: '60%', scale: 1 } },
-    brochure: { rotation: [0.1, Math.PI * 1.1, -0.05], position: { x: '25%', y: '50%', scale: 0.9 } },
-    about: { rotation: [-0.1, Math.PI * 1.6, 0.08], position: { x: '75%', y: '45%', scale: 1 } },
-    booking: { rotation: [0.2, Math.PI * 2, 0], position: { x: '50%', y: '55%', scale: 1.1 } },
+    hero: { rotation: [0.2, 0, 0], position: { x: '85%', y: '20%' } },
+    customization: { rotation: [0.3, Math.PI / 2, 0], position: { x: '10%', y: '25%' } },
+    floorplan: { rotation: [-0.2, Math.PI, 0.1], position: { x: '80%', y: '35%' } },
+    environments: { rotation: [0.4, Math.PI * 1.5, -0.1], position: { x: '15%', y: '45%' } },
+    'use-cases': { rotation: [0, Math.PI * 2, 0], position: { x: '75%', y: '50%' } },
+    statistics: { rotation: [0.5, Math.PI / 3, 0.2], position: { x: '20%', y: '60%' } },
+    brochure: { rotation: [-0.3, Math.PI * 1.2, 0], position: { x: '70%', y: '65%' } },
+    about: { rotation: [0.1, Math.PI * 1.8, 0.1], position: { x: '25%', y: '75%' } },
+    booking: { rotation: [0.3, Math.PI * 2.5, 0], position: { x: '50%', y: '85%' } },
   };
 
   useEffect(() => {
@@ -132,7 +132,7 @@ export const Scrolling3DCapsule = () => {
           const rect = element.getBoundingClientRect();
           const viewportMiddle = window.innerHeight / 2;
           
-          // Section is in the middle of viewport
+          // Section is in the middle third of viewport
           if (rect.top < viewportMiddle && rect.bottom > viewportMiddle) {
             setRotation(sectionSettings[sectionId].rotation);
             setPosition(sectionSettings[sectionId].position);
@@ -154,20 +154,19 @@ export const Scrolling3DCapsule = () => {
         position: 'fixed',
         left: position.x,
         top: position.y,
-        transform: 'translate(-50%, -50%)',
-        width: '450px',
-        height: '550px',
+        width: '280px',
+        height: '350px',
         zIndex: 30,
         pointerEvents: 'none',
       }}
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 0.8 }}
       animate={{ 
-        opacity: 1, 
-        scale: position.scale,
+        opacity: 0.9, 
+        scale: 1,
         left: position.x,
         top: position.y,
       }}
-      transition={{ duration: 1, ease: [0.43, 0.13, 0.23, 0.96] }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
     >
       <Canvas shadows camera={{ position: [8, 2, 8], fov: 50 }}>
         <Environment preset="night" />

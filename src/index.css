@@ -2,66 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Q Capsules Design System - Custom Color Palette */
-/* #443627 (Background) - #D98324 (Primary) - #EFDCAB (Secondary) - #F2F6D0 (Accent) */
+/* Q Capsules Design System - Sophisticated Brown & Gold Theme */
 
 @layer base {
   :root {
-    /* Core Background & Text - Dark Mode */
-    --background: 28 30% 21%;
-    --foreground: 68 67% 90%;
+    /* Core Background & Text */
+    --background: 20 25% 8%;
+    --foreground: 0 0% 95%;
 
-    /* Card Components - Cream (#EFDCAB) */
-    --card: 42 62% 81%;
-    --card-foreground: 28 30% 21%;
+    /* Card Components */
+    --card: 20 30% 14%;
+    --card-foreground: 0 0% 92%;
 
     /* Popover Components */
-    --popover: 42 62% 81%;
-    --popover-foreground: 28 30% 21%;
+    --popover: 20 28% 11%;
+    --popover-foreground: 0 0% 92%;
 
-    /* Primary Brand Colors - Orange (#D98324) */
-    --primary: 32 71% 50%;
-    --primary-foreground: 68 67% 90%;
-    --primary-glow: 32 71% 60%;
-    --primary-dark: 32 71% 40%;
+    /* Primary Brand Colors - Sophisticated Gold */
+    --primary: 45 65% 55%;
+    --primary-foreground: 25 30% 8%;
+    --primary-glow: 45 70% 65%;
+    --primary-dark: 35 55% 40%;
 
-    /* Secondary Colors - Cream (#EFDCAB) */
-    --secondary: 42 62% 81%;
-    --secondary-foreground: 28 30% 21%;
+    /* Secondary Colors - Rich Browns */
+    --secondary: 25 25% 25%;
+    --secondary-foreground: 0 0% 88%;
 
     /* Muted Colors */
-    --muted: 28 25% 30%;
-    --muted-foreground: 42 50% 75%;
+    --muted: 25 15% 20%;
+    --muted-foreground: 25 8% 65%;
 
-    /* Accent Colors - Light Cream (#F2F6D0) */
-    --accent: 68 67% 90%;
-    --accent-foreground: 28 30% 21%;
-    --accent-glow: 68 70% 95%;
+    /* Accent Colors - Warm Bronze */
+    --accent: 30 45% 45%;
+    --accent-foreground: 0 0% 95%;
+    --accent-glow: 30 50% 55%;
 
     /* Status Colors */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 68 67% 90%;
+    --destructive-foreground: 210 40% 98%;
     --success: 120 60% 50%;
-    --warning: 32 71% 50%;
+    --warning: 38 92% 50%;
 
     /* Form Elements */
-    --border: 32 40% 40%;
-    --input: 28 25% 30%;
-    --ring: 32 71% 50%;
+    --border: 25 20% 30%;
+    --input: 25 18% 22%;
+    --ring: 45 65% 55%;
 
     /* Radius */
     --radius: 0.75rem;
 
     /* Custom Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(32 71% 50%), hsl(32 71% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(42 62% 81%), hsl(68 67% 90%));
-    --gradient-accent: linear-gradient(135deg, hsl(28 30% 21%), hsl(28 30% 28%));
-    --gradient-hero: linear-gradient(135deg, hsl(28 30% 21%) 0%, hsl(28 30% 18%) 50%, hsl(32 71% 50% / 0.15) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(45 65% 55%), hsl(35 60% 45%));
+    --gradient-secondary: linear-gradient(135deg, hsl(25 20% 18%), hsl(25 25% 25%));
+    --gradient-accent: linear-gradient(135deg, hsl(30 45% 45%), hsl(35 50% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(20 25% 8%) 0%, hsl(20 30% 14%) 50%, hsl(45 65% 55% / 0.15) 100%);
     
     /* Shadows & Glows */
-    --shadow-glow: 0 0 40px hsl(32 71% 50% / 0.4);
-    --shadow-card: 0 10px 30px -5px hsl(28 30% 10% / 0.8);
-    --shadow-accent: 0 0 30px hsl(32 71% 50% / 0.5);
+    --shadow-glow: 0 0 40px hsl(45 65% 55% / 0.25);
+    --shadow-card: 0 10px 30px -5px hsl(25 15% 8% / 0.6);
+    --shadow-accent: 0 0 30px hsl(30 45% 45% / 0.3);
 
     /* Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -69,52 +68,37 @@
   }
 
   .light {
-    /* Core Background & Text - Light Mode with Light Cream (#F2F6D0) */
-    --background: 68 67% 90%;
-    --foreground: 28 30% 21%;
-    
-    /* Card Components */
-    --card: 0 0% 100%;
-    --card-foreground: 28 30% 21%;
-    
-    /* Popover Components */
-    --popover: 0 0% 100%;
-    --popover-foreground: 28 30% 21%;
-    
-    /* Primary Brand Colors - Orange (#D98324) */
-    --primary: 32 71% 50%;
-    --primary-foreground: 68 67% 90%;
-    --primary-glow: 32 71% 60%;
-    --primary-dark: 32 71% 40%;
-    
-    /* Secondary Colors - Cream (#EFDCAB) */
-    --secondary: 42 62% 81%;
-    --secondary-foreground: 28 30% 21%;
-    
-    /* Muted Colors */
-    --muted: 42 50% 88%;
-    --muted-foreground: 28 25% 40%;
-    
-    /* Accent Colors - Dark Brown (#443627) */
-    --accent: 28 30% 21%;
-    --accent-foreground: 68 67% 90%;
-    --accent-glow: 28 30% 30%;
-    
-    /* Form Elements */
-    --border: 42 40% 75%;
-    --input: 68 50% 85%;
-    --ring: 32 71% 50%;
+    --background: 45 35% 92%;
+    --foreground: 25 30% 15%;
+    --card: 0 0% 98%;
+    --card-foreground: 25 30% 15%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 25 30% 15%;
+    --primary: 45 60% 50%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 45 70% 60%;
+    --primary-dark: 35 50% 35%;
+    --secondary: 25 15% 88%;
+    --secondary-foreground: 25 30% 20%;
+    --muted: 25 10% 90%;
+    --muted-foreground: 25 20% 50%;
+    --accent: 30 40% 40%;
+    --accent-foreground: 0 0% 98%;
+    --accent-glow: 30 50% 50%;
+    --border: 25 20% 80%;
+    --input: 25 15% 85%;
+    --ring: 45 60% 50%;
     
     /* Light mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(32 71% 50%), hsl(42 62% 81%));
-    --gradient-secondary: linear-gradient(135deg, hsl(42 62% 81%), hsl(68 67% 90%));
-    --gradient-accent: linear-gradient(135deg, hsl(28 30% 21%), hsl(32 71% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(68 67% 90%) 0%, hsl(42 62% 88%) 50%, hsl(32 71% 50% / 0.1) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(45 60% 50%), hsl(35 55% 40%));
+    --gradient-secondary: linear-gradient(135deg, hsl(25 15% 88%), hsl(25 20% 92%));
+    --gradient-accent: linear-gradient(135deg, hsl(30 40% 40%), hsl(35 45% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(45 35% 92%) 0%, hsl(25 20% 85%) 50%, hsl(45 60% 50% / 0.1) 100%);
     
     /* Light mode shadows */
-    --shadow-glow: 0 0 40px hsl(32 71% 50% / 0.25);
-    --shadow-card: 0 10px 30px -5px hsl(28 30% 21% / 0.1);
-    --shadow-accent: 0 0 30px hsl(28 30% 21% / 0.25);
+    --shadow-glow: 0 0 40px hsl(45 60% 50% / 0.2);
+    --shadow-card: 0 10px 30px -5px hsl(25 30% 8% / 0.15);
+    --shadow-accent: 0 0 30px hsl(30 40% 40% / 0.2);
   }
 }
 
