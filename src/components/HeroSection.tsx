@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CapsuleModel3D } from "./CapsuleModel3D";
+import { ImageMarquee } from "./ImageMarquee";
 import { ArrowRight, Play, Calendar } from "lucide-react";
 
 export const HeroSection = () => {
@@ -106,52 +107,14 @@ export const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - 3D Model */}
+          {/* Right Content - Image Marquee */}
           <motion.div
             className="relative h-[600px] lg:h-[700px]"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <div className="absolute inset-0 bg-gradient-radial from-primary/20 to-transparent rounded-3xl"></div>
-            <CapsuleModel3D className="relative z-10" />
-
-            {/* Floating Info Cards */}
-            <motion.div
-              className="absolute top-20 -left-4 glass-card p-4 max-w-xs"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2, duration: 0.5 }}
-            >
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-primary rounded-full animate-glow-pulse"></div>
-                <div>
-                  <div className="font-semibold text-sm">
-                    Smart Climate Control
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    AI-powered efficiency
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="absolute bottom-32 -right-4 glass-card p-4 max-w-xs"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.4, duration: 0.5 }}
-            >
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-accent rounded-full animate-glow-pulse"></div>
-                <div>
-                  <div className="font-semibold text-sm">Modular Design</div>
-                  <div className="text-xs text-muted-foreground">
-                    Infinite possibilities
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <ImageMarquee />
           </motion.div>
         </div>
       </div>
