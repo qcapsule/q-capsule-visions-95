@@ -23,18 +23,19 @@ export const HeroSection = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
             backgroundImage: `url(${heroCapsuleImage})`,
-            backgroundPosition: 'center 45%'
+            backgroundPosition: 'center 40%'
           }}
         />
-        {/* Minimal gradient only at edges for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent via-40% to-background/50"></div>
+        {/* Gradient Overlays for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-start justify-start min-h-screen pt-32 lg:pt-40 pb-32">
-          {/* Left Side - Text Content - Positioned Higher and Tighter */}
+        <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen gap-12 py-20">
+          {/* Left Side - Text Content */}
           <motion.div
-            className="space-y-6 max-w-xl lg:max-w-lg"
+            className="flex-1 space-y-8 max-w-2xl"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -44,14 +45,14 @@ export const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight">
+              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-tight">
                 <span className="block text-gradient glow-text">Luxury Living</span>
                 <span className="block text-gradient glow-text mt-2">...Anywhere</span>
               </h1>
             </motion.div>
 
             <motion.p
-              className="text-lg lg:text-xl text-foreground leading-relaxed backdrop-blur-md bg-background/50 p-5 rounded-xl"
+              className="text-xl lg:text-2xl text-foreground/90 leading-relaxed backdrop-blur-sm bg-background/30 p-6 rounded-xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.8 }}
@@ -68,7 +69,7 @@ export const HeroSection = () => {
             >
               <Button
                 size="lg"
-                className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow hover-lift text-base px-8 py-5 h-auto"
+                className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow hover-lift text-lg px-10 py-6 h-auto"
                 onClick={() => scrollToSection("#customization")}
               >
                 Explore Models
@@ -78,7 +79,7 @@ export const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-primary/50 text-foreground hover:bg-primary/10 text-base px-8 py-5 h-auto backdrop-blur-md bg-background/50"
+                className="border-primary/50 text-foreground hover:bg-primary/10 text-lg px-10 py-6 h-auto backdrop-blur-sm bg-background/40"
                 onClick={() => scrollToSection("#booking")}
               >
                 <Calendar className="mr-2 h-5 w-5" />
@@ -88,20 +89,30 @@ export const HeroSection = () => {
 
             {/* Feature Pills */}
             <motion.div
-              className="flex flex-wrap gap-3"
+              className="flex flex-wrap gap-3 pt-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.4 }}
             >
-              {["Sustainable Design", "Smart Technology", "Rapid Deployment"].map((feature) => (
+              {["Sustainable Design", "Smart Technology", "Rapid Deployment"].map((feature, i) => (
                 <div
                   key={feature}
-                  className="glass-card px-4 py-2 text-sm font-medium backdrop-blur-md bg-background/60"
+                  className="glass-card px-4 py-2 text-sm font-medium backdrop-blur-md bg-background/50"
                 >
                   {feature}
                 </div>
               ))}
             </motion.div>
+          </motion.div>
+
+          {/* Right Side - Let the image speak through transparency */}
+          <motion.div
+            className="flex-1 hidden lg:block"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.8 }}
+          >
+            {/* Intentionally empty to let background image show through */}
           </motion.div>
         </div>
 
