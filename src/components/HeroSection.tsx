@@ -18,12 +18,9 @@ export const HeroSection = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Image Marquee Background */}
-      <div className="absolute inset-0 z-0 opacity-30">
+      <div className="absolute inset-0 z-0 opacity-20">
         <ImageMarquee />
       </div>
-      
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 z-[5] bg-gradient-to-b from-background/80 via-background/60 to-background/80"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
