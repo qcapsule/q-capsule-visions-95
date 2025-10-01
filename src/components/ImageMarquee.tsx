@@ -87,13 +87,13 @@ export const ImageMarquee = () => {
   ];
 
   return (
-    <div className="absolute inset-0 flex flex-col justify-center gap-4 opacity-30">
+    <div className="relative h-full w-[150%] -ml-[20%] flex flex-col justify-center gap-4">
       <ImageMarqueeRow images={row1Images} speed={30} />
       <ImageMarqueeRow images={row2Images} speed={35} />
       <ImageMarqueeRow images={row3Images} speed={32} />
       <ImageMarqueeRow images={row4Images} speed={28} />
-      <ImageMarqueeRow images={row5Images} speed={33} />
-      <ImageMarqueeRow images={row6Images} speed={31} />
+      {/* <ImageMarqueeRow images={row5Images} speed={33} />
+      <ImageMarqueeRow images={row6Images} speed={31} /> */}
     </div>
   );
 };
