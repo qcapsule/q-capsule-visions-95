@@ -22,26 +22,26 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <BackgroundOrbs />
-      <Scrolling3DCapsule />
+      {/* <Scrolling3DCapsule /> */}
       <div className="relative z-10">
-      <ScrollProgress />
-      <Navigation />
-      <HeroSection />
-      <CustomizationSection />
-      <FloorPlanSpotlightExample />
+        <ScrollProgress />
+        <Navigation />
+        <HeroSection />
+        <CustomizationSection />
+        <FloorPlanSpotlightExample />
 
-      <EnvironmentsSection />
+        <EnvironmentsSection />
 
-      <UseCasesSection />
+        <UseCasesSection />
 
-      <CrossSectionDiagram />
-      <StatisticsSection />
-      <BrochureSection />
-      {/* <CertificationsSection /> */}
-      <AboutSection />
-      <BookingSection />
+        <CrossSectionDiagram />
+        <StatisticsSection />
+        <BrochureSection />
+        {/* <CertificationsSection /> */}
+        <AboutSection />
+        <BookingSection />
 
-      <Footer />
+        <Footer />
       </div>
     </div>
   );
