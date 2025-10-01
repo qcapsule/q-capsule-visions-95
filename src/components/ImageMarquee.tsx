@@ -51,15 +51,9 @@ interface ImageMarqueeRowProps {
 const ImageMarqueeRow = memo(({ images, speed = 40 }: ImageMarqueeRowProps) => {
   return (
     <div className="relative w-full overflow-hidden">
-      <motion.div
-        animate={{
-          x: ["0%", "-50%"],
-        }}
-        transition={{
-          repeat: Infinity,
-          repeatType: "loop" as const,
-          duration: speed,
-          ease: "linear",
+      <div
+        style={{
+          animation: `marquee ${speed}s linear infinite`,
         }}
         className="flex gap-4 w-max"
       >
@@ -76,7 +70,7 @@ const ImageMarqueeRow = memo(({ images, speed = 40 }: ImageMarqueeRowProps) => {
             />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 });
