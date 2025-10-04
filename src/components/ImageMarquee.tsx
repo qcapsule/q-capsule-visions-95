@@ -1,84 +1,109 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { memo } from "react";
-import modernInterior from "@/assets/modern-interior-capsule.png";
-import desertOasis from "@/assets/desert-oasis-capsules.png";
-import residential from "@/assets/residential-capsule.jpg";
-import snowyForest from "@/assets/snowy-forest-capsules.png";
-import islandParadise from "@/assets/island-paradise-capsules.png";
-import creativeStudio from "@/assets/creative-studio-capsule.jpg";
-import ecoResort from "@/assets/eco-resort-capsule.jpg";
-import office from "@/assets/office-capsule.jpg";
-import educational from "@/assets/educational-capsule.jpg";
-import retail from "@/assets/retail-capsule.jpg";
-import healthcare from "@/assets/healthcare-capsule.jpg";
-import disasterRelief from "@/assets/disaster-relief-capsule.jpg";
-import secureBanking from "@/assets/secure-banking-capsule.jpg";
-import q56x from "@/assets/q56x-capsule.png";
-import q75x from "@/assets/q75x-capsule.png";
-import q95x from "@/assets/q95x-capsule.png";
-import q115x from "@/assets/q115x-capsule.png";
-import livingRoom from "@/assets/living-room1.png";
-
-const row1Images = [
-  { src: modernInterior, aspectRatio: "w-60 h-40" },
-  { src: desertOasis, aspectRatio: "w-80 h-40" },
-  { src: residential, aspectRatio: "w-56 h-40" },
-];
-
-const row2Images = [
-  { src: snowyForest, aspectRatio: "w-72 h-40" },
-  { src: islandParadise, aspectRatio: "w-60 h-40" },
-  { src: creativeStudio, aspectRatio: "w-96 h-40" },
-];
-
-const row3Images = [
-  { src: ecoResort, aspectRatio: "w-56 h-40" },
-  { src: office, aspectRatio: "w-80 h-40" },
-  { src: educational, aspectRatio: "w-64 h-40" },
-];
-
-const row4Images = [
-  { src: retail, aspectRatio: "w-72 h-36" },
-  { src: healthcare, aspectRatio: "w-60 h-36" },
-  { src: disasterRelief, aspectRatio: "w-80 h-36" },
-];
 
 interface ImageMarqueeRowProps {
-  images: { src: string; aspectRatio: string; customClass?: string }[];
+  images: { src: string; aspectRatio: string }[];
   speed?: number;
 }
 
-const ImageMarqueeRow = memo(({ images, speed = 40 }: ImageMarqueeRowProps) => {
+const ImageMarqueeRow = ({ images, speed = 40 }: ImageMarqueeRowProps) => {
   return (
     <div className="relative w-full overflow-hidden">
-      <div
-        style={{
-          animation: `marquee ${speed}s linear infinite`,
+      <motion.div
+        animate={{
+          x: ["0%", "-50%"],
+        }}
+        transition={{
+          repeat: Infinity,
+          repeatType: "loop" as const,
+          duration: speed,
+          ease: "linear",
         }}
         className="flex gap-4 w-max"
       >
         {[...images, ...images].map((image, index) => (
           <div
             key={index}
-            className={`relative ${image.aspectRatio} h-80 rounded-2xl overflow-hidden shadow-lg`}
+            className={`relative ${image.aspectRatio} h-80 rounded-2xl overflow-hidden shadow-lg bg-gray-200`}
           >
             <img
               src={image.src}
               alt={`Capsule ${index}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-opacity duration-500"
               loading="lazy"
+              decoding="async"
+              style={{
+                contentVisibility: "auto",
+                containIntrinsicSize: "300px 200px",
+              }}
+              onLoad={(e) => {
+                e.currentTarget.style.opacity = "1";
+              }}
+              onError={(e) => {
+                e.currentTarget.parentElement?.classList.add("bg-gray-300");
+              }}
             />
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
-});
+};
 
-ImageMarqueeRow.displayName = "ImageMarqueeRow";
+const row1Images = [
+  {
+    src: "/src/assets/modern-interior-capsule.png",
+    aspectRatio: "w-60 h-40",
+  },
+  { src: "/src/assets/desert-oasis-capsules.png", aspectRatio: "w-80 h-30" },
+  { src: "/src/assets/residential-capsule.jpg", aspectRatio: "w-56 h-30" },
+];
 
-export const ImageMarquee = memo(() => {
+const row2Images = [
+  { src: "/src/assets/snowy-forest-capsules.png", aspectRatio: "w-72 h-30" },
+  {
+    src: "/src/assets/island-paradise-capsules.png",
+    aspectRatio: "w-60 h-30",
+  },
+  {
+    src: "/src/assets/creative-studio-capsule.jpg",
+    aspectRatio: "w-96 h-30",
+  },
+];
+
+const row3Images = [
+  { src: "/src/assets/eco-resort-capsule.jpg", aspectRatio: "w-56 h-40" },
+  { src: "/src/assets/office-capsule.jpg", aspectRatio: "w-80 h-40" },
+  { src: "/src/assets/educational-capsule.jpg", aspectRatio: "w-64 h-40" },
+];
+
+const row4Images = [
+  { src: "/src/assets/retail-capsule.jpg", aspectRatio: "w-72 h-36  " },
+  { src: "/src/assets/healthcare-capsule.jpg", aspectRatio: "w-60 h-36" },
+  {
+    src: "/src/assets/disaster-relief-capsule.jpg",
+    aspectRatio: "w-80 h-36",
+  },
+];
+
+export const ImageMarquee = () => {
+  // Preload critical images for faster loading
+  React.useEffect(() => {
+    const criticalImages = [
+      "/src/assets/modern-interior-capsule.png",
+      "/src/assets/desert-oasis-capsules.png",
+      "/src/assets/residential-capsule.jpg",
+      "/src/assets/snowy-forest-capsules.png",
+      "/src/assets/island-paradise-capsules.png",
+      "/src/assets/creative-studio-capsule.jpg",
+    ];
+
+    criticalImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   return (
     <div className="relative h-full w-[150%] -ml-[20%] flex flex-col justify-center gap-4">
       <ImageMarqueeRow images={row1Images} speed={30} />
@@ -89,6 +114,4 @@ export const ImageMarquee = memo(() => {
       <ImageMarqueeRow images={row6Images} speed={31} /> */}
     </div>
   );
-});
-
-ImageMarquee.displayName = "ImageMarquee";
+};
