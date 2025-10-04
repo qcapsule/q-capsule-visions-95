@@ -59,7 +59,7 @@ const ImageMarqueeRow = memo(({ images, speed = 40 }: ImageMarqueeRowProps) => {
         className="flex gap-4 w-max"
       >
         {[...images, ...images].map((image, index) => (
-          <img
+          <div
             key={index}
             className={`relative ${image.aspectRatio} h-80 rounded-2xl overflow-hidden shadow-lg`}
           >
