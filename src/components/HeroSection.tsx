@@ -15,7 +15,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative  h-[100vh] flex items-center justify-center overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 z-0">
@@ -109,13 +109,19 @@ export const HeroSection = () => {
 
           {/* Right Content - Image Marquee */}
           <motion.div
-            className="relative h-[600px] lg:h-[700px]"
+            className="relative h-[110%] w-[120%]"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
             {/* Blend gradient overlay for smooth transition */}
-            <div className="absolute inset-y-0 -left-48 w-[160%] bg-gradient-to-r from-[#e5dbca] via-[#FBF8F3]/90 via-[#FBF8F3]/70 via-[#FBF8F3]/50 via-[#FBF8F3]/30 to-transparent z-10 pointer-events-none blur-lg" />
+            <div
+              className="absolute h-[115%] -top-16 -left-64 w-full z-10 pointer-events-none blur-2xl"
+              style={{
+                background:
+                  "linear-gradient(to right, #e5dbca 10%, #FBF8F3 50%, #FBF8F3b3 80%, #FBF8F380 100%, transparent 100%)",
+              }}
+            />
 
             <ImageMarquee />
           </motion.div>
