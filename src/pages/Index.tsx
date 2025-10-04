@@ -34,7 +34,7 @@ const Index = () => {
 
         <UseCasesSection />
 
-        <CrossSectionDiagram />
+        {/* <CrossSectionDiagram /> */}
         <StatisticsSection />
         <BrochureSection />
         {/* <CertificationsSection /> */}
