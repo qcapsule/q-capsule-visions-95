@@ -114,16 +114,52 @@ export const FloorPlanSpotlight = ({
   }, [activeArea]);
 
   return (
-    <section className={`py-32 relative overflow-hidden ${className}`}>
+    <section
+      className={`relative overflow-hidden my-32 ${className} min-h-[100vh]`}
+      style={{
+        transform: "translateZ(0)",
+      }}
+    >
+      <div className="container mx-auto px-6 relative z-10">
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
+
+        {/* Animated particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-primary/30 rounded-full"
+              initial={{
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                opacity: 0,
+              }}
+              animate={{
+                y: [null, -50, -100],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeOut",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        {/* Enhanced Header - Matching Statistics Section */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          {/* <motion.div
+          <motion.div
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card text-sm font-medium mb-8 border border-primary/20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
@@ -134,10 +170,10 @@ export const FloorPlanSpotlight = ({
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-gradient">Floor Plan Explorer</span>
-          </motion.div> */}
+          </motion.div>
 
           <motion.h2
-            className="text-5xl lg:text-7xl font-bold mb-12 leading-tight"
+            className="text-5xl lg:text-7xl font-bold mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -156,156 +192,48 @@ export const FloorPlanSpotlight = ({
           </motion.p>
         </motion.div>
 
-        {/* Desktop Layout - Luxury Jet-inspired Design */}
-        <div className="space-y-3">
-          {/* Header with Navigation */}
-          <div className="flex items-center justify-between">
-            {/* <div className="flex items-center space-x-4">
-              <motion.button
-                className="w-8 h-8 rounded-full bg-muted/50 flex items-center justify-center hover:bg-muted transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </motion.button>
-              <h3 className="text-2xl font-semibold text-foreground">
-                Interior
-              </h3>
-            </div> */}
-
-            {/* Control Icons */}
-            {/* <div className="flex items-center space-x-2">
-              {[
-                { icon: "🔍", label: "Zoom" },
-                { icon: "✕", label: "Close" },
-                { icon: "👥", label: "Passengers" },
-                { icon: "🎨", label: "Customize" },
-                { icon: "⚙️", label: "Settings" }
-              ].map((control, index) => (
-                <motion.button
-                  key={index}
-                  className="w-8 h-8 rounded-full bg-muted/30 flex items-center justify-center hover:bg-muted/50 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  title={control.label}
+        {/* Desktop Layout - Column Layout */}
+        <div className="space-y-6 mb-16 max-w-4xl mx-auto">
+          {/* Area Image */}
+          <div className="w-full">
+            <div className="relative rounded-2xl overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl h-[300px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeArea.id}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative h-full"
                 >
-                  <span className="text-sm">{control.icon}</span>
-                </motion.button>
-              ))}
-            </div> */}
-          </div>
+                  <img
+                    src={activeArea.image}
+                    alt={activeArea.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-          {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-3 gap-3">
-            {/* Left: Area Image */}
-            <div className="lg:col-span-2">
-              <div className=" relative rounded-2xl overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl h-[400px]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeArea.id}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5 }}
-                    className="relative h-full"
-                  >
-                    <img
-                      src={activeArea.image}
-                      alt={activeArea.title}
-                      className="w-full h-full "
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                    {/* Area Badge */}
-                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1.5 shadow-lg">
-                      <div className="text-xs font-semibold text-gray-900">
-                        {activeArea.title}
-                      </div>
-                      <div className="text-xs text-gray-600">
-                        {activeArea.dimensions}
-                      </div>
+                  {/* Area Badge */}
+                  <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1.5 shadow-lg">
+                    <div className="text-xs font-semibold text-gray-900">
+                      {activeArea.title}
                     </div>
-
-                    {/* Glass reflection effect */}
-                    <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/20 to-transparent rounded-t-2xl"></div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-
-            {/* Right: Area Info Card */}
-            <div className="h-full flex flex-col justify-between">
-              {/* Q Capsule Image */}
-
-              {/* Living Room Image */}
-              <div className="relative h-[400px] rounded-2xl overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl">
-                <img
-                  src={livingRoomImage}
-                  alt="Modern Living Room Interior"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                {/* <div className="absolute bottom-2 left-2 right-2 text-center">
-                  <div className="text-xs font-bold text-white drop-shadow-lg">
-                    LIVING SPACE
+                    <div className="text-xs text-gray-600">
+                      {activeArea.dimensions}
+                    </div>
                   </div>
-                  <div className="text-xs text-white/90 drop-shadow-md">
-                    Modern Interior
-                  </div>
-                </div> */}
-                {/* Glass reflection effect */}
-                <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/20 to-transparent rounded-t-2xl"></div>
-              </div>
+
+                  {/* Glass reflection effect */}
+                  <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/20 to-transparent rounded-t-2xl"></div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
-          {/* Floor Plan Section - Luxury Jet Style */}
-          <div className="flex flex-row gap-3">
-            <div className="relative h-[300px] w-1/3 rounded-2xl overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl">
-              <img
-                src={"/src/assets/image.png"}
-                alt="Q Capsule Collection"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              <div className="absolute bottom-2 left-2 right-2 text-center">
-                <div className="text-xs font-bold text-white drop-shadow-lg">
-                  Q CAPSULE
-                </div>
-                <div className="text-xs text-white/90 drop-shadow-md">Q95X</div>
-              </div>
-              {/* Glass reflection effect */}
-              <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/20 to-transparent rounded-t-2xl"></div>
-            </div>
-            {/* Floor Plan Header */}
-            {/* <div className="flex items-center justify-between">
-              <h3 className="text-xl font-semibold text-foreground">
-                Floorplan
-              </h3>
-              <div className="flex items-center space-x-2">
-                <motion.button
-                  className="w-6 h-6 rounded bg-muted/50 flex items-center justify-center hover:bg-muted transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-xs">⊞</span>
-                </motion.button>
-                <motion.button
-                  className="w-6 h-6 rounded bg-muted/50 flex items-center justify-center hover:bg-muted transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-xs">⊡</span>
-                </motion.button>
-                <motion.button
-                  className="w-6 h-6 rounded bg-muted/50 flex items-center justify-center hover:bg-muted transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-xs">⚙</span>
-                </motion.button>
-              </div>
-            </div> */}
-
+          {/* Floor Plan Section */}
+          <div className="w-full">
             {/* Floor Plan Container */}
-            <div className="backdrop-blur-xl bg-white/5 border border-white/10 h-[300px] w-2/3 rounded-2xl shadow-2xl ">
+            <div className="backdrop-blur-xl bg-white/5 border border-white/10 h-[300px] rounded-2xl shadow-2xl">
               <div className="relative w-full h-full bg-gradient-to-br from-muted/5 to-muted/10 rounded-lg overflow-hidden border border-white/5">
                 <svg
                   viewBox="0 0 1200 400"
@@ -730,44 +658,44 @@ export const FloorPlanSpotlight = ({
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Mobile Layout */}
-          <div className="lg:hidden space-y-4">
-            {/* Thumbnail Rail */}
-            <div className="relative">
-              <h3 className="text-lg font-light text-white mb-3">
-                Floor Plan Areas
-              </h3>
-              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                {areas.map((area) => (
-                  <motion.button
-                    key={area.id}
-                    ref={area.id === activeArea.id ? thumbnailRef : null}
-                    onClick={() => setActiveArea(area)}
-                    onKeyDown={handleThumbnailKeyDown}
-                    tabIndex={0}
-                    className={`flex-shrink-0 w-28 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                      activeArea.id === area.id
-                        ? "border-primary shadow-lg"
-                        : "border-border/50 hover:border-primary/50"
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <img
-                      src={area.image}
-                      alt={area.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                    <div className="absolute bottom-1 left-2 right-2">
-                      <p className="text-xs font-medium text-white truncate">
-                        {area.title}
-                      </p>
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
+        {/* Mobile Layout */}
+        <div className="lg:hidden space-y-4">
+          {/* Thumbnail Rail */}
+          <div className="relative">
+            <h3 className="text-lg font-light text-white mb-3">
+              Floor Plan Areas
+            </h3>
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+              {areas.map((area) => (
+                <motion.button
+                  key={area.id}
+                  ref={area.id === activeArea.id ? thumbnailRef : null}
+                  onClick={() => setActiveArea(area)}
+                  onKeyDown={handleThumbnailKeyDown}
+                  tabIndex={0}
+                  className={`flex-shrink-0 w-28 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                    activeArea.id === area.id
+                      ? "border-primary shadow-lg"
+                      : "border-border/50 hover:border-primary/50"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <img
+                    src={area.image}
+                    alt={area.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <div className="absolute bottom-1 left-2 right-2">
+                    <p className="text-xs font-medium text-white truncate">
+                      {area.title}
+                    </p>
+                  </div>
+                </motion.button>
+              ))}
             </div>
 
             {/* Active Area Details */}

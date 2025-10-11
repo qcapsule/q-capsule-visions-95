@@ -15,6 +15,7 @@ import { ScrollCapsuleSection } from "@/components/ScrollCapsuleSection";
 import { EnvironmentsSection } from "@/components/EnvironmentsSection";
 import { FloorPlanSpotlightExample } from "@/components/FloorPlanSpotlight";
 import { BackgroundOrbs } from "@/components/BackgroundOrbs";
+import CollectionSection from "@/components/CollectionSection";
 
 import { Scrolling3DCapsule } from "@/components/Scrolling3DCapsule";
 
@@ -27,8 +28,9 @@ const Index = () => {
         <ScrollProgress />
         <Navigation />
         <HeroSection />
-        <CustomizationSection />
+        {/* <CustomizationSection /> */}
         <FloorPlanSpotlightExample />
+        <CollectionSection />
 
         <EnvironmentsSection />
 
@@ -37,6 +39,7 @@ const Index = () => {
         {/* <CrossSectionDiagram /> */}
         <StatisticsSection />
         <BrochureSection />
+        <ScrollCapsuleSection />
         {/* <CertificationsSection /> */}
         <AboutSection />
         <BookingSection />

@@ -1,19 +1,19 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
-import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Thermometer, 
-  Zap, 
-  Shield, 
-  Wifi, 
-  Home, 
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Thermometer,
+  Zap,
+  Shield,
+  Wifi,
+  Home,
   Wind,
   Sun,
-  Droplets 
-} from 'lucide-react';
+  Droplets,
+} from "lucide-react";
 
 export const CrossSectionDiagram = () => {
   const ref = useRef(null);
@@ -25,58 +25,77 @@ export const CrossSectionDiagram = () => {
       id: 1,
       icon: Shield,
       title: "Advanced Insulation",
-      description: "Triple-layer insulation system with R-30 value for optimal temperature control",
-      position: { top: '20%', left: '15%' },
-      details: ["Aerogel insulation", "Vapor barrier", "Thermal bridge elimination"]
+      description:
+        "Triple-layer insulation system with R-30 value for optimal temperature control",
+      position: { top: "20%", left: "15%" },
+      details: [
+        "Aerogel insulation",
+        "Vapor barrier",
+        "Thermal bridge elimination",
+      ],
     },
     {
       id: 2,
       icon: Thermometer,
       title: "Climate Control",
       description: "Smart HVAC system with AI-powered temperature regulation",
-      position: { top: '35%', left: '75%' },
-      details: ["Auto temperature adjustment", "Air quality monitoring", "Energy optimization"]
+      position: { top: "35%", left: "75%" },
+      details: [
+        "Auto temperature adjustment",
+        "Air quality monitoring",
+        "Energy optimization",
+      ],
     },
     {
       id: 3,
       icon: Sun,
-      title: "Solar Integration", 
+      title: "Solar Integration",
       description: "Integrated solar panels with battery storage system",
-      position: { top: '10%', left: '50%' },
-      details: ["High-efficiency panels", "Battery backup", "Grid-tie capability"]
+      position: { top: "10%", left: "50%" },
+      details: [
+        "High-efficiency panels",
+        "Battery backup",
+        "Grid-tie capability",
+      ],
     },
     {
       id: 4,
       icon: Zap,
       title: "Smart Electrical",
       description: "Intelligent electrical system with IoT integration",
-      position: { top: '60%', left: '45%' },
-      details: ["Smart outlets", "LED lighting", "USB-C charging ports"]
+      position: { top: "60%", left: "45%" },
+      details: ["Smart outlets", "LED lighting", "USB-C charging ports"],
     },
     {
       id: 5,
       icon: Droplets,
       title: "Water System",
       description: "Efficient plumbing with water recycling capabilities",
-      position: { top: '70%', left: '25%' },
-      details: ["Greywater recycling", "Low-flow fixtures", "Tank monitoring"]
+      position: { top: "70%", left: "25%" },
+      details: ["Greywater recycling", "Low-flow fixtures", "Tank monitoring"],
     },
     {
       id: 6,
       icon: Wifi,
       title: "Connectivity Hub",
       description: "Built-in networking and smart home integration",
-      position: { top: '45%', left: '85%' },
-      details: ["5G/WiFi 6", "Smart home hub", "Remote monitoring"]
-    }
+      position: { top: "45%", left: "85%" },
+      details: ["5G/WiFi 6", "Smart home hub", "Remote monitoring"],
+    },
   ];
 
   return (
-    <section id="cross-section" className="py-24 relative overflow-hidden bg-muted/20">
+    <section
+      id="cross-section"
+      className="py-24 relative overflow-hidden bg-muted/20"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+        <div
+          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "3s" }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
@@ -89,19 +108,22 @@ export const CrossSectionDiagram = () => {
           <motion.div
             className="inline-flex items-center px-4 py-2 rounded-full glass-card text-sm text-primary font-medium mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+            }
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Inside Q Capsules
           </motion.div>
-          
+
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             <span className="text-gradient">Advanced Engineering</span>
           </h2>
-          
+
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Every Q Capsule is a masterpiece of engineering, combining cutting-edge materials 
-            and smart technology for unmatched performance and comfort.
+            Every Q Capsule is a masterpiece of engineering, combining
+            cutting-edge materials and smart technology for unmatched
+            performance and comfort.
           </p>
         </motion.div>
 
@@ -122,10 +144,12 @@ export const CrossSectionDiagram = () => {
                   <div className="absolute bottom-1/4 left-0 right-0 h-px bg-primary/20"></div>
                   <div className="absolute left-1/3 top-0 bottom-0 w-px bg-primary/20"></div>
                   <div className="absolute right-1/3 top-0 bottom-0 w-px bg-primary/20"></div>
-                  
+
                   {/* Room Labels */}
                   <div className="absolute top-1/3 left-1/6 text-center text-xs text-muted-foreground">
-                    Living<br/>Area
+                    Living
+                    <br />
+                    Area
                   </div>
                   <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-center text-xs text-muted-foreground">
                     Kitchen
@@ -141,13 +165,17 @@ export const CrossSectionDiagram = () => {
                     key={hotspot.id}
                     className={`absolute w-8 h-8 rounded-full border-2 transition-all duration-300 ${
                       activeHotspot === index
-                        ? 'bg-primary border-primary shadow-glow scale-125'
-                        : 'bg-background border-primary/50 hover:border-primary hover:scale-110'
+                        ? "bg-primary border-primary shadow-glow scale-125"
+                        : "bg-background border-primary/50 hover:border-primary hover:scale-110"
                     }`}
                     style={hotspot.position}
                     onClick={() => setActiveHotspot(index)}
                     initial={{ scale: 0, opacity: 0 }}
-                    animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                    animate={
+                      isInView
+                        ? { scale: 1, opacity: 1 }
+                        : { scale: 0, opacity: 0 }
+                    }
                     transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
@@ -158,10 +186,12 @@ export const CrossSectionDiagram = () => {
 
                 {/* Legend */}
                 <div className="absolute bottom-4 left-4 right-4">
-                  <div className="text-xs text-muted-foreground mb-2">Click hotspots to explore</div>
+                  <div className="text-xs text-muted-foreground mb-2">
+                    Click hotspots to explore
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {hotspots.slice(0, 3).map((hotspot, index) => (
-                      <Badge 
+                      <Badge
                         key={hotspot.id}
                         variant="secondary"
                         className="text-xs bg-background/80 backdrop-blur"
@@ -193,27 +223,28 @@ export const CrossSectionDiagram = () => {
                 >
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-                      {hotspots[activeHotspot] && 
-                        React.createElement(hotspots[activeHotspot].icon, { 
-                          className: "h-6 w-6 text-primary-foreground" 
-                        })
-                      }
+                      {hotspots[activeHotspot] &&
+                        React.createElement(hotspots[activeHotspot].icon, {
+                          className: "h-6 w-6 text-primary-foreground",
+                        })}
                     </div>
                     <h3 className="text-xl font-bold text-gradient">
                       {hotspots[activeHotspot]?.title}
                     </h3>
                   </div>
-                  
+
                   <p className="text-muted-foreground mb-4 leading-relaxed">
                     {hotspots[activeHotspot]?.description}
                   </p>
-                  
+
                   <div className="space-y-2">
                     <h4 className="font-semibold text-sm">Features:</h4>
                     {hotspots[activeHotspot]?.details.map((detail) => (
                       <div key={detail} className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span className="text-sm text-muted-foreground">{detail}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {detail}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -224,14 +255,20 @@ export const CrossSectionDiagram = () => {
             {/* Technical Specs */}
             <Card className="glass-card">
               <CardContent className="p-6">
-                <h3 className="text-lg font-bold mb-4 text-gradient">Technical Specifications</h3>
+                <h3 className="text-lg font-bold mb-4 text-gradient">
+                  Technical Specifications
+                </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Insulation Rating:</span>
+                    <span className="text-muted-foreground">
+                      Insulation Rating:
+                    </span>
                     <span className="font-medium">R-30</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Energy Efficiency:</span>
+                    <span className="text-muted-foreground">
+                      Energy Efficiency:
+                    </span>
                     <span className="font-medium">Net Zero</span>
                   </div>
                   <div className="flex justify-between">

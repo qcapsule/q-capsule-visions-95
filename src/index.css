@@ -52,11 +52,28 @@
     --radius: 0.75rem;
 
     /* Custom Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(45 65% 55%), hsl(35 60% 45%));
-    --gradient-secondary: linear-gradient(135deg, hsl(25 20% 18%), hsl(25 25% 25%));
-    --gradient-accent: linear-gradient(135deg, hsl(30 45% 45%), hsl(35 50% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(20 25% 8%) 0%, hsl(20 30% 14%) 50%, hsl(45 65% 55% / 0.15) 100%);
-    
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(45 65% 55%),
+      hsl(35 60% 45%)
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(25 20% 18%),
+      hsl(25 25% 25%)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(30 45% 45%),
+      hsl(35 50% 50%)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(20 25% 8%) 0%,
+      hsl(20 30% 14%) 50%,
+      hsl(45 65% 55% / 0.15) 100%
+    );
+
     /* Shadows & Glows */
     --shadow-glow: 0 0 40px hsl(45 65% 55% / 0.25);
     --shadow-card: 0 10px 30px -5px hsl(25 15% 8% / 0.6);
@@ -88,13 +105,30 @@
     --border: 25 20% 80%;
     --input: 25 15% 85%;
     --ring: 45 60% 50%;
-    
+
     /* Light mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(45 60% 50%), hsl(35 55% 40%));
-    --gradient-secondary: linear-gradient(135deg, hsl(25 15% 88%), hsl(25 20% 92%));
-    --gradient-accent: linear-gradient(135deg, hsl(30 40% 40%), hsl(35 45% 45%));
-    --gradient-hero: linear-gradient(135deg, hsl(45 35% 92%) 0%, hsl(25 20% 85%) 50%, hsl(45 60% 50% / 0.1) 100%);
-    
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(45 60% 50%),
+      hsl(35 55% 40%)
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(25 15% 88%),
+      hsl(25 20% 92%)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(30 40% 40%),
+      hsl(35 45% 45%)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(45 35% 92%) 0%,
+      hsl(25 20% 85%) 50%,
+      hsl(45 60% 50% / 0.1) 100%
+    );
+
     /* Light mode shadows */
     --shadow-glow: 0 0 40px hsl(45 60% 50% / 0.2);
     --shadow-card: 0 10px 30px -5px hsl(25 30% 8% / 0.15);
@@ -104,45 +138,63 @@
 
 /* Custom Animations & Keyframes */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: var(--shadow-glow); }
-  50% { box-shadow: 0 0 60px hsl(var(--primary-glow) / 0.4); }
+  0%,
+  100% {
+    box-shadow: var(--shadow-glow);
+  }
+  50% {
+    box-shadow: 0 0 60px hsl(var(--primary-glow) / 0.4);
+  }
 }
 
 @keyframes slide-up {
-  from { 
-    opacity: 0; 
-    transform: translateY(30px); 
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes scale-in {
-  from { 
-    opacity: 0; 
-    transform: scale(0.8); 
+  from {
+    opacity: 0;
+    transform: scale(0.8);
   }
-  to { 
-    opacity: 1; 
-    transform: scale(1); 
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @layer base {
@@ -200,7 +252,12 @@
   }
 
   .animate-shimmer {
-    background: linear-gradient(90deg, transparent, hsl(var(--primary-glow) / 0.3), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary-glow) / 0.3),
+      transparent
+    );
     background-size: 200% 100%;
     animation: shimmer 2s infinite;
   }
@@ -220,7 +277,11 @@
 
   /* Ensure visibility in light mode */
   .light .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary-dark)), hsl(var(--primary)));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary-dark)),
+      hsl(var(--primary))
+    );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
