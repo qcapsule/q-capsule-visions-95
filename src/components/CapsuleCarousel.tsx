@@ -206,7 +206,7 @@ export default function CapsuleCarousel({ items }: CapsuleCarouselProps) {
           <div className="relative">
             <motion.h2
               key={currentCapsule.id}
-              className="text-6xl lg:text-8xl font-black italic leading-none relative z-10 mt-2 will-change-transform"
+              className="text-6xl lg:text-8xl font-black italic leading-none relative z-10 mt-2 will-change-transform text-gradient glow-text"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -214,16 +214,6 @@ export default function CapsuleCarousel({ items }: CapsuleCarouselProps) {
                 ease: [0.4, 0.0, 0.2, 1],
               }}
               style={{
-                background:
-                  "linear-gradient(45deg, hsl(45, 65%, 55%), hsl(35, 60%, 45%), hsl(45, 70%, 65%))",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                color: "hsl(45, 65%, 56%)",
-                filter:
-                  "drop-shadow(0 0 20px hsla(45, 65%, 55%, 0.8)) drop-shadow(0 0 40px hsla(45, 65%, 55%, 0.6)) drop-shadow(0 0 80px hsla(45, 65%, 55%, 0.4))",
-                textShadow:
-                  "0 0 30px hsla(45, 65%, 55%, 0.8), 0 0 60px hsla(45, 65%, 55%, 0.6), 0 0 90px hsla(45, 65%, 55%, 0.4)",
                 transform: "translateZ(0)",
                 backfaceVisibility: "hidden",
                 willChange: "transform, opacity",
