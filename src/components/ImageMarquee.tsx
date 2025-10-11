@@ -1,4 +1,16 @@
 import React from "react";
+import modernInterior from "@/assets/modern-interior-capsule.png";
+import desertOasis from "@/assets/desert-oasis-capsules.png";
+import residential from "@/assets/residential-capsule.jpg";
+import snowyForest from "@/assets/snowy-forest-capsules.png";
+import islandParadise from "@/assets/island-paradise-capsules.png";
+import creativeStudio from "@/assets/creative-studio-capsule.jpg";
+import ecoResort from "@/assets/eco-resort-capsule.jpg";
+import office from "@/assets/office-capsule.jpg";
+import educational from "@/assets/educational-capsule.jpg";
+import retail from "@/assets/retail-capsule.jpg";
+import healthcare from "@/assets/healthcare-capsule.jpg";
+import disasterRelief from "@/assets/disaster-relief-capsule.jpg";
 import { motion } from "framer-motion";
 
 interface ImageMarqueeRowProps {
@@ -42,29 +54,29 @@ const ImageMarqueeRow = ({ images, speed }: ImageMarqueeRowProps) => {
 
 const row1Images = [
   {
-    src: "/src/assets/modern-interior-capsule.png",
+    src: modernInterior,
     aspectRatio: "w-56 h-40",
   },
-  { src: "/src/assets/desert-oasis-capsules.png", aspectRatio: "w-52 h-40" },
-  { src: "/src/assets/residential-capsule.jpg", aspectRatio: "w-60 h-40" },
+  { src: desertOasis, aspectRatio: "w-52 h-40" },
+  { src: residential, aspectRatio: "w-60 h-40" },
 ];
 
 const row2Images = [
-  { src: "/src/assets/snowy-forest-capsules.png", aspectRatio: "w-56 h-40" },
-  { src: "/src/assets/island-paradise-capsules.png", aspectRatio: "w-52 h-40" },
-  { src: "/src/assets/creative-studio-capsule.jpg", aspectRatio: "w-52 h-40" },
+  { src: snowyForest, aspectRatio: "w-56 h-40" },
+  { src: islandParadise, aspectRatio: "w-52 h-40" },
+  { src: creativeStudio, aspectRatio: "w-52 h-40" },
 ];
 
 const row3Images = [
-  { src: "/src/assets/eco-resort-capsule.jpg", aspectRatio: "w-60 h-40" },
-  { src: "/src/assets/office-capsule.jpg", aspectRatio: "w-52 h-40" },
-  { src: "/src/assets/educational-capsule.jpg", aspectRatio: "w-80 h-40" },
+  { src: ecoResort, aspectRatio: "w-60 h-40" },
+  { src: office, aspectRatio: "w-52 h-40" },
+  { src: educational, aspectRatio: "w-80 h-40" },
 ];
 
 const row4Images = [
-  { src: "/src/assets/retail-capsule.jpg", aspectRatio: "w-60 h-36  " },
-  { src: "/src/assets/healthcare-capsule.jpg", aspectRatio: "w-52 h-36" },
-  { src: "/src/assets/disaster-relief-capsule.jpg", aspectRatio: "w-60 h-36" },
+  { src: retail, aspectRatio: "w-60 h-36  " },
+  { src: healthcare, aspectRatio: "w-52 h-36" },
+  { src: disasterRelief, aspectRatio: "w-60 h-36" },
 ];
 
 export const ImageMarquee = () => {
