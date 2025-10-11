@@ -127,7 +127,7 @@ export const AboutSection = () => {
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={achievement.label}
-                  className="glass-panel p-6 text-center hover-lift group relative overflow-hidden depth-layer-1 group-hover:depth-layer-2"
+                  className="glass-card p-6 text-center hover-lift group relative overflow-hidden"
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
                   animate={
                     isInView
@@ -184,7 +184,7 @@ export const AboutSection = () => {
 
             {/* Vision Statement */}
             <motion.div
-              className="glass-panel p-8 bg-gradient-primary/5 depth-layer-1"
+              className="glass-card p-8 bg-gradient-primary/5 border-primary/20"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 1 }}

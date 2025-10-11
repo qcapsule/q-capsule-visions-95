@@ -179,7 +179,7 @@ export const BrochureSection = () => {
 
                 <motion.button
                   onClick={handleView}
-                  className="glass-panel text-foreground px-8 py-4 rounded-2xl font-bold text-lg hover:bg-accent/10 transition-all duration-300 hover:border-accent/30 flex items-center justify-center gap-3 depth-layer-1 hover:depth-layer-2"
+                  className="flex-1 glass-card text-foreground px-8 py-4 rounded-2xl font-bold text-lg hover:bg-accent/10 transition-all duration-300 border border-border/50 hover:border-accent/30 flex items-center justify-center gap-3"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -190,7 +190,7 @@ export const BrochureSection = () => {
 
               {/* Share Options */}
               <motion.div
-                className="glass-panel p-6 rounded-2xl depth-layer-1"
+                className="glass-card p-6 rounded-2xl border border-border/30"
                 initial={{ opacity: 0, y: 20 }}
                 animate={
                   isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
@@ -231,7 +231,7 @@ export const BrochureSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <div className="glass-panel p-8 max-w-2xl mx-auto bg-gradient-to-br from-primary/5 to-transparent depth-layer-2">
+          <div className="glass-card p-8 max-w-2xl mx-auto border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
             <h3 className="text-xl font-bold mb-4 text-gradient">
               Need a Custom Quote?
             </h3>
