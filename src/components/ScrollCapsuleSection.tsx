@@ -151,7 +151,7 @@ export const ScrollCapsuleSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[500vh] bg-gradient-to-br from-background via-muted/5 to-background"
+      className="relative h-[100vh] min-h-[500vh] bg-gradient-to-br from-background via-muted/5 to-background"
     >
       {/* Luxury Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -220,19 +220,57 @@ export const ScrollCapsuleSection = () => {
                 className="space-y-8"
               >
                 <div className="space-y-6">
-                  <motion.h1
-                    className="text-6xl lg:text-7xl font-bold leading-tight"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                  >
-                    <span className="text-gradient glow-text block">
-                      {currentPhase.title.split(" ")[0]}
-                    </span>
-                    <span className="text-foreground block font-light">
-                      {currentPhase.title.split(" ").slice(1).join(" ")}
-                    </span>
-                  </motion.h1>
+                  {/* Bold Italic Capsule Model */}
+                  <div className="relative">
+                    <motion.h1
+                      className="text-8xl lg:text-9xl font-black italic leading-none relative z-10"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      style={{
+                        background:
+                          "linear-gradient(45deg, hsl(45, 65%, 55%), hsl(35, 60%, 45%), hsl(45, 70%, 65%))",
+                        backgroundClip: "text",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        color: "hsl(45, 65%, 55%)",
+                        filter:
+                          "drop-shadow(0 0 20px hsla(45, 65%, 55%, 0.8)) drop-shadow(0 0 40px hsla(45, 65%, 55%, 0.6)) drop-shadow(0 0 80px hsla(45, 65%, 55%, 0.4))",
+                        textShadow:
+                          "0 0 30px hsla(45, 65%, 55%, 0.8), 0 0 60px hsla(45, 65%, 55%, 0.6), 0 0 90px hsla(45, 65%, 55%, 0.4)",
+                      }}
+                    >
+                      Q75X
+                    </motion.h1>
+
+                    {/* Golden Spec Details */}
+                    <div className="absolute -bottom-8 left-0 grid grid-cols-3 gap-8 w-full">
+                      <div className="flex flex-col">
+                        <span className="text-sm text-foreground font-medium underline decoration-primary/50">
+                          Size
+                        </span>
+                        <span className="text-xs text-muted-foreground mt-1">
+                          3 Rooms
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm text-foreground font-medium underline decoration-primary/50">
+                          Dimensions
+                        </span>
+                        <span className="text-xs text-muted-foreground mt-1">
+                          30m² Total
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm text-foreground font-medium underline decoration-primary/50">
+                          Rooms
+                        </span>
+                        <span className="text-xs text-muted-foreground mt-1">
+                          Bed/Living/Bath
+                        </span>
+                      </div>
+                    </div>
+                  </div>
 
                   {/* Luxury Divider */}
                   <motion.div
