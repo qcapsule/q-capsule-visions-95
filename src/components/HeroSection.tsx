@@ -115,13 +115,7 @@ export const HeroSection = () => {
             transition={{ duration: 1, delay: 0.3 }}
           >
             {/* Blend gradient overlay for smooth transition */}
-            <div
-              className="absolute h-[115%] -top-16 -left-64 w-full z-10 pointer-events-none blur-2xl"
-              style={{
-                background:
-                  "linear-gradient(to right, #e5dbca 10%, #FBF8F3 50%, #FBF8F3b3 80%, #FBF8F380 100%, transparent 100%)",
-              }}
-            />
+            <div className="absolute h-[115%] -top-16 -left-64 w-full z-10 pointer-events-none blur-2xl bg-gradient-to-r from-background via-background/80 to-transparent" />
 
             <ImageMarquee />
           </motion.div>
