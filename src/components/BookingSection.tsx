@@ -73,7 +73,7 @@ export const BookingSection = () => {
             {meetingTypes.map((meeting, index) => (
               <motion.div
                 key={meeting.title}
-                className="glass-card p-6 hover-lift group cursor-pointer"
+                className="glass-panel p-6 hover-lift group cursor-pointer depth-layer-1 hover:depth-layer-2"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
@@ -119,7 +119,7 @@ export const BookingSection = () => {
 
           {/* Calendly Embed */}
           <motion.div
-            className="glass-card p-8"
+            className="glass-panel p-8 depth-layer-1"
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.5 }}

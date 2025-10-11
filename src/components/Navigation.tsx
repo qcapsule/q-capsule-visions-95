@@ -38,8 +38,8 @@ export const Navigation = () => {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         isScrolled
-          ? "glass-card border-b border-white/10 shadow-2xl backdrop-blur-xl bg-background/80"
-          : "backdrop-blur-md bg-background/20"
+          ? "glass-panel border-b border-white/20 shadow-2xl depth-layer-3"
+          : "glass-card"
       }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -83,7 +83,7 @@ export const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2">
             <ThemeToggle />
-            <div className="glass-card px-6 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+            <div className="glass-panel px-6 py-2 rounded-full depth-layer-1">
               <div className="flex items-center space-x-6">
                 {navItems.map((item, index) => (
                   <motion.button
@@ -149,7 +149,7 @@ export const Navigation = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden glass-card border-t border-white/10 backdrop-blur-xl bg-background/80"
+            className="md:hidden glass-panel border-t border-white/20 depth-layer-2"
             initial={{ opacity: 0, height: 0, y: -20 }}
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}

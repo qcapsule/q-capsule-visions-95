@@ -1,10 +1,19 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { CapsuleModel3D } from "./CapsuleModel3D";
 import { ImageMarquee } from "./ImageMarquee";
-import { ArrowRight, Play, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, Sparkles, Zap } from "lucide-react";
+import { useRef } from "react";
 
 export const HeroSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   const scrollToSection = (id: string) => {
     const element = document.querySelector(id);
     if (element) {
@@ -14,44 +23,94 @@ export const HeroSection = () => {
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
-      className="relative  h-[100vh] flex items-center justify-center overflow-hidden"
+      className="relative h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background Elements */}
+      {/* Animated mesh gradient background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
-        <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "2s" }}
-        ></div>
+        <motion.div
+          className="absolute top-20 -left-20 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]"
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px]"
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, -100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary-glow/15 rounded-full blur-[100px]"
+          animate={{
+            scale: [1, 1.4, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <motion.div
+        style={{ y, opacity }}
+        className="container mx-auto px-6 relative z-10"
+      >
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <motion.div
-            className="space-y-8 text-center lg:text-left relative z-20"
+            className="space-y-8 text-center lg:text-left"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Blend gradient overlay for smooth transition */}
-            {/* <div className="absolute inset-y-0 -right-48 w-96 bg-gradient-to-l from-[#FBF8F3] via-[#FBF8F3]/90 via-[#FBF8F3]/70 via-[#FBF8F3]/50 via-[#FBF8F3]/30 to-transparent z-10 pointer-events-none blur-lg" /> */}
+            {/* Floating badge */}
             <motion.div
-              className="space-y-4"
+              className="inline-flex items-center gap-2 glass-card px-6 py-3 rounded-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+              <span className="text-sm font-semibold text-gradient">
+                Next-Gen Living
+              </span>
+            </motion.div>
+
+            <motion.div
+              className="space-y-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="block text-gradient glow-text">Future of</span>
-                <span className="block text-foreground">Modular Living</span>
+              <h1 className="text-6xl lg:text-8xl font-black leading-[0.95] tracking-tight">
+                <span className="block text-gradient glow-text mb-2">
+                  Revolutionary
+                </span>
+                <span className="block text-foreground">Capsule Homes</span>
               </h1>
 
-              <p className="text-xl text-muted-foreground max-w-2xl">
-                Revolutionary capsule homes that adapt to your lifestyle.
-                Sustainable, customizable, and ready to deploy anywhere in the
-                world.
+              <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl leading-relaxed font-light">
+                Experience the future of modular living. Sustainable, customizable,
+                and deployable anywhere on Earth.
               </p>
             </motion.div>
 
@@ -63,64 +122,112 @@ export const HeroSection = () => {
             >
               <Button
                 size="lg"
-                className="bg-gradient-primary text-primary-foreground border-none hover:shadow-glow hover-lift text-lg px-8 py-4"
+                className="relative overflow-hidden group bg-gradient-primary text-primary-foreground border-none hover:shadow-glow text-lg px-8 py-6 rounded-2xl"
                 onClick={() => scrollToSection("#customization")}
               >
-                Explore Capsules
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <span className="relative z-10 flex items-center gap-2">
+                  Explore Collection
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  whileHover={{ scale: 1.5 }}
+                  transition={{ duration: 0.4 }}
+                />
               </Button>
 
               <Button
                 size="lg"
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary/10 text-lg px-8 py-4"
+                className="glass-card hover:bg-background/40 text-lg px-8 py-6 rounded-2xl group"
                 onClick={() => scrollToSection("#booking")}
               >
-                <Calendar className="mr-2 h-5 w-5" />
-                Book Meeting
+                <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                Book Consultation
               </Button>
             </motion.div>
 
-            {/* Stats */}
+            {/* Glass stats panel */}
             <motion.div
-              className="grid grid-cols-3 gap-8 pt-8"
+              className="glass-panel p-8 rounded-3xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-gradient">50%</div>
-                <div className="text-sm text-muted-foreground">
-                  Faster Build
-                </div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-gradient">30%</div>
-                <div className="text-sm text-muted-foreground">
-                  Cost Savings
-                </div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-gradient">100%</div>
-                <div className="text-sm text-muted-foreground">Sustainable</div>
+              <div className="grid grid-cols-3 gap-6">
+                {[
+                  { value: "50%", label: "Faster Build", icon: Zap },
+                  { value: "30%", label: "Cost Savings", icon: Sparkles },
+                  { value: "100%", label: "Sustainable", icon: ArrowRight },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    className="text-center group cursor-pointer"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <stat.icon className="w-5 h-5 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform" />
+                    <div className="text-4xl font-black text-gradient mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-muted-foreground font-medium">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Image Marquee */}
+          {/* Right Content - Enhanced Marquee */}
           <motion.div
-            className="relative h-[110%] w-[120%]"
+            className="relative h-[600px] lg:h-[700px]"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            {/* Blend gradient overlay for smooth transition */}
-            <div className="absolute h-[115%] -top-16 -left-64 w-full z-10 pointer-events-none blur-2xl bg-gradient-to-r from-background via-background/80 to-transparent" />
+            {/* Glass overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-l from-background via-transparent to-transparent z-10 pointer-events-none" />
+            
+            {/* Floating glass frame */}
+            <div className="absolute inset-0 glass-panel p-8 overflow-hidden">
+              <ImageMarquee />
+            </div>
 
-            <ImageMarquee />
+            {/* Decorative elements */}
+            <motion.div
+              className="absolute -top-6 -right-6 w-32 h-32 glass-card rounded-full flex items-center justify-center"
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <Sparkles className="w-12 h-12 text-primary" />
+            </motion.div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+      >
+        <motion.div
+          className="w-6 h-10 glass-card rounded-full flex justify-center pt-2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <div className="w-1 h-2 bg-primary rounded-full" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

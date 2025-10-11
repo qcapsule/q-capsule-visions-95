@@ -160,32 +160,32 @@ export const UseCasesSection = () => {
           {useCases.map((useCase, index) => (
             <motion.div
               key={useCase.title}
-              className="group relative overflow-hidden rounded-2xl bg-card/80 backdrop-blur-sm border border-white/10 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 hover:bg-card/90"
+              className="group relative overflow-hidden rounded-3xl glass-panel border-white/20 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 depth-layer-1 hover:depth-layer-3"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              whileHover={{ y: -4 }}
+              whileHover={{ y: -8, scale: 1.02 }}
               style={{ minHeight: "320px" }}
             >
               {/* Compact Image Header */}
-              <div className="relative overflow-hidden h-32">
+              <div className="relative overflow-hidden h-36 rounded-t-3xl">
                 <img
                   src={useCase.image}
                   alt={useCase.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
 
                 {/* Light Gradient Overlay */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-t ${useCase.color} opacity-40`}
+                  className={`absolute inset-0 bg-gradient-to-t ${useCase.color} opacity-50 group-hover:opacity-60 transition-opacity duration-500`}
                 ></div>
 
                 {/* Icon */}
                 <div className="absolute top-3 left-3">
-                  <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
-                    <useCase.icon className="h-4 w-4 text-white" />
+                  <div className="w-10 h-10 glass-card rounded-xl flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform duration-300">
+                    <useCase.icon className="h-5 w-5 text-white drop-shadow-lg" />
                   </div>
                 </div>
 
@@ -258,7 +258,7 @@ export const UseCasesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.5 }}
         >
-          <div className="glass-card p-12 max-w-3xl mx-auto border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+          <div className="glass-panel p-12 max-w-3xl mx-auto bg-gradient-to-br from-primary/5 to-transparent depth-layer-2">
             <motion.h3
               className="text-3xl lg:text-4xl font-bold mb-6 text-gradient"
               whileHover={{ scale: 1.05 }}

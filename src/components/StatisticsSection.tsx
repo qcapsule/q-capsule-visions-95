@@ -265,7 +265,7 @@ export const StatisticsSection = () => {
               }}
               style={{ perspective: 1000 }}
             >
-              <div className="glass-card p-8 text-center relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-500 h-full flex flex-col justify-between">
+              <div className="glass-panel p-8 text-center relative overflow-hidden group-hover:border-primary/50 transition-all duration-500 h-full flex flex-col justify-between depth-layer-1 group-hover:depth-layer-3">
                 {/* Dynamic background effect */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-100 transition-all duration-500`}
@@ -356,7 +356,7 @@ export const StatisticsSection = () => {
           ].map((insight, index) => (
             <motion.div
               key={insight.title}
-              className={`glass-card p-8 ${insight.gradient} border ${insight.border} group hover-lift`}
+              className={`glass-panel p-8 ${insight.gradient} border ${insight.border} group hover-lift depth-layer-1 group-hover:depth-layer-2`}
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
               animate={
                 isInView
@@ -386,7 +386,7 @@ export const StatisticsSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 2.5 }}
         >
-          <div className="glass-card p-12 max-w-3xl mx-auto border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+          <div className="glass-panel p-12 max-w-3xl mx-auto bg-gradient-to-br from-primary/5 to-transparent depth-layer-2">
             <motion.h3
               className="text-3xl lg:text-4xl font-bold mb-6 text-gradient"
               whileHover={{ scale: 1.05 }}
