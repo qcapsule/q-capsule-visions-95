@@ -1,35 +1,15 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
-  Building2,
-  TreePine,
-  Tent,
-  Heart,
-  Shield,
-  Sparkles,
-} from "lucide-react";
-import Autoplay from "embla-carousel-autoplay";
+import { forwardRef, useState } from "react";
+import { Building2, TreePine, Heart, Shield, ArrowRight } from "lucide-react";
 
 // Import use case images
 import officeImage from "@/assets/office-capsule.jpg";
 import ecoResortImage from "@/assets/eco-resort-capsule.jpg";
-import disasterReliefImage from "@/assets/disaster-relief-capsule.jpg";
 import healthcareImage from "@/assets/healthcare-capsule.jpg";
 import secureBankingImage from "@/assets/secure-banking-capsule.jpg";
+import islandParadiseImage from "@/assets/island-paradise-capsules.png";
 
-export const UseCasesSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+export const UseCasesSection = forwardRef<HTMLElement>((props, ref) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const useCases = [
@@ -47,6 +27,7 @@ export const UseCasesSection = () => {
       color: "from-blue-500 to-indigo-600",
       image: officeImage,
       stats: "50+ Deployments",
+      tagline: "Work Anywhere—Thrive Everywhere",
     },
     {
       icon: TreePine,
@@ -62,21 +43,7 @@ export const UseCasesSection = () => {
       color: "from-emerald-500 to-teal-600",
       image: ecoResortImage,
       stats: "Zero Carbon Footprint",
-    },
-    {
-      icon: Tent,
-      title: "Emergency Relief",
-      description:
-        "Rapid deployment shelters providing immediate safety and comfort in crisis situations.",
-      applications: [
-        "Disaster Housing",
-        "Medical Units",
-        "Command Centers",
-        "Refugee Support",
-      ],
-      color: "from-red-500 to-orange-600",
-      image: disasterReliefImage,
-      stats: "15 Min Setup",
+      tagline: "Nature First—Luxury Always",
     },
     {
       icon: Heart,
@@ -92,6 +59,7 @@ export const UseCasesSection = () => {
       color: "from-pink-500 to-rose-600",
       image: healthcareImage,
       stats: "Medical Grade",
+      tagline: "Care Everywhere—Healing Always",
     },
     {
       icon: Shield,
@@ -107,193 +75,204 @@ export const UseCasesSection = () => {
       color: "from-purple-500 to-violet-600",
       image: secureBankingImage,
       stats: "Bank-Grade Security",
+      tagline: "Secure Banking—Anywhere Access",
     },
   ];
 
-  return (
-    <section id="use-cases" className="relative overflow-hidden my-32">
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        {/* Enhanced Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card text-sm font-medium mb-8 border border-primary/20"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={
-              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-            }
-            transition={{ duration: 0.8, delay: 0.2 }}
-            whileHover={{ scale: 1.05 }}
-          >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-gradient">Use Cases</span>
-          </motion.div>
+  const scrollToSection = (id: string) => {
+    const element = document.querySelector(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-          <motion.h2
-            className="text-5xl lg:text-7xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+  return (
+    <section
+      ref={ref}
+      id="use-cases"
+      className="h-[200vh] flex items-center justify-center overflow-hidden sticky top-0"
+      style={{
+        backgroundImage: `url(${islandParadiseImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Background for GSAP */}
+      <div
+        className="use-cases-bg absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${islandParadiseImage})`,
+        }}
+      ></div>
+
+      {/* Subtle Background Overlay */}
+      <div className="absolute inset-0 bg-black/20 z-0"></div>
+
+      {/* Main Content Container */}
+      <div className="container mx-auto px-6 relative z-10 flex items-center justify-center h-full">
+        <div className="w-full max-w-7xl">
+          {/* Header Section */}
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span className="text-gradient glow-text">
-              Built for Every Vision
-            </span>
-          </motion.h2>
-
-          <motion.p
-            className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            Discover how Q Capsules transform ideas into reality across
-            industries and applications.
-          </motion.p>
-        </motion.div>
-
-        {/* Screen-Fit Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-7xl mx-auto">
-          {useCases.map((useCase, index) => (
-            <motion.div
-              key={useCase.title}
-              className="group relative overflow-hidden rounded-2xl bg-card/80 backdrop-blur-sm border border-white/10 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 hover:bg-card/90"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
-              whileHover={{ y: -4 }}
-              style={{ minHeight: "320px" }}
+            <motion.h2
+              className="text-5xl lg:text-7xl font-bold leading-tight text-white drop-shadow-lg mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {/* Compact Image Header */}
-              <div className="relative overflow-hidden h-32">
-                <img
-                  src={useCase.image}
-                  alt={useCase.title}
-                  className="w-full h-full object-cover"
-                />
+              Built for Every{" "}
+              <span className="text-white drop-shadow-lg">Vision</span>
+            </motion.h2>
 
-                {/* Light Gradient Overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t ${useCase.color} opacity-40`}
-                ></div>
-
-                {/* Icon */}
-                <div className="absolute top-3 left-3">
-                  <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
-                    <useCase.icon className="h-4 w-4 text-white" />
-                  </div>
-                </div>
-
-                {/* Stats Badge */}
-                <div className="absolute top-3 right-3">
-                  <span className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-md border border-white/30">
-                    {useCase.stats}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <div className="absolute bottom-3 left-3 right-3">
-                  <h3 className="font-bold text-white text-lg leading-tight">
-                    {useCase.title}
-                  </h3>
-                </div>
-              </div>
-
-              {/* Compact Content */}
-              <div className="p-4 flex-1 flex flex-col">
-                <p className="text-muted-foreground mb-3 leading-relaxed text-xs flex-1">
-                  {useCase.description}
-                </p>
-
-                {/* Applications */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-foreground/60 uppercase tracking-wide">
-                    Applications
-                  </h4>
-
-                  <div className="flex flex-wrap gap-1">
-                    {useCase.applications.map((app, i) => (
-                      <span
-                        key={app}
-                        className="px-2 py-1 bg-muted/40 text-muted-foreground text-xs rounded-sm border border-border/30 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-200"
-                      >
-                        {app}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Hover Arrow */}
-                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="w-6 h-6 bg-primary/80 rounded-full flex items-center justify-center text-primary-foreground shadow-md">
-                    <svg
-                      className="w-3 h-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Enhanced Call to Action */}
-        <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-        >
-          <div className="glass-card p-12 max-w-3xl mx-auto border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
-            <motion.h3
-              className="text-3xl lg:text-4xl font-bold mb-6 text-gradient"
-              whileHover={{ scale: 1.05 }}
+            <motion.p
+              className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed drop-shadow-md mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
             >
-              Ready to Bring Your Vision to Life?
-            </motion.h3>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Every project is unique. Let's collaborate to create a Q Capsule
-              solution tailored specifically to your needs and vision.
-            </p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              whileHover={{ scale: 1.02 }}
-            >
-              <motion.button
-                className="bg-gradient-primary text-primary-foreground px-12 py-4 rounded-2xl font-bold text-lg hover:shadow-glow transition-all duration-500 border border-primary/20 hover:border-primary/40"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 50px hsl(var(--primary) / 0.4)",
-                }}
-                whileTap={{ scale: 0.95 }}
+              Discover how Q Capsules transform ideas into reality across
+              industries and applications.
+            </motion.p>
+          </motion.div>
+
+          {/* Cool Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {useCases.map((useCase, index) => (
+              <motion.div
+                key={useCase.title}
+                className="group relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-white/20 hover:bg-white/20 hover:scale-105 cursor-pointer"
+                initial={{ opacity: 0, y: 50, rotateY: -15 }}
+                animate={{ opacity: 1, y: 0, rotateY: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                whileHover={{ y: -10 }}
+                style={{ minHeight: "400px" }}
+                onHoverStart={() => setHoveredIndex(index)}
+                onHoverEnd={() => setHoveredIndex(null)}
               >
-                Discuss Your Project
-              </motion.button>
-              <motion.button
-                className="border border-primary text-primary px-12 py-4 rounded-2xl font-bold text-lg hover:bg-primary/5 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Portfolio
-              </motion.button>
-            </motion.div>
+                {/* Card Image */}
+                <div className="relative overflow-hidden h-40">
+                  <img
+                    src={useCase.image}
+                    alt={useCase.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                  {/* Icon */}
+                  <div className="absolute top-4 left-4">
+                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30 group-hover:bg-white/30 transition-all duration-300">
+                      <useCase.icon className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+
+                  {/* Stats Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-xl border border-white/30 group-hover:bg-white/30 transition-all duration-300">
+                      {useCase.stats}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="font-bold text-white text-xl leading-tight group-hover:text-white transition-all duration-300">
+                      {useCase.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Card Content */}
+                <div className="p-4 flex-1 flex flex-col">
+                  <p className="text-white/80 mb-4 leading-relaxed text-sm flex-1 group-hover:text-white transition-all duration-300">
+                    {useCase.description}
+                  </p>
+
+                  {/* Tagline */}
+                  <div className="mb-4">
+                    <p className="text-white font-medium text-sm group-hover:text-white transition-all duration-300">
+                      {useCase.tagline}
+                    </p>
+                  </div>
+
+                  {/* Applications */}
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-semibold text-white/60 uppercase tracking-wide group-hover:text-white/80 transition-all duration-300">
+                      Applications
+                    </h4>
+
+                    <div className="flex flex-wrap gap-2">
+                      {useCase.applications.map((app, i) => (
+                        <span
+                          key={app}
+                          className="px-3 py-1 bg-white/10 text-white/80 text-xs rounded-lg border border-white/20 hover:bg-white/20 hover:text-white hover:border-white/40 transition-all duration-200 group-hover:bg-white/20 group-hover:text-white"
+                        >
+                          {app}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Hover Arrow */}
+                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white shadow-lg group-hover:bg-white/30 transition-all duration-300">
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Glow Effect */}
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-white/10 via-transparent to-white/10"></div>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
+
+          {/* Call to Action */}
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 max-w-4xl mx-auto border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300">
+              <motion.h3
+                className="text-3xl lg:text-4xl font-bold mb-6 text-white"
+                whileHover={{ scale: 1.05 }}
+              >
+                Ready to Bring Your Vision to Life?
+              </motion.h3>
+              <p className="text-xl text-white/90 mb-8 leading-relaxed">
+                Every project is unique. Let's collaborate to create a Q Capsule
+                solution tailored specifically to your needs and vision.
+              </p>
+              <motion.div
+                className="flex justify-center"
+                whileHover={{ scale: 1.02 }}
+              >
+                <motion.button
+                  className="bg-white/20 backdrop-blur-md text-white px-12 py-4 rounded-2xl font-bold text-lg hover:bg-white/30 transition-all duration-500 border border-white/30 hover:border-white/50"
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 0 50px rgba(255, 255, 255, 0.3)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Discuss Your Project
+                </motion.button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
-};
+});
+
+UseCasesSection.displayName = "UseCasesSection";

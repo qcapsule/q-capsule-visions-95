@@ -25,7 +25,7 @@ export const capsules: Capsule[] = [
       "Space optimization",
     ],
     images: [
-      "/src/assets/q56x-capsule.png",
+      "/src/assets/q56x-capsule2.png",
       "/src/assets/residential-capsule.jpg",
       "/src/assets/modern-interior-capsule.png",
     ],
@@ -45,8 +45,9 @@ export const capsules: Capsule[] = [
       "Modern appliances",
     ],
     images: [
-      "/src/assets/q75x-capsulel.png",
       "/src/assets/q75x-capsule2.png",
+      "/src/assets/q75x-capsulel.png",
+
       "/src/assets/q75x-capsule3.png",
     ],
   },
@@ -65,7 +66,7 @@ export const capsules: Capsule[] = [
       "Panoramic windows",
     ],
     images: [
-      "/src/assets/q95x-capsule.png",
+      "/src/assets/q95-capsule1.png",
       "/src/assets/living-room1.png",
       "/src/assets/floorplan-bg.jpg",
     ],
@@ -84,7 +85,7 @@ export const capsules: Capsule[] = [
       "Advanced insulation",
     ],
     images: [
-      "/src/assets/q115x-capsule.png",
+      "/src/assets/q115x-capsule1.png",
       "/src/assets/healthcare-capsule.jpg",
       "/src/assets/retail-capsule.jpg",
     ],
