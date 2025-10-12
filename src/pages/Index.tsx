@@ -21,7 +21,7 @@ import { useParallaxScroll } from "@/hooks/useParallaxScroll";
 import { Scrolling3DCapsule } from "@/components/Scrolling3DCapsule";
 
 const Index = () => {
-  const { heroRef, capsuleCollectionRef, visionRef, aboutRef } =
+  const { heroRef, capsuleCollectionRef, visionRef, aboutRef, brochureRef } =
     useParallaxScroll();
 
   return (
@@ -41,12 +41,11 @@ const Index = () => {
         {/* <FloorPlanSpotlightExample />
 
         <EnvironmentsSection /> */}
-
+        <BrochureSection ref={brochureRef} />
         <AboutSection ref={aboutRef} />
 
         {/* <CrossSectionDiagram /> */}
-        {/* <StatisticsSection />
-        <BrochureSection /> */}
+        {/* <StatisticsSection /> */}
         {/* <ScrollCapsuleSection /> */}
         {/* <CertificationsSection /> */}
         {/* <BookingSection /> */}

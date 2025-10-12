@@ -10,12 +10,14 @@ export const useParallaxScroll = () => {
   const capsuleCollectionRef = useRef<HTMLElement>(null);
   const visionRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
+  const brochureRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (
       !heroRef.current ||
       !capsuleCollectionRef.current ||
       !visionRef.current ||
-      !aboutRef.current
+      !aboutRef.current ||
+      !brochureRef.current
     )
       return;
 
@@ -489,10 +491,202 @@ export const useParallaxScroll = () => {
       }
     }
 
+    // Brochure section entrance animation - smooth approach
+    const brochureTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: brochureRef.current,
+        start: "top 80%",
+        end: "top 20%",
+        scrub: 1,
+      },
+    });
+
+    brochureTl.fromTo(
+      brochureRef.current,
+      {
+        opacity: 0,
+        y: 100,
+        scale: 0.95,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+
+    // Main content animations for brochure section - faster
+    const brochureMainContent =
+      brochureRef.current.querySelector(".brochure-content");
+    if (brochureMainContent) {
+      gsap.fromTo(
+        brochureMainContent.querySelector("h2"),
+        {
+          opacity: 0,
+          y: 30,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: brochureRef.current,
+            start: "top 140%",
+            end: "top 10%",
+            scrub: 0.3,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        brochureMainContent.querySelector("p"),
+        {
+          opacity: 0,
+          y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: brochureRef.current,
+            start: "top 135%",
+            end: "top 15%",
+            scrub: 0.3,
+          },
+        }
+      );
+    }
+
+    // Individual element animations for brochure section - faster
+    const brochureElements =
+      brochureRef.current.querySelectorAll(".parallax-element");
+    brochureElements.forEach((element, index) => {
+      gsap.fromTo(
+        element,
+        {
+          opacity: 0,
+          y: 50 + index * 20,
+          rotation: 2,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          rotation: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 130%",
+            end: "top 20%",
+            scrub: 0.3,
+          },
+        }
+      );
+    });
+
+    // Brochure section background parallax
+    gsap.to(brochureRef.current.querySelector(".brochure-bg"), {
+      scale: 1.1,
+      duration: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: brochureRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
+
+    // Bottom content animations for brochure section
+    const brochureBottomContainer =
+      brochureRef.current.querySelector(".absolute.bottom-8");
+    if (brochureBottomContainer) {
+      // Animate the left tagline
+      const leftTagline =
+        brochureBottomContainer.querySelector(".flex-shrink-0");
+      if (leftTagline) {
+        gsap.fromTo(
+          leftTagline,
+          {
+            opacity: 0,
+            x: -30,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: brochureRef.current,
+              start: "top 125%",
+              end: "top 15%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Animate the center features
+      const centerFeatures =
+        brochureBottomContainer.querySelector(".flex.gap-4");
+      if (centerFeatures) {
+        gsap.fromTo(
+          centerFeatures,
+          {
+            opacity: 0,
+            scale: 0.9,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: brochureRef.current,
+              start: "top 120%",
+              end: "top 20%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Animate the right description
+      const rightDesc = brochureBottomContainer.querySelector(
+        ".text-center.lg\\:text-right"
+      );
+      if (rightDesc) {
+        gsap.fromTo(
+          rightDesc,
+          {
+            opacity: 0,
+            x: 30,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: brochureRef.current,
+              start: "top 125%",
+              end: "top 15%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+    }
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
-  return { heroRef, capsuleCollectionRef, visionRef, aboutRef };
+  return { heroRef, capsuleCollectionRef, visionRef, aboutRef, brochureRef };
 };
