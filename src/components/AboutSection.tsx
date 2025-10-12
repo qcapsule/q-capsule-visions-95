@@ -1,71 +1,42 @@
 import { forwardRef } from "react";
-import {
-  Award,
-  Users,
-  Zap,
-  Globe,
-  Sparkles,
-  Building2,
-  Heart,
-  Target,
-} from "lucide-react";
+import { Award, Users, Zap, Globe, Sparkles, Building2, Heart, Target } from "lucide-react";
 import dohaSkylineImage from "@/assets/doha-skyline.png";
-
 export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
-  const aboutItems = [
-    {
-      icon: Building2,
-      title: "Qatar Heritage",
-      description:
-        "Born in Qatar, built for the world. We're proud to be part of Qatar's innovative future while honoring our rich cultural heritage.",
-      stat: "100%",
-      statLabel: "Made in Qatar",
-    },
-    {
-      icon: Heart,
-      title: "Passion Driven",
-      description:
-        "Every capsule we create is infused with passion, precision, and purpose. We believe in crafting spaces that inspire and transform lives.",
-      stat: "500+",
-      statLabel: "Dreams Realized",
-    },
-    {
-      icon: Target,
-      title: "Excellence Focus",
-      description:
-        "Committed to delivering exceptional quality and service. Our attention to detail ensures every project exceeds expectations.",
-      stat: "99%",
-      statLabel: "Client Satisfaction",
-    },
-    {
-      icon: Sparkles,
-      title: "Innovation First",
-      description:
-        "Pioneering the future of modular living with cutting-edge technology and sustainable design principles.",
-      stat: "24/7",
-      statLabel: "Innovation",
-    },
-  ];
-
-  return (
-    <section
-      ref={ref}
-      id="about"
-      className="h-[100vh] flex items-center justify-center overflow-hidden sticky top-0"
-      style={{
-        backgroundImage: `url(${dohaSkylineImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+  const aboutItems = [{
+    icon: Building2,
+    title: "Qatar Heritage",
+    description: "Born in Qatar, built for the world. We're proud to be part of Qatar's innovative future while honoring our rich cultural heritage.",
+    stat: "100%",
+    statLabel: "Made in Qatar"
+  }, {
+    icon: Heart,
+    title: "Passion Driven",
+    description: "Every capsule we create is infused with passion, precision, and purpose. We believe in crafting spaces that inspire and transform lives.",
+    stat: "500+",
+    statLabel: "Dreams Realized"
+  }, {
+    icon: Target,
+    title: "Excellence Focus",
+    description: "Committed to delivering exceptional quality and service. Our attention to detail ensures every project exceeds expectations.",
+    stat: "99%",
+    statLabel: "Client Satisfaction"
+  }, {
+    icon: Sparkles,
+    title: "Innovation First",
+    description: "Pioneering the future of modular living with cutting-edge technology and sustainable design principles.",
+    stat: "24/7",
+    statLabel: "Innovation"
+  }];
+  return <section ref={ref} id="about" className="h-[100vh] flex items-center justify-center overflow-hidden sticky top-0" style={{
+    backgroundImage: `url(${dohaSkylineImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}>
       {/* Background for GSAP */}
-      <div
-        className="about-bg absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${dohaSkylineImage})`,
-        }}
-      ></div>
+      <div className="about-bg absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+      backgroundImage: `url(${dohaSkylineImage})`
+    }}></div>
 
       {/* Subtle Background Overlay */}
       <div className="about-overlay absolute inset-0 bg-black/40 z-0"></div>
@@ -85,11 +56,7 @@ export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
 
           {/* About Items Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {aboutItems.map((item, index) => (
-              <div
-                key={item.title}
-                className="parallax-element bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 cursor-pointer group"
-              >
+            {aboutItems.map((item, index) => <div key={item.title} className="parallax-element bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 cursor-pointer group">
                 <div className="w-12 h-12 mb-4 mx-auto bg-white/20 rounded-xl flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
                   <item.icon className="h-6 w-6 text-white" />
                 </div>
@@ -108,8 +75,7 @@ export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
                   </div>
                   <div className="text-xs text-white/70">{item.statLabel}</div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
@@ -119,9 +85,7 @@ export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
         <div className="flex flex-row items-center justify-between gap-2 lg:gap-8">
           {/* Left Tagline */}
           <div className="flex-shrink-0">
-            <p className="text-white text-sm lg:text-lg font-medium drop-shadow-lg whitespace-nowrap">
-              Made in Qatar—Built for the World
-            </p>
+            <p className="text-white text-sm lg:text-lg font-medium drop-shadow-lg whitespace-nowrap">Made in Qatar—Built for the World</p>
           </div>
 
           {/* Center Quote */}
@@ -145,8 +109,6 @@ export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 });
-
 AboutSection.displayName = "AboutSection";
