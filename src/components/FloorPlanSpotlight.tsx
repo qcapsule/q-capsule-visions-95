@@ -115,7 +115,7 @@ export const FloorPlanSpotlight = ({
 
   return (
     <section
-      className={`relative overflow-hidden my-32 ${className} min-h-[100vh]`}
+      className={`relative overflow-hidden py-32 ${className}`}
       style={{
         transform: "translateZ(0)",
       }}
@@ -152,15 +152,15 @@ export const FloorPlanSpotlight = ({
         </div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+      <div className="container mx-auto px-6 relative z-10 max-w-6xl" ref={ref}>
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card text-sm font-medium mb-8 border border-primary/20"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-8 border border-white/20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -169,16 +169,16 @@ export const FloorPlanSpotlight = ({
             whileHover={{ scale: 1.05 }}
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-gradient">Floor Plan Explorer</span>
+            <span className="text-foreground">Floor Plan Explorer</span>
           </motion.div>
 
           <motion.h2
-            className="text-5xl lg:text-7xl font-bold mb-6 leading-tight"
+            className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-foreground"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span className="text-gradient glow-text">Explore Every Space</span>
+            Explore Every Space
           </motion.h2>
 
           <motion.p

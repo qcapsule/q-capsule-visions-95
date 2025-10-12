@@ -1,206 +1,152 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Award, Users, Zap, Globe } from "lucide-react";
-import madeInQatarLogo from "@/assets/made-in-qatar-logo.png";
+import { forwardRef } from "react";
+import {
+  Award,
+  Users,
+  Zap,
+  Globe,
+  Sparkles,
+  Building2,
+  Heart,
+  Target,
+} from "lucide-react";
+import dohaSkylineImage from "@/assets/doha-skyline.png";
 
-export const AboutSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const achievements = [
-    { icon: Award, label: "Awards Won", value: "15+" },
-    { icon: Users, label: "Happy Clients", value: "200+" },
-    { icon: Zap, label: "Projects Delivered", value: "350+" },
-    { icon: Globe, label: "Countries Served", value: "12" },
-  ];
-
-  const timeline = [
+export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
+  const aboutItems = [
     {
-      year: "2020",
-      event: "Q Capsules Founded",
-      description: "Started with a vision to revolutionize modular living",
+      icon: Building2,
+      title: "Qatar Heritage",
+      description:
+        "Born in Qatar, built for the world. We're proud to be part of Qatar's innovative future while honoring our rich cultural heritage.",
+      stat: "100%",
+      statLabel: "Made in Qatar",
     },
     {
-      year: "2021",
-      event: "First Prototype",
-      description: "Developed our first fully functional capsule prototype",
+      icon: Heart,
+      title: "Passion Driven",
+      description:
+        "Every capsule we create is infused with passion, precision, and purpose. We believe in crafting spaces that inspire and transform lives.",
+      stat: "500+",
+      statLabel: "Dreams Realized",
     },
     {
-      year: "2022",
-      event: "Market Launch",
-      description: "Launched our first commercial capsule line in Qatar",
+      icon: Target,
+      title: "Excellence Focus",
+      description:
+        "Committed to delivering exceptional quality and service. Our attention to detail ensures every project exceeds expectations.",
+      stat: "99%",
+      statLabel: "Client Satisfaction",
     },
     {
-      year: "2023",
-      event: "International Expansion",
-      description: "Expanded to serve clients across the Middle East",
-    },
-    {
-      year: "2024",
-      event: "Innovation Awards",
-      description: "Recognized for sustainable design and innovation",
+      icon: Sparkles,
+      title: "Innovation First",
+      description:
+        "Pioneering the future of modular living with cutting-edge technology and sustainable design principles.",
+      stat: "24/7",
+      statLabel: "Innovation",
     },
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden my-32">
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div
-            className="inline-flex items-center px-4 py-2 rounded-full glass-card text-sm text-primary font-medium mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={
-              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-            }
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Our Story
-          </motion.div>
+    <section
+      ref={ref}
+      id="about"
+      className="h-[100vh] flex items-center justify-center overflow-hidden sticky top-0"
+      style={{
+        backgroundImage: `url(${dohaSkylineImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Background for GSAP */}
+      <div
+        className="about-bg absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${dohaSkylineImage})`,
+        }}
+      ></div>
 
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-            <span className="text-gradient">About Q Capsules</span>
+      {/* Subtle Background Overlay */}
+      <div className="about-overlay absolute inset-0 bg-black/40 z-0"></div>
+
+      {/* Main Content - Centered */}
+      <div className="about-content container mx-auto px-6 relative z-10 flex items-center justify-center h-full">
+        <div className="text-center max-w-6xl">
+          <h2 className="text-5xl lg:text-7xl font-bold leading-tight text-white drop-shadow-lg mb-6">
+            About <span className="text-white drop-shadow-lg">Q Capsules</span>
           </h2>
-        </motion.div>
-        <div className="grid lg:grid-cols-2 gap-16 mb-20">
-          {/* Story Content */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <div className="space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Born from a vision to revolutionize the way we think about
-                living spaces, Q Capsules emerged as Qatar's pioneering force in
-                modular architecture. Our journey began with a simple question:
-                "What if homes could adapt to people, rather than people
-                adapting to homes?"
-              </p>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Founded by a team of architects, engineers, and visionaries,
-                we've transformed this question into reality. Every Q Capsule
-                represents our commitment to sustainable innovation, combining
-                cutting-edge technology with timeless design principles.
-              </p>
+          <p className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed drop-shadow-md mb-8">
+            Born from Qatar's vision for the future, we're pioneering modular
+            living solutions that combine innovation, sustainability, and luxury
+            in every capsule we create.
+          </p>
 
-            </div>
+          {/* About Items Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {aboutItems.map((item, index) => (
+              <div
+                key={item.title}
+                className="parallax-element bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 cursor-pointer group"
+              >
+                <div className="w-12 h-12 mb-4 mx-auto bg-white/20 rounded-xl flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
+                  <item.icon className="h-6 w-6 text-white" />
+                </div>
 
-            {/* Made in Qatar Logo 
-            <motion.div
-              className="flex items-center space-x-4 glass-card p-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <img
-                src={madeInQatarLogo}
-                alt="Made in Qatar"
-                className="w-16 h-16 object-contain"
-              />
-              <div>
-                <h3 className="text-xl font-bold text-gradient mb-1">
-                  Made in Qatar
+                <h3 className="text-lg font-bold mb-2 text-center text-white group-hover:text-white transition-all duration-300">
+                  {item.title}
                 </h3>
-                <p className="text-muted-foreground">
-                  Proudly contributing to Qatar's sustainable future
+
+                <p className="text-white/80 group-hover:text-white text-center text-sm leading-relaxed transition-all duration-300 mb-3">
+                  {item.description}
                 </p>
-              </div>
-            </motion.div>*/}
-          </motion.div>
 
-          {/* Achievements Grid */}
-          <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            <div className="grid grid-cols-2 gap-6">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={achievement.label}
-                  className="glass-card p-6 text-center hover-lift group relative overflow-hidden"
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  animate={
-                    isInView
-                      ? { opacity: 1, y: 0, scale: 1 }
-                      : { opacity: 0, y: 30, scale: 0.9 }
-                  }
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.6 + index * 0.1,
-                    type: "spring",
-                    stiffness: 120,
-                  }}
-                  whileHover={{
-                    scale: 1.05,
-                    y: -5,
-                    transition: { duration: 0.2 },
-                  }}
-                >
-                  {/* Animated Background */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300"
-                    whileHover={{ opacity: 0.1 }}
-                  />
-
-                  <div className="relative z-10">
-                    <motion.div
-                      className="w-12 h-12 mx-auto mb-4 bg-gradient-primary rounded-xl flex items-center justify-center shadow-md group-hover:shadow-glow transition-all duration-300"
-                      whileHover={{ rotate: 5, scale: 1.1 }}
-                    >
-                      <achievement.icon className="h-6 w-6 text-primary-foreground" />
-                    </motion.div>
-                    <motion.div
-                      className="text-3xl font-bold text-gradient mb-2"
-                      initial={{ scale: 0.5 }}
-                      animate={isInView ? { scale: 1 } : { scale: 0.5 }}
-                      transition={{
-                        delay: 0.8 + index * 0.1,
-                        duration: 0.5,
-                        type: "spring",
-                      }}
-                    >
-                      {achievement.value}
-                    </motion.div>
-                    <div className="text-sm text-muted-foreground">
-                      {achievement.label}
-                    </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white mb-1">
+                    {item.stat}
                   </div>
+                  <div className="text-xs text-white/70">{item.statLabel}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-                  {/* Hover Border Effect */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/20 rounded-lg transition-colors duration-300"></div>
-                </motion.div>
-              ))}
-            </div>
+      {/* Bottom Content Row */}
+      <div className="absolute bottom-8 left-0 right-0 z-20 px-8">
+        <div className="flex flex-row items-center justify-between gap-2 lg:gap-8">
+          {/* Left Tagline */}
+          <div className="flex-shrink-0">
+            <p className="text-white text-sm lg:text-lg font-medium drop-shadow-lg whitespace-nowrap">
+              Made in Qatar—Built for the World
+            </p>
+          </div>
 
-            {/* Vision Statement */}
-            <motion.div
-              className="glass-card p-8 bg-gradient-primary/5 border-primary/20"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 1 }}
-            >
-              <h3 className="text-xl font-bold text-gradient mb-4">
-                Our Vision
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                "To be the global leader in modular living solutions, creating
-                sustainable, innovative spaces that enhance quality of life
-                while respecting our planet."
-              </p>
-            </motion.div>
-          </motion.div>
+          {/* Center Quote */}
+          <div className="flex-1 text-center max-w-2xl mx-8">
+            <blockquote className="text-white/90 text-sm lg:text-base drop-shadow-md italic">
+              "We don't just build homes, we craft experiences that connect
+              people with nature, innovation, and each other."
+            </blockquote>
+            <cite className="text-white/70 text-xs lg:text-sm font-medium mt-2 block">
+              — Q Capsules Founders
+            </cite>
+          </div>
+
+          {/* Right Description */}
+          <div className="text-center lg:text-right">
+            <p className="text-white/90 text-sm lg:text-base drop-shadow-md max-w-xs">
+              From the heart of Doha—
+              <br />
+              to homes around the world.
+            </p>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+});
+
+AboutSection.displayName = "AboutSection";

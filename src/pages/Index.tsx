@@ -5,7 +5,6 @@ import { CustomizationSection } from "@/components/CustomizationSection";
 import { BrochureSection } from "@/components/BrochureSection";
 import { BookingSection } from "@/components/BookingSection";
 import { AboutSection } from "@/components/AboutSection";
-import { UseCasesSection } from "@/components/UseCasesSection";
 import { StatisticsSection } from "@/components/StatisticsSection";
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { CrossSectionDiagram } from "@/components/CrossSectionDiagram";
@@ -16,10 +15,15 @@ import { EnvironmentsSection } from "@/components/EnvironmentsSection";
 import { FloorPlanSpotlightExample } from "@/components/FloorPlanSpotlight";
 import { BackgroundOrbs } from "@/components/BackgroundOrbs";
 import CollectionSection from "@/components/CollectionSection";
+import { CapsuleCollectionSection } from "@/components/CapsuleCollectionSection";
+import { useParallaxScroll } from "@/hooks/useParallaxScroll";
 
 import { Scrolling3DCapsule } from "@/components/Scrolling3DCapsule";
 
 const Index = () => {
+  const { heroRef, capsuleCollectionRef, visionRef, aboutRef } =
+    useParallaxScroll();
+
   return (
     <div className="min-h-screen relative">
       <BackgroundOrbs />
@@ -27,24 +31,27 @@ const Index = () => {
       <div className="relative z-10">
         <ScrollProgress />
         <Navigation />
-        <HeroSection />
+        <HeroSection ref={heroRef} />
+        <VisionSection ref={visionRef} />
+
         {/* <CustomizationSection /> */}
-        <FloorPlanSpotlightExample />
-        <CollectionSection />
+        <CapsuleCollectionSection ref={capsuleCollectionRef} />
 
-        <EnvironmentsSection />
+        {/* <CollectionSection /> */}
+        {/* <FloorPlanSpotlightExample />
 
-        <UseCasesSection />
+        <EnvironmentsSection /> */}
+
+        <AboutSection ref={aboutRef} />
 
         {/* <CrossSectionDiagram /> */}
-        <StatisticsSection />
-        <BrochureSection />
+        {/* <StatisticsSection />
+        <BrochureSection /> */}
         {/* <ScrollCapsuleSection /> */}
         {/* <CertificationsSection /> */}
-        <AboutSection />
-        <BookingSection />
+        {/* <BookingSection /> */}
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

@@ -69,11 +69,11 @@ export default {
         card: "var(--shadow-card)",
         accent: "var(--shadow-accent)",
       },
-        fontFamily: {
-          sans: ["Inter", "system-ui", "sans-serif"],
-          mono: ["JetBrains Mono", "Menlo", "monospace"],
-          luxury: ["Playfair Display", "serif"],
-        },
+      fontFamily: {
+        sans: ["Poppins", "Inter", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "Menlo", "monospace"],
+        luxury: ["Playfair Display", "serif"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Download, FileText, Eye, Share2 } from "lucide-react";
+import { Download, FileText, Eye, Share2, Sparkles } from "lucide-react";
 import brochureImage from "@/assets/qcapsule-brochure.png";
 
 export const BrochureSection = () => {
@@ -22,7 +22,7 @@ export const BrochureSection = () => {
   };
 
   return (
-    <section id="brochure" className="py-24 relative overflow-hidden">
+    <section id="brochure" className="py-32 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5">
@@ -34,35 +34,45 @@ export const BrochureSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+      <div className="container mx-auto px-6 relative z-10 max-w-6xl" ref={ref}>
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card text-sm font-medium mb-8 border border-accent/20"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-8 border border-white/20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
             }
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
           >
-            <FileText className="w-4 h-4 text-accent" />
-            <span className="text-gradient">Digital Brochure</span>
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-foreground">Digital Brochure</span>
           </motion.div>
 
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-            <span className="text-gradient">Explore Our Brochure</span>
-          </h2>
+          <motion.h2
+            className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Explore Our Brochure
+          </motion.h2>
 
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <motion.p
+            className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             Discover the complete Q Capsules experience. Our comprehensive
             brochure showcases all models, specifications, and customization
             options in beautiful detail.
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
