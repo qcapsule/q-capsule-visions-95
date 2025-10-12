@@ -24,7 +24,7 @@ export default function CollectionSection() {
       ref={ref}
       className="relative overflow-hidden py-32"
       style={{
-        backgroundImage: `url(${capsules[currentIndex].image})`,
+        backgroundImage: `url(${capsules[currentIndex].images[0]})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -97,7 +97,7 @@ export default function CollectionSection() {
               >
                 <div className="aspect-video relative">
                   <img
-                    src={capsules[currentIndex].image}
+                    src={capsules[currentIndex].images[0]}
                     alt={capsules[currentIndex].name}
                     className="w-full h-full object-cover"
                   />
@@ -109,29 +109,29 @@ export default function CollectionSection() {
                     {capsules[currentIndex].name}
                   </h3>
                   <p className="text-lg text-white/90 mb-6 drop-shadow-md">
-                    {capsules[currentIndex].description}
+                    {capsules[currentIndex].blurb}
                   </p>
 
                   {/* Capsule Features */}
                   <div className="grid grid-cols-3 gap-4 mb-6">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white mb-1">
-                        {capsules[currentIndex].size}
+                        {capsules[currentIndex].dimensions}
                       </div>
                       <div className="text-sm text-white/80">Size</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white mb-1">
-                        {capsules[currentIndex].capacity}
+                        {capsules[currentIndex].sizeLabel}
                       </div>
-                      <div className="text-sm text-white/80">Capacity</div>
+                      <div className="text-sm text-white/80">Rooms</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white mb-1">
-                        {capsules[currentIndex].price}
+                        {capsules[currentIndex].rooms}
                       </div>
                       <div className="text-sm text-white/80">
-                        Starting Price
+                        Layout
                       </div>
                     </div>
                   </div>
