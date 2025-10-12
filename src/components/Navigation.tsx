@@ -19,16 +19,29 @@ export const Navigation = () => {
   const navItems = [
     { label: "Home", href: "#hero" },
     { label: "Vision", href: "#vision" },
-    { label: "Capsules", href: "#customization" },
-    { label: "Use Cases", href: "#use-cases" },
+    { label: "Capsules", href: "#capsule-collection" },
+    { label: "Brochure", href: "#brochure" },
     { label: "About", href: "#about" },
-    { label: "Contact", href: "#footer" },
+    { label: "Contact", href: "#booking" },
   ];
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      // Use offsetTop for more reliable positioning with sticky sections
+      const elementTop = element.offsetTop;
+
+      // Force scroll to break sticky behavior, then smooth scroll
+      window.scrollTo({ top: elementTop, behavior: "auto" });
+
+      // Small delay then smooth scroll
+      setTimeout(() => {
+        window.scrollTo({
+          top: elementTop,
+          behavior: "smooth",
+        });
+      }, 10);
+
       setIsMobileMenuOpen(false);
     }
   };
