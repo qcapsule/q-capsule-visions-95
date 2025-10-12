@@ -28,20 +28,11 @@ export const Navigation = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      // Use offsetTop for more reliable positioning with sticky sections
-      const elementTop = element.offsetTop;
-
-      // Force scroll to break sticky behavior, then smooth scroll
+      const elementTop = (element as HTMLElement).offsetTop;
       window.scrollTo({ top: elementTop, behavior: "auto" });
-
-      // Small delay then smooth scroll
       setTimeout(() => {
-        window.scrollTo({
-          top: elementTop,
-          behavior: "smooth",
-        });
+        window.scrollTo({ top: elementTop, behavior: "smooth" });
       }, 10);
-
       setIsMobileMenuOpen(false);
     }
   };
