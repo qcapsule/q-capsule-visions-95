@@ -1,3 +1,17 @@
+// Import all images
+import q56xCapsule2 from "@/assets/q56x-capsule2.png";
+import residentialCapsule from "@/assets/residential-capsule.jpg";
+import modernInteriorCapsule from "@/assets/modern-interior-capsule.png";
+import q75xCapsule2 from "@/assets/q75x-capsule2.png";
+import q75xCapsulel from "@/assets/q75x-capsulel.png";
+import q75xCapsule3 from "@/assets/q75x-capsule3.png";
+import q95Capsule1 from "@/assets/q95-capsule1.png";
+import livingRoom1 from "@/assets/living-room1.png";
+import floorplanBg from "@/assets/floorplan-bg.jpg";
+import q115xCapsule1 from "@/assets/q115x-capsule1.png";
+import healthcareCapsule from "@/assets/healthcare-capsule.jpg";
+import retailCapsule from "@/assets/retail-capsule.jpg";
+
 export type Capsule = {
   id: string;
   name: string; // e.g., "Q75X"
@@ -25,9 +39,9 @@ export const capsules: Capsule[] = [
       "Space optimization",
     ],
     images: [
-      "/q56x-capsule2.png",
-      "/residential-capsule.jpg",
-      "/modern-interior-capsule.png",
+      q56xCapsule2,
+      residentialCapsule,
+      modernInteriorCapsule,
     ],
   },
   {
@@ -45,9 +59,9 @@ export const capsules: Capsule[] = [
       "Modern appliances",
     ],
     images: [
-      "/q75x-capsule2.png",
-      "/q75x-capsulel.png",
-      "/q75x-capsule3.png",
+      q75xCapsule2,
+      q75xCapsulel,
+      q75xCapsule3,
     ],
   },
   {
@@ -65,9 +79,9 @@ export const capsules: Capsule[] = [
       "Panoramic windows",
     ],
     images: [
-      "/q95-capsule1.png",
-      "/living-room1.png",
-      "/floorplan-bg.jpg",
+      q95Capsule1,
+      livingRoom1,
+      floorplanBg,
     ],
   },
   {
@@ -84,9 +98,9 @@ export const capsules: Capsule[] = [
       "Advanced insulation",
     ],
     images: [
-      "/q115x-capsule1.png",
-      "/healthcare-capsule.jpg",
-      "/retail-capsule.jpg",
+      q115xCapsule1,
+      healthcareCapsule,
+      retailCapsule,
     ],
   },
 ];
