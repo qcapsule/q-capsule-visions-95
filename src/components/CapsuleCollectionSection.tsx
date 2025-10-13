@@ -78,20 +78,22 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
         id="capsule-collection"
         className="relative h-[100vh] flex items-center justify-center overflow-hidden sticky top-0"
       >
-        {/* Background Image with Crossfade */}
-        <AnimatePresence mode="wait">
+        {/* Pre-render all background images */}
+        {capsules.map((capsule, index) => (
           <motion.div
-            key={`bg-${currentCapsule.id}`}
+            key={`bg-${capsule.id}`}
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url(${currentCapsule.images[0]})`,
+              backgroundImage: `url(${capsule.images[0]})`,
             }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            initial={false}
+            animate={{ 
+              opacity: index === currentCapsuleIndex ? 1 : 0,
+              scale: index === currentCapsuleIndex ? 1 : 1.05
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
           />
-        </AnimatePresence>
+        ))}
 
         {/* Subtle Background Overlay */}
         <div className="absolute inset-0 bg-black/20 z-0"></div>
