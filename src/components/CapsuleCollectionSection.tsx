@@ -4,23 +4,51 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { capsules } from "@/data/capsules";
 
+// Preload all capsule images
+const preloadImages = () => {
+  capsules.forEach((capsule) => {
+    capsule.images.forEach((src) => {
+      const img = new Image();
+      img.src = typeof src === 'string' ? src : src;
+    });
+  });
+};
+
 export const CapsuleCollectionSection = forwardRef<HTMLElement>(
   (props, ref) => {
     const [currentCapsuleIndex, setCurrentCapsuleIndex] = useState(1); // Start with Q75X (index 1)
+    const [isTransitioning, setIsTransitioning] = useState(false);
     const currentCapsule = capsules[currentCapsuleIndex];
 
+    // Preload all images on mount
+    useEffect(() => {
+      preloadImages();
+    }, []);
+
     const nextCapsule = useCallback(() => {
-      setCurrentCapsuleIndex((prev) => (prev + 1) % capsules.length);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentCapsuleIndex((prev) => (prev + 1) % capsules.length);
+        setIsTransitioning(false);
+      }, 150);
     }, []);
 
     const prevCapsule = useCallback(() => {
-      setCurrentCapsuleIndex(
-        (prev) => (prev - 1 + capsules.length) % capsules.length
-      );
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentCapsuleIndex(
+          (prev) => (prev - 1 + capsules.length) % capsules.length
+        );
+        setIsTransitioning(false);
+      }, 150);
     }, []);
 
     const selectCapsule = useCallback((index: number) => {
-      setCurrentCapsuleIndex(index);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentCapsuleIndex(index);
+        setIsTransitioning(false);
+      }, 150);
     }, []);
 
     // Handle keyboard navigation
@@ -49,13 +77,22 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
         ref={ref}
         id="capsule-collection"
         className="relative h-[100vh] flex items-center justify-center overflow-hidden sticky top-0"
-        style={{
-          backgroundImage: `url(${currentCapsule.images[0]})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
       >
+        {/* Background Image with Crossfade */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`bg-${currentCapsule.id}`}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${currentCapsule.images[0]})`,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          />
+        </AnimatePresence>
+
         {/* Subtle Background Overlay */}
         <div className="absolute inset-0 bg-black/20 z-0"></div>
 
