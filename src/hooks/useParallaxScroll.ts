@@ -23,36 +23,35 @@ export const useParallaxScroll = () => {
     )
       return;
 
-    // Hero Section - Pinned with dramatic fade and blur
+    // Hero Section - Pin and fade
     const heroTl = gsap.timeline({
       scrollTrigger: {
         trigger: heroRef.current,
         start: "top top",
-        end: "+=100%",
+        end: "bottom top",
         scrub: 1,
         pin: true,
+        pinSpacing: false,
       },
     });
 
     heroTl
       .to(heroRef.current.querySelector(".hero-content"), {
-        y: 200,
+        y: 100,
         opacity: 0,
-        scale: 0.7,
-        filter: "blur(20px)",
-        ease: "power2.inOut",
+        scale: 0.9,
+        ease: "power2.out",
       })
       .to(
         heroRef.current.querySelector(".hero-bg"),
         {
-          scale: 1.4,
-          filter: "blur(15px) brightness(0.6)",
-          ease: "power2.inOut",
+          scale: 1.2,
+          ease: "power2.out",
         },
         0
       );
 
-    // Capsule Collection - Horizontal slide from right
+    // Capsule Collection - Horizontal slide from right (KEEPING THIS)
     gsap.timeline({
       scrollTrigger: {
         trigger: capsuleCollectionRef.current,
@@ -77,58 +76,57 @@ export const useParallaxScroll = () => {
         0.3
       );
 
-    // Vision Section - Scale zoom with rotation
+    // Vision Section - Simple fade up
     gsap.timeline({
       scrollTrigger: {
         trigger: visionRef.current,
         start: "top bottom",
-        end: "top 25%",
+        end: "top 30%",
         scrub: 1.5,
       },
     })
       .fromTo(
         visionRef.current,
-        { scale: 0.4, opacity: 0, rotation: -8 },
-        { scale: 1, opacity: 1, rotation: 0, ease: "power2.out" }
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, ease: "power2.out" }
       )
       .from(
         visionRef.current.querySelectorAll(".parallax-element"),
         {
           opacity: 0,
-          y: 80,
-          rotation: 5,
-          stagger: 0.12,
-          ease: "elastic.out(1, 0.6)",
-        },
-        0.4
-      );
-
-    // About Section - Slide from left with stagger
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: aboutRef.current,
-        start: "top bottom",
-        end: "top 25%",
-        scrub: 1.5,
-      },
-    })
-      .fromTo(
-        aboutRef.current,
-        { x: "-100%", opacity: 0 },
-        { x: "0%", opacity: 1, ease: "power3.out" }
-      )
-      .from(
-        aboutRef.current.querySelectorAll(".parallax-element"),
-        {
-          opacity: 0,
-          x: -100,
+          y: 50,
           stagger: 0.1,
           ease: "power2.out",
         },
         0.3
       );
 
-    // Brochure Section - Circular reveal with clip-path
+    // About Section - Simple fade up
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: aboutRef.current,
+        start: "top bottom",
+        end: "top 30%",
+        scrub: 1.5,
+      },
+    })
+      .fromTo(
+        aboutRef.current,
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, ease: "power2.out" }
+      )
+      .from(
+        aboutRef.current.querySelectorAll(".parallax-element"),
+        {
+          opacity: 0,
+          y: 50,
+          stagger: 0.1,
+          ease: "power2.out",
+        },
+        0.3
+      );
+
+    // Brochure Section - Simple fade up
     gsap.timeline({
       scrollTrigger: {
         trigger: brochureRef.current,
@@ -139,31 +137,21 @@ export const useParallaxScroll = () => {
     })
       .fromTo(
         brochureRef.current,
-        {
-          clipPath: "circle(0% at 50% 50%)",
-          opacity: 0,
-          scale: 1.5,
-        },
-        {
-          clipPath: "circle(100% at 50% 50%)",
-          opacity: 1,
-          scale: 1,
-          ease: "power2.out",
-        }
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, ease: "power2.out" }
       )
       .from(
         brochureRef.current.querySelectorAll(".parallax-element"),
         {
           opacity: 0,
-          scale: 0.5,
-          rotation: 15,
-          stagger: 0.08,
-          ease: "back.out(2)",
+          y: 50,
+          stagger: 0.1,
+          ease: "power2.out",
         },
-        0.5
+        0.3
       );
 
-    // Booking Section - Classic fade in from bottom
+    // Booking Section - Simple fade up
     gsap.timeline({
       scrollTrigger: {
         trigger: bookingRef.current,
@@ -174,16 +162,16 @@ export const useParallaxScroll = () => {
     })
       .fromTo(
         bookingRef.current,
-        { y: 150, opacity: 0 },
-        { y: 0, opacity: 1, ease: "power2.out" }
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, ease: "power2.out" }
       )
       .from(
         bookingRef.current.querySelectorAll(".parallax-element"),
         {
           opacity: 0,
-          y: 60,
+          y: 50,
           stagger: 0.06,
-          ease: "power3.out",
+          ease: "power2.out",
         },
         0.3
       );
