@@ -23,13 +23,15 @@ export const useParallaxScroll = () => {
     )
       return;
 
-    // Hero section parallax - no pinning
+    // Create timeline for smooth transitions
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: heroRef.current,
         start: "top top",
         end: "bottom top",
         scrub: 1,
+        pin: true,
+        pinSpacing: false,
       },
     });
 
