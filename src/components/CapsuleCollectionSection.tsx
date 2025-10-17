@@ -76,7 +76,7 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
       <section
         ref={ref}
         id="capsule-collection"
-        className="relative h-[100vh] flex items-center justify-center overflow-hidden sticky top-0"
+        className="relative h-[100vh] flex items-center justify-center overflow-hidden"
       >
         {/* Pre-render all background images */}
         {capsules.map((capsule, index) => (
