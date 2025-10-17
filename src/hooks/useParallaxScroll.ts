@@ -35,17 +35,19 @@ export const useParallaxScroll = () => {
       },
     });
 
-    // Hero section parallax effects
+    // Hero section parallax effects with more depth
     tl.to(heroRef.current.querySelector(".hero-bg"), {
-      scale: 1.1,
+      scale: 1.15,
+      y: 150,
       duration: 1,
       ease: "none",
     })
       .to(
         heroRef.current.querySelector(".hero-content"),
         {
-          y: -100,
-          opacity: 0.7,
+          y: -150,
+          opacity: 0.5,
+          scale: 0.95,
           duration: 1,
           ease: "none",
         },
@@ -54,20 +56,20 @@ export const useParallaxScroll = () => {
       .to(
         heroRef.current.querySelector(".hero-overlay"),
         {
-          opacity: 0.8,
+          opacity: 0.9,
           duration: 1,
           ease: "none",
         },
         0
       );
 
-    // Capsule collection entrance animation - complete when fully visible
+    // Capsule collection with continuous parallax
     const capsuleTl = gsap.timeline({
       scrollTrigger: {
         trigger: capsuleCollectionRef.current,
-        start: "top bottom+=300px",
-        end: "top top",
-        scrub: 0.5,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1.5,
       },
     });
 
@@ -75,15 +77,15 @@ export const useParallaxScroll = () => {
       capsuleCollectionRef.current,
       {
         opacity: 0,
-        y: 100,
-        scale: 0.95,
+        y: 150,
+        scale: 0.9,
       },
       {
         opacity: 1,
-        y: 0,
+        y: -50,
         scale: 1,
         duration: 1,
-        ease: "power2.out",
+        ease: "none",
       }
     );
 
@@ -115,13 +117,13 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Vision section entrance animation - smooth approach
+    // Vision section with continuous parallax depth
     const visionTl = gsap.timeline({
       scrollTrigger: {
         trigger: visionRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 1,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2,
       },
     });
 
@@ -129,15 +131,15 @@ export const useParallaxScroll = () => {
       visionRef.current,
       {
         opacity: 0,
-        y: 100,
-        scale: 0.95,
+        y: 200,
+        scale: 0.85,
       },
       {
         opacity: 1,
-        y: 0,
-        scale: 1,
+        y: -100,
+        scale: 1.05,
         duration: 1,
-        ease: "power2.out",
+        ease: "none",
       }
     );
 
@@ -212,16 +214,17 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Vision section background parallax
+    // Vision section background parallax with depth
     gsap.to(visionRef.current.querySelector(".vision-bg"), {
-      scale: 1.1,
+      scale: 1.2,
+      y: -80,
       duration: 1,
       ease: "none",
       scrollTrigger: {
         trigger: visionRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1,
+        scrub: 2.5,
       },
     });
 
@@ -304,13 +307,13 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // About section entrance animation - smooth approach
+    // About section with continuous parallax
     const aboutTl = gsap.timeline({
       scrollTrigger: {
         trigger: aboutRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 1,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2,
       },
     });
 
@@ -318,15 +321,15 @@ export const useParallaxScroll = () => {
       aboutRef.current,
       {
         opacity: 0,
-        y: 100,
-        scale: 0.95,
+        y: 180,
+        scale: 0.9,
       },
       {
         opacity: 1,
-        y: 0,
-        scale: 1,
+        y: -80,
+        scale: 1.03,
         duration: 1,
-        ease: "power2.out",
+        ease: "none",
       }
     );
 
@@ -401,16 +404,17 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // About section background parallax
+    // About section background parallax with more depth
     gsap.to(aboutRef.current.querySelector(".about-bg"), {
-      scale: 1.1,
+      scale: 1.25,
+      y: -100,
       duration: 1,
       ease: "none",
       scrollTrigger: {
         trigger: aboutRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1,
+        scrub: 3,
       },
     });
 
@@ -493,13 +497,13 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // Brochure section entrance animation - smooth approach
+    // Brochure section with continuous parallax
     const brochureTl = gsap.timeline({
       scrollTrigger: {
         trigger: brochureRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 1,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2,
       },
     });
 
@@ -507,15 +511,15 @@ export const useParallaxScroll = () => {
       brochureRef.current,
       {
         opacity: 0,
-        y: 100,
-        scale: 0.95,
+        y: 160,
+        scale: 0.92,
       },
       {
         opacity: 1,
-        y: 0,
-        scale: 1,
+        y: -60,
+        scale: 1.02,
         duration: 1,
-        ease: "power2.out",
+        ease: "none",
       }
     );
 
@@ -591,16 +595,17 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Brochure section background parallax
+    // Brochure section background parallax with depth
     gsap.to(brochureRef.current.querySelector(".brochure-bg"), {
-      scale: 1.1,
+      scale: 1.18,
+      y: -70,
       duration: 1,
       ease: "none",
       scrollTrigger: {
         trigger: brochureRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1,
+        scrub: 2.5,
       },
     });
 
@@ -685,13 +690,13 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // Booking section entrance animation - spans 2 sections (200vh)
+    // Booking section with continuous parallax
     const bookingTl = gsap.timeline({
       scrollTrigger: {
         trigger: bookingRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 1,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2,
       },
     });
 
@@ -699,15 +704,15 @@ export const useParallaxScroll = () => {
       bookingRef.current,
       {
         opacity: 0,
-        y: 100,
-        scale: 0.95,
+        y: 140,
+        scale: 0.93,
       },
       {
         opacity: 1,
-        y: 0,
-        scale: 1,
+        y: -50,
+        scale: 1.01,
         duration: 1,
-        ease: "power2.out",
+        ease: "none",
       }
     );
 
@@ -783,16 +788,17 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Booking section background parallax - spans 2 sections
+    // Booking section background parallax with depth
     gsap.to(bookingRef.current.querySelector(".booking-bg"), {
-      scale: 1.1,
+      scale: 1.15,
+      y: -60,
       duration: 1,
       ease: "none",
       scrollTrigger: {
         trigger: bookingRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1,
+        scrub: 2.5,
       },
     });
 
