@@ -63,12 +63,12 @@ export const useParallaxScroll = () => {
         0
       );
 
-    // Capsule collection with continuous parallax
+    // Capsule collection entrance - no overlap
     const capsuleTl = gsap.timeline({
       scrollTrigger: {
         trigger: capsuleCollectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
+        start: "top 90%",
+        end: "top 30%",
         scrub: 1.5,
       },
     });
@@ -77,15 +77,15 @@ export const useParallaxScroll = () => {
       capsuleCollectionRef.current,
       {
         opacity: 0,
-        y: 150,
-        scale: 0.9,
+        y: 80,
+        scale: 0.95,
       },
       {
         opacity: 1,
-        y: -50,
+        y: 0,
         scale: 1,
         duration: 1,
-        ease: "none",
+        ease: "power2.out",
       }
     );
 
@@ -117,13 +117,13 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Vision section with continuous parallax depth
+    // Vision section entrance - no overlap
     const visionTl = gsap.timeline({
       scrollTrigger: {
         trigger: visionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2,
+        start: "top 85%",
+        end: "top 25%",
+        scrub: 1.5,
       },
     });
 
@@ -131,15 +131,15 @@ export const useParallaxScroll = () => {
       visionRef.current,
       {
         opacity: 0,
-        y: 200,
-        scale: 0.85,
+        y: 100,
+        scale: 0.92,
       },
       {
         opacity: 1,
-        y: -100,
-        scale: 1.05,
+        y: 0,
+        scale: 1,
         duration: 1,
-        ease: "none",
+        ease: "power2.out",
       }
     );
 
@@ -214,17 +214,17 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Vision section background parallax with depth
+    // Vision section background parallax
     gsap.to(visionRef.current.querySelector(".vision-bg"), {
-      scale: 1.2,
-      y: -80,
+      scale: 1.15,
+      y: -50,
       duration: 1,
       ease: "none",
       scrollTrigger: {
         trigger: visionRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 2.5,
+        scrub: 1.5,
       },
     });
 
@@ -307,13 +307,13 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // About section with continuous parallax
+    // About section entrance - no overlap
     const aboutTl = gsap.timeline({
       scrollTrigger: {
         trigger: aboutRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2,
+        start: "top 85%",
+        end: "top 25%",
+        scrub: 1.5,
       },
     });
 
@@ -321,15 +321,15 @@ export const useParallaxScroll = () => {
       aboutRef.current,
       {
         opacity: 0,
-        y: 180,
-        scale: 0.9,
+        y: 90,
+        scale: 0.94,
       },
       {
         opacity: 1,
-        y: -80,
-        scale: 1.03,
+        y: 0,
+        scale: 1,
         duration: 1,
-        ease: "none",
+        ease: "power2.out",
       }
     );
 
@@ -404,17 +404,17 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // About section background parallax with more depth
+    // About section background parallax
     gsap.to(aboutRef.current.querySelector(".about-bg"), {
-      scale: 1.25,
-      y: -100,
+      scale: 1.2,
+      y: -60,
       duration: 1,
       ease: "none",
       scrollTrigger: {
         trigger: aboutRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 3,
+        scrub: 2,
       },
     });
 
@@ -497,13 +497,13 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // Brochure section with continuous parallax
+    // Brochure section entrance - no overlap
     const brochureTl = gsap.timeline({
       scrollTrigger: {
         trigger: brochureRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2,
+        start: "top 85%",
+        end: "top 25%",
+        scrub: 1.5,
       },
     });
 
@@ -511,15 +511,15 @@ export const useParallaxScroll = () => {
       brochureRef.current,
       {
         opacity: 0,
-        y: 160,
-        scale: 0.92,
+        y: 85,
+        scale: 0.95,
       },
       {
         opacity: 1,
-        y: -60,
-        scale: 1.02,
+        y: 0,
+        scale: 1,
         duration: 1,
-        ease: "none",
+        ease: "power2.out",
       }
     );
 
@@ -595,17 +595,17 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Brochure section background parallax with depth
+    // Brochure section background parallax
     gsap.to(brochureRef.current.querySelector(".brochure-bg"), {
-      scale: 1.18,
-      y: -70,
+      scale: 1.15,
+      y: -50,
       duration: 1,
       ease: "none",
       scrollTrigger: {
         trigger: brochureRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 2.5,
+        scrub: 1.8,
       },
     });
 
@@ -690,13 +690,13 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // Booking section with continuous parallax
+    // Booking section entrance - no overlap
     const bookingTl = gsap.timeline({
       scrollTrigger: {
         trigger: bookingRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2,
+        start: "top 85%",
+        end: "top 25%",
+        scrub: 1.5,
       },
     });
 
@@ -704,15 +704,15 @@ export const useParallaxScroll = () => {
       bookingRef.current,
       {
         opacity: 0,
-        y: 140,
-        scale: 0.93,
+        y: 80,
+        scale: 0.96,
       },
       {
         opacity: 1,
-        y: -50,
-        scale: 1.01,
+        y: 0,
+        scale: 1,
         duration: 1,
-        ease: "none",
+        ease: "power2.out",
       }
     );
 
@@ -788,17 +788,17 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Booking section background parallax with depth
+    // Booking section background parallax
     gsap.to(bookingRef.current.querySelector(".booking-bg"), {
-      scale: 1.15,
-      y: -60,
+      scale: 1.12,
+      y: -40,
       duration: 1,
       ease: "none",
       scrollTrigger: {
         trigger: bookingRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 2.5,
+        scrub: 1.8,
       },
     });
 
