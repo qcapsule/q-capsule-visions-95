@@ -12,6 +12,7 @@ export const useParallaxScroll = () => {
   const aboutRef = useRef<HTMLElement>(null);
   const brochureRef = useRef<HTMLElement>(null);
   const bookingRef = useRef<HTMLElement>(null);
+  
   useEffect(() => {
     if (
       !heroRef.current ||
@@ -23,73 +24,62 @@ export const useParallaxScroll = () => {
     )
       return;
 
-    // Create timeline for smooth transitions
-    const tl = gsap.timeline({
+    // Set 3D perspective for all sections
+    gsap.set([heroRef.current, capsuleCollectionRef.current, visionRef.current, aboutRef.current, brochureRef.current, bookingRef.current], {
+      perspective: 1000,
+      transformStyle: "preserve-3d"
+    });
+
+    // Hero section - 3D rotation and depth effect
+    gsap.to(heroRef.current.querySelector(".hero-bg"), {
+      rotationX: -15,
+      scale: 1.2,
+      z: -200,
+      ease: "none",
       scrollTrigger: {
         trigger: heroRef.current,
         start: "top top",
         end: "bottom top",
-        scrub: 1,
-        pin: true,
-        pinSpacing: false,
+        scrub: 2,
       },
     });
 
-    // Hero section parallax effects with more depth
-    tl.to(heroRef.current.querySelector(".hero-bg"), {
-      scale: 1.15,
-      y: 150,
-      duration: 1,
-      ease: "none",
-    })
-      .to(
-        heroRef.current.querySelector(".hero-content"),
-        {
-          y: -150,
-          opacity: 0.5,
-          scale: 0.95,
-          duration: 1,
-          ease: "none",
-        },
-        0
-      )
-      .to(
-        heroRef.current.querySelector(".hero-overlay"),
-        {
-          opacity: 0.9,
-          duration: 1,
-          ease: "none",
-        },
-        0
-      );
-
-    // Capsule collection entrance - no overlap
-    const capsuleTl = gsap.timeline({
+    gsap.to(heroRef.current.querySelector(".hero-content"), {
+      rotationY: 5,
+      z: 100,
+      opacity: 0,
+      ease: "power1.inOut",
       scrollTrigger: {
-        trigger: capsuleCollectionRef.current,
-        start: "top 90%",
-        end: "top 30%",
+        trigger: heroRef.current,
+        start: "top top",
+        end: "bottom top",
         scrub: 1.5,
       },
     });
 
-    capsuleTl.fromTo(
+    // Capsule collection - flip and rotate entrance
+    gsap.fromTo(
       capsuleCollectionRef.current,
       {
+        rotationX: 90,
         opacity: 0,
-        y: 80,
-        scale: 0.95,
+        z: -300,
       },
       {
+        rotationX: 0,
         opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1,
-        ease: "power2.out",
+        z: 0,
+        ease: "back.out(1.2)",
+        scrollTrigger: {
+          trigger: capsuleCollectionRef.current,
+          start: "top 80%",
+          end: "top 40%",
+          scrub: 2,
+        },
       }
     );
 
-    // All capsule collection elements - faster animation
+    // Capsule elements - stagger with skew
     const allElements = capsuleCollectionRef.current.querySelectorAll(
       ".parallax-element, .absolute.bottom-8, button.absolute"
     );
@@ -98,70 +88,68 @@ export const useParallaxScroll = () => {
         element,
         {
           opacity: 0,
-          y: 30 + index * 5,
-          scale: 0.95,
+          rotationY: -45,
+          x: -100 * (index % 2 === 0 ? 1 : -1),
+          skewX: 10,
         },
         {
           opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.6,
-          ease: "power2.out",
+          rotationY: 0,
+          x: 0,
+          skewX: 0,
+          ease: "elastic.out(1, 0.5)",
           scrollTrigger: {
             trigger: capsuleCollectionRef.current,
-            start: "top bottom+=300px",
-            end: "top top",
-            scrub: 0.2,
+            start: "top 70%",
+            end: "top 30%",
+            scrub: 1.5,
           },
         }
       );
     });
 
-    // Vision section entrance - no overlap
-    const visionTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: visionRef.current,
-        start: "top 85%",
-        end: "top 25%",
-        scrub: 1.5,
-      },
-    });
-
-    visionTl.fromTo(
+    // Vision section - zoom and rotate entrance
+    gsap.fromTo(
       visionRef.current,
       {
+        scale: 0.5,
+        rotationZ: -15,
         opacity: 0,
-        y: 100,
-        scale: 0.92,
       },
       {
-        opacity: 1,
-        y: 0,
         scale: 1,
-        duration: 1,
-        ease: "power2.out",
+        rotationZ: 0,
+        opacity: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: visionRef.current,
+          start: "top 85%",
+          end: "top 40%",
+          scrub: 2,
+        },
       }
     );
 
-    // Main content animations - faster
+    // Vision content with 3D tilt
     const mainContent = visionRef.current.querySelector(".vision-content");
     if (mainContent) {
       gsap.fromTo(
         mainContent.querySelector("h2"),
         {
           opacity: 0,
-          y: 30,
+          rotationX: -90,
+          z: -100,
         },
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
+          rotationX: 0,
+          z: 0,
           ease: "power2.out",
           scrollTrigger: {
             trigger: visionRef.current,
-            start: "top 140%",
-            end: "top 10%",
-            scrub: 0.3,
+            start: "top 70%",
+            end: "top 30%",
+            scrub: 1.5,
           },
         }
       );
@@ -170,24 +158,25 @@ export const useParallaxScroll = () => {
         mainContent.querySelector("p"),
         {
           opacity: 0,
-          y: 20,
+          x: -100,
+          skewX: -10,
         },
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
+          x: 0,
+          skewX: 0,
           ease: "power2.out",
           scrollTrigger: {
             trigger: visionRef.current,
-            start: "top 135%",
-            end: "top 15%",
-            scrub: 0.3,
+            start: "top 65%",
+            end: "top 35%",
+            scrub: 1.5,
           },
         }
       );
     }
 
-    // Individual element animations for vision section - faster
+    // Vision elements - wave pattern
     const visionElements =
       visionRef.current.querySelectorAll(".parallax-element");
     visionElements.forEach((element, index) => {
@@ -195,163 +184,146 @@ export const useParallaxScroll = () => {
         element,
         {
           opacity: 0,
-          y: 50 + index * 20,
-          rotation: 2,
+          y: 100,
+          rotationY: 90 * (index % 2 === 0 ? 1 : -1),
         },
         {
           opacity: 1,
           y: 0,
-          rotation: 0,
-          duration: 0.6,
+          rotationY: 0,
           ease: "power2.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 130%",
-            end: "top 20%",
-            scrub: 0.3,
+            start: "top 80%",
+            end: "top 40%",
+            scrub: 1.5,
           },
         }
       );
     });
 
-    // Vision section background parallax
+    // Vision background - subtle 3D depth
     gsap.to(visionRef.current.querySelector(".vision-bg"), {
-      scale: 1.15,
-      y: -50,
-      duration: 1,
+      rotationX: 10,
+      z: -150,
+      scale: 1.1,
       ease: "none",
       scrollTrigger: {
         trigger: visionRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1.5,
+        scrub: 2,
       },
     });
 
-    // Bottom content animations for vision section
+    // Vision bottom content - slide from sides
     const bottomContainer =
       visionRef.current.querySelector(".absolute.bottom-8");
     if (bottomContainer) {
-      // Animate the left tagline
       const leftTagline = bottomContainer.querySelector(".flex-shrink-0");
       if (leftTagline) {
         gsap.fromTo(
           leftTagline,
-          {
-            opacity: 0,
-            x: -30,
-          },
+          { opacity: 0, x: -150, rotationZ: -15 },
           {
             opacity: 1,
             x: 0,
-            duration: 1,
-            ease: "power2.out",
+            rotationZ: 0,
+            ease: "back.out(1.5)",
             scrollTrigger: {
               trigger: visionRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
 
-      // Animate the center quote
       const centerQuote = bottomContainer.querySelector(".flex-1");
       if (centerQuote) {
         gsap.fromTo(
           centerQuote,
-          {
-            opacity: 0,
-            scale: 0.9,
-          },
+          { opacity: 0, y: 50, scale: 0.8 },
           {
             opacity: 1,
+            y: 0,
             scale: 1,
-            duration: 1,
-            ease: "power2.out",
+            ease: "elastic.out(1, 0.6)",
             scrollTrigger: {
               trigger: visionRef.current,
-              start: "top 120%",
-              end: "top 20%",
-              scrub: 1,
+              start: "top 55%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
 
-      // Animate the right description
       const rightDesc = bottomContainer.querySelector(
         ".text-center.lg\\:text-right"
       );
       if (rightDesc) {
         gsap.fromTo(
           rightDesc,
-          {
-            opacity: 0,
-            x: 30,
-          },
+          { opacity: 0, x: 150, rotationZ: 15 },
           {
             opacity: 1,
             x: 0,
-            duration: 1,
-            ease: "power2.out",
+            rotationZ: 0,
+            ease: "back.out(1.5)",
             scrollTrigger: {
               trigger: visionRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
     }
 
-    // About section entrance - no overlap
-    const aboutTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: aboutRef.current,
-        start: "top 85%",
-        end: "top 25%",
-        scrub: 1.5,
-      },
-    });
-
-    aboutTl.fromTo(
+    // About section - slide and skew entrance
+    gsap.fromTo(
       aboutRef.current,
       {
+        x: -200,
+        skewY: 5,
         opacity: 0,
-        y: 90,
-        scale: 0.94,
       },
       {
+        x: 0,
+        skewY: 0,
         opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1,
-        ease: "power2.out",
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top 85%",
+          end: "top 45%",
+          scrub: 2,
+        },
       }
     );
 
-    // Main content animations for about section - faster
+    // About content with perspective rotation
     const aboutMainContent = aboutRef.current.querySelector(".about-content");
     if (aboutMainContent) {
       gsap.fromTo(
         aboutMainContent.querySelector("h2"),
         {
           opacity: 0,
-          y: 30,
+          rotationY: 90,
+          transformOrigin: "left center",
         },
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
+          rotationY: 0,
           ease: "power2.out",
           scrollTrigger: {
             trigger: aboutRef.current,
-            start: "top 140%",
-            end: "top 10%",
-            scrub: 0.3,
+            start: "top 70%",
+            end: "top 35%",
+            scrub: 1.5,
           },
         }
       );
@@ -360,24 +332,25 @@ export const useParallaxScroll = () => {
         aboutMainContent.querySelector("p"),
         {
           opacity: 0,
-          y: 20,
+          y: 50,
+          rotationX: 45,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
+          rotationX: 0,
           ease: "power2.out",
           scrollTrigger: {
             trigger: aboutRef.current,
-            start: "top 135%",
-            end: "top 15%",
-            scrub: 0.3,
+            start: "top 65%",
+            end: "top 40%",
+            scrub: 1.5,
           },
         }
       );
     }
 
-    // Individual element animations for about section - faster
+    // About elements - spiral entrance
     const aboutElements =
       aboutRef.current.querySelectorAll(".parallax-element");
     aboutElements.forEach((element, index) => {
@@ -385,30 +358,29 @@ export const useParallaxScroll = () => {
         element,
         {
           opacity: 0,
-          y: 50 + index * 20,
-          rotation: 2,
+          scale: 0.3,
+          rotation: 180 * (index % 2 === 0 ? 1 : -1),
         },
         {
           opacity: 1,
-          y: 0,
+          scale: 1,
           rotation: 0,
-          duration: 0.6,
-          ease: "power2.out",
+          ease: "back.out(2)",
           scrollTrigger: {
             trigger: element,
-            start: "top 130%",
-            end: "top 20%",
-            scrub: 0.3,
+            start: "top 80%",
+            end: "top 40%",
+            scrub: 1.5,
           },
         }
       );
     });
 
-    // About section background parallax
+    // About background - tilt parallax
     gsap.to(aboutRef.current.querySelector(".about-bg"), {
-      scale: 1.2,
-      y: -60,
-      duration: 1,
+      rotationY: -5,
+      z: -100,
+      scale: 1.15,
       ease: "none",
       scrollTrigger: {
         trigger: aboutRef.current,
@@ -418,112 +390,100 @@ export const useParallaxScroll = () => {
       },
     });
 
-    // Bottom content animations for about section
+    // About bottom content - bounce entrance
     const aboutBottomContainer =
       aboutRef.current.querySelector(".absolute.bottom-8");
     if (aboutBottomContainer) {
-      // Animate the left tagline
       const leftTagline = aboutBottomContainer.querySelector(".flex-shrink-0");
       if (leftTagline) {
         gsap.fromTo(
           leftTagline,
-          {
-            opacity: 0,
-            x: -30,
-          },
+          { opacity: 0, y: 100, rotation: -90 },
           {
             opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power2.out",
+            y: 0,
+            rotation: 0,
+            ease: "bounce.out",
             scrollTrigger: {
               trigger: aboutRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
 
-      // Animate the center quote
       const centerQuote = aboutBottomContainer.querySelector(".flex-1");
       if (centerQuote) {
         gsap.fromTo(
           centerQuote,
-          {
-            opacity: 0,
-            scale: 0.9,
-          },
+          { opacity: 0, scale: 2, rotationZ: 180 },
           {
             opacity: 1,
             scale: 1,
-            duration: 1,
-            ease: "power2.out",
+            rotationZ: 0,
+            ease: "elastic.out(1, 0.4)",
             scrollTrigger: {
               trigger: aboutRef.current,
-              start: "top 120%",
-              end: "top 20%",
-              scrub: 1,
+              start: "top 55%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
 
-      // Animate the right description
       const rightDesc = aboutBottomContainer.querySelector(
         ".text-center.lg\\:text-right"
       );
       if (rightDesc) {
         gsap.fromTo(
           rightDesc,
-          {
-            opacity: 0,
-            x: 30,
-          },
+          { opacity: 0, y: 100, rotation: 90 },
           {
             opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power2.out",
+            y: 0,
+            rotation: 0,
+            ease: "bounce.out",
             scrollTrigger: {
               trigger: aboutRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
     }
 
-    // Brochure section entrance - no overlap
-    const brochureTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: brochureRef.current,
-        start: "top 85%",
-        end: "top 25%",
-        scrub: 1.5,
-      },
-    });
-
-    brochureTl.fromTo(
+    // Brochure section - zoom from corner
+    gsap.fromTo(
       brochureRef.current,
       {
+        scale: 0.2,
+        x: -500,
+        y: 500,
+        rotation: -45,
         opacity: 0,
-        y: 85,
-        scale: 0.95,
       },
       {
-        opacity: 1,
-        y: 0,
         scale: 1,
-        duration: 1,
-        ease: "power2.out",
+        x: 0,
+        y: 0,
+        rotation: 0,
+        opacity: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: brochureRef.current,
+          start: "top 85%",
+          end: "top 40%",
+          scrub: 2,
+        },
       }
     );
 
-    // Main content animations for brochure section - faster
+    // Brochure content with wave effect
     const brochureMainContent =
       brochureRef.current.querySelector(".brochure-content");
     if (brochureMainContent) {
@@ -531,18 +491,19 @@ export const useParallaxScroll = () => {
         brochureMainContent.querySelector("h2"),
         {
           opacity: 0,
-          y: 30,
+          x: -200,
+          rotationZ: -20,
         },
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
+          x: 0,
+          rotationZ: 0,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: brochureRef.current,
-            start: "top 140%",
-            end: "top 10%",
-            scrub: 0.3,
+            start: "top 70%",
+            end: "top 35%",
+            scrub: 1.5,
           },
         }
       );
@@ -551,24 +512,25 @@ export const useParallaxScroll = () => {
         brochureMainContent.querySelector("p"),
         {
           opacity: 0,
-          y: 20,
+          x: 200,
+          rotationZ: 20,
         },
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
+          x: 0,
+          rotationZ: 0,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: brochureRef.current,
-            start: "top 135%",
-            end: "top 15%",
-            scrub: 0.3,
+            start: "top 65%",
+            end: "top 40%",
+            scrub: 1.5,
           },
         }
       );
     }
 
-    // Individual element animations for brochure section - faster
+    // Brochure elements - 3D flip cards
     const brochureElements =
       brochureRef.current.querySelectorAll(".parallax-element");
     brochureElements.forEach((element, index) => {
@@ -576,147 +538,130 @@ export const useParallaxScroll = () => {
         element,
         {
           opacity: 0,
-          y: 50 + index * 20,
-          rotation: 2,
+          rotationY: 180,
+          z: -200,
         },
         {
           opacity: 1,
-          y: 0,
-          rotation: 0,
-          duration: 0.6,
-          ease: "power2.out",
+          rotationY: 0,
+          z: 0,
+          ease: "back.out(1.5)",
           scrollTrigger: {
             trigger: element,
-            start: "top 130%",
-            end: "top 20%",
-            scrub: 0.3,
+            start: "top 80%",
+            end: "top 40%",
+            scrub: 1.5,
           },
         }
       );
     });
 
-    // Brochure section background parallax
+    // Brochure background - depth shift
     gsap.to(brochureRef.current.querySelector(".brochure-bg"), {
-      scale: 1.15,
-      y: -50,
-      duration: 1,
+      rotationZ: 3,
+      scale: 1.2,
+      z: -80,
       ease: "none",
       scrollTrigger: {
         trigger: brochureRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1.8,
+        scrub: 2,
       },
     });
 
-    // Bottom content animations for brochure section
+    // Brochure bottom content - pop sequence
     const brochureBottomContainer =
       brochureRef.current.querySelector(".absolute.bottom-8");
     if (brochureBottomContainer) {
-      // Animate the left tagline
       const leftTagline =
         brochureBottomContainer.querySelector(".flex-shrink-0");
       if (leftTagline) {
         gsap.fromTo(
           leftTagline,
-          {
-            opacity: 0,
-            x: -30,
-          },
+          { opacity: 0, scale: 0, rotationZ: -360 },
           {
             opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power2.out",
+            scale: 1,
+            rotationZ: 0,
+            ease: "back.out(3)",
             scrollTrigger: {
               trigger: brochureRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
 
-      // Animate the center features
       const centerFeatures =
         brochureBottomContainer.querySelector(".flex.gap-4");
       if (centerFeatures) {
         gsap.fromTo(
           centerFeatures,
-          {
-            opacity: 0,
-            scale: 0.9,
-          },
+          { opacity: 0, y: -100, skewY: 10 },
           {
             opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "power2.out",
+            y: 0,
+            skewY: 0,
+            ease: "elastic.out(1, 0.5)",
             scrollTrigger: {
               trigger: brochureRef.current,
-              start: "top 120%",
-              end: "top 20%",
-              scrub: 1,
+              start: "top 55%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
 
-      // Animate the right description
       const rightDesc = brochureBottomContainer.querySelector(
         ".text-center.lg\\:text-right"
       );
       if (rightDesc) {
         gsap.fromTo(
           rightDesc,
-          {
-            opacity: 0,
-            x: 30,
-          },
+          { opacity: 0, scale: 0, rotationZ: 360 },
           {
             opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power2.out",
+            scale: 1,
+            rotationZ: 0,
+            ease: "back.out(3)",
             scrollTrigger: {
               trigger: brochureRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
     }
 
-    // Booking section entrance - no overlap
-    const bookingTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: bookingRef.current,
-        start: "top 85%",
-        end: "top 25%",
-        scrub: 1.5,
-      },
-    });
-
-    bookingTl.fromTo(
+    // Booking section - morphing entrance
+    gsap.fromTo(
       bookingRef.current,
       {
+        clipPath: "circle(0% at 50% 50%)",
+        scale: 1.5,
         opacity: 0,
-        y: 80,
-        scale: 0.96,
       },
       {
-        opacity: 1,
-        y: 0,
+        clipPath: "circle(150% at 50% 50%)",
         scale: 1,
-        duration: 1,
-        ease: "power2.out",
+        opacity: 1,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: bookingRef.current,
+          start: "top 85%",
+          end: "top 40%",
+          scrub: 2,
+        },
       }
     );
 
-    // Main content animations for booking section - spans full scroll
+    // Booking content with magnetic effect
     const bookingMainContent =
       bookingRef.current.querySelector(".booking-content");
     if (bookingMainContent) {
@@ -724,18 +669,19 @@ export const useParallaxScroll = () => {
         bookingMainContent.querySelector("h2"),
         {
           opacity: 0,
-          y: 30,
+          scale: 3,
+          filter: "blur(20px)",
         },
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
+          scale: 1,
+          filter: "blur(0px)",
+          ease: "power3.out",
           scrollTrigger: {
             trigger: bookingRef.current,
-            start: "top 140%",
-            end: "top 10%",
-            scrub: 0.3,
+            start: "top 70%",
+            end: "top 35%",
+            scrub: 1.5,
           },
         }
       );
@@ -744,24 +690,25 @@ export const useParallaxScroll = () => {
         bookingMainContent.querySelector("p"),
         {
           opacity: 0,
-          y: 20,
+          y: 100,
+          skewY: 15,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
+          skewY: 0,
           ease: "power2.out",
           scrollTrigger: {
             trigger: bookingRef.current,
-            start: "top 135%",
-            end: "top 15%",
-            scrub: 0.3,
+            start: "top 65%",
+            end: "top 40%",
+            scrub: 1.5,
           },
         }
       );
     }
 
-    // Individual element animations for booking section - spans full scroll
+    // Booking elements - ripple effect
     const bookingElements =
       bookingRef.current.querySelectorAll(".parallax-element");
     bookingElements.forEach((element, index) => {
@@ -769,113 +716,100 @@ export const useParallaxScroll = () => {
         element,
         {
           opacity: 0,
-          y: 50 + index * 20,
-          rotation: 2,
+          scale: 0,
+          rotationZ: 360,
         },
         {
           opacity: 1,
-          y: 0,
-          rotation: 0,
-          duration: 0.6,
-          ease: "power2.out",
+          scale: 1,
+          rotationZ: 0,
+          ease: "elastic.out(1, 0.6)",
           scrollTrigger: {
             trigger: element,
-            start: "top 130%",
-            end: "top 20%",
-            scrub: 0.3,
+            start: "top 80%",
+            end: "top 40%",
+            scrub: 1.5,
           },
         }
       );
     });
 
-    // Booking section background parallax
+    // Booking background - wave distortion
     gsap.to(bookingRef.current.querySelector(".booking-bg"), {
-      scale: 1.12,
-      y: -40,
-      duration: 1,
+      rotationX: -10,
+      scale: 1.3,
+      z: -120,
       ease: "none",
       scrollTrigger: {
         trigger: bookingRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1.8,
+        scrub: 2,
       },
     });
 
-    // Bottom content animations for booking section - spans full scroll
+    // Booking bottom content - converge effect
     const bookingBottomContainer =
       bookingRef.current.querySelector(".absolute.bottom-8");
     if (bookingBottomContainer) {
-      // Animate the left tagline
       const leftTagline =
         bookingBottomContainer.querySelector(".flex-shrink-0");
       if (leftTagline) {
         gsap.fromTo(
           leftTagline,
-          {
-            opacity: 0,
-            x: -30,
-          },
+          { opacity: 0, x: -300, rotationY: -90 },
           {
             opacity: 1,
             x: 0,
-            duration: 1,
-            ease: "power2.out",
+            rotationY: 0,
+            ease: "power4.out",
             scrollTrigger: {
               trigger: bookingRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
 
-      // Animate the center quote
       const centerQuote = bookingBottomContainer.querySelector(".flex-1");
       if (centerQuote) {
         gsap.fromTo(
           centerQuote,
-          {
-            opacity: 0,
-            scale: 0.9,
-          },
+          { opacity: 0, y: -200, scale: 0.5 },
           {
             opacity: 1,
+            y: 0,
             scale: 1,
-            duration: 1,
-            ease: "power2.out",
+            ease: "power3.out",
             scrollTrigger: {
               trigger: bookingRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 55%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
       }
 
-      // Animate the right description
       const rightDesc = bookingBottomContainer.querySelector(
         ".text-center.lg\\:text-right"
       );
       if (rightDesc) {
         gsap.fromTo(
           rightDesc,
-          {
-            opacity: 0,
-            x: 30,
-          },
+          { opacity: 0, x: 300, rotationY: 90 },
           {
             opacity: 1,
             x: 0,
-            duration: 1,
-            ease: "power2.out",
+            rotationY: 0,
+            ease: "power4.out",
             scrollTrigger: {
               trigger: bookingRef.current,
-              start: "top 125%",
-              end: "top 15%",
-              scrub: 1,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: 1.5,
             },
           }
         );
