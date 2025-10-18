@@ -19,6 +19,9 @@ import { CapsuleCollectionSection } from "@/components/CapsuleCollectionSection"
 import { useParallaxScroll } from "@/hooks/useParallaxScroll";
 
 import { Scrolling3DCapsule } from "@/components/Scrolling3DCapsule";
+import { CapsuleStructureSection } from "@/components/CapsuleStructureSection";
+import { CapsuleTechnologySection } from "@/components/CapsuleTechnologySection";
+import { TechnologySection } from "@/components/TechnologySection";
 
 const Index = () => {
   const {
@@ -39,6 +42,7 @@ const Index = () => {
         <Navigation />
         <HeroSection ref={heroRef} />
         <VisionSection ref={visionRef} />
+        <TechnologySection />
 
         {/* <CustomizationSection /> */}
         <CapsuleCollectionSection ref={capsuleCollectionRef} />

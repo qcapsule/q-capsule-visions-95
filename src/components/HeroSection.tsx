@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { CapsuleModel3D } from "./CapsuleModel3D";
 import { ImageMarquee } from "./ImageMarquee";
 import { ArrowRight, Play, Calendar } from "lucide-react";
 import heroBgImage from "@/assets/herosection-bg.png";
