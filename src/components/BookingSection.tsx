@@ -39,7 +39,7 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
     <section
       ref={ref}
       id="booking"
-      className="h-[200vh] overflow-hidden sticky top-0"
+      className="h-[200vh] overflow-hidden"
       style={{
         backgroundImage: `url(${islandParadiseImage})`,
         backgroundSize: "cover",
@@ -47,16 +47,8 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Background for GSAP */}
-      <div
-        className="booking-bg absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${islandParadiseImage})`,
-        }}
-      ></div>
-
       {/* Subtle Background Overlay */}
-      <div className="booking-overlay absolute inset-0 bg-black/40 z-0"></div>
+      <div className="booking-overlay absolute inset-0 bg-black/5 z-0"></div>
 
       {/* Main Content - Natural flow across 200vh */}
       <div className="booking-content container mx-auto px-6 relative z-10 h-full py-20 space-y-32">

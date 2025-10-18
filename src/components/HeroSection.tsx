@@ -27,16 +27,8 @@ export const HeroSection = forwardRef<HTMLElement>((props, ref) => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Background for GSAP */}
-      <div
-        className="hero-bg absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${heroBgImage})`,
-        }}
-      ></div>
-
       {/* Subtle Background Overlay */}
-      <div className="hero-overlay absolute inset-0 bg-black/20 z-0"></div>
+      <div className="hero-overlay absolute inset-0 bg-black/5 z-0"></div>
 
       {/* Main Content - Centered */}
       <div className="hero-content container mx-auto px-6 relative z-10 flex items-center justify-center h-full">

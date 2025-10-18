@@ -42,7 +42,7 @@ export const VisionSection = forwardRef<HTMLElement>((props, ref) => {
     <section
       ref={ref}
       id="vision"
-      className="relative h-[100vh] flex items-center justify-center overflow-hidden sticky top-0"
+      className="relative h-[100vh] flex items-center justify-center overflow-hidden"
       style={{
         backgroundImage: `url(${visionBgImage})`,
         backgroundSize: "cover",
@@ -50,16 +50,8 @@ export const VisionSection = forwardRef<HTMLElement>((props, ref) => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Background for GSAP */}
-      <div
-        className="vision-bg absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${visionBgImage})`,
-        }}
-      ></div>
-
       {/* Subtle Background Overlay */}
-      <div className="vision-overlay absolute inset-0 bg-black/30 z-0"></div>
+      <div className="vision-overlay absolute inset-0 bg-black/5 z-0"></div>
 
       {/* Main Content - Centered */}
       <div className="vision-content container mx-auto px-6 relative z-10 flex items-center justify-center h-full">

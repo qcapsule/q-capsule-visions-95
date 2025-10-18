@@ -1,54 +1,47 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useCallback, useEffect, forwardRef } from "react";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  ExternalLink,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { capsules } from "@/data/capsules";
-
-// Preload all capsule images
-const preloadImages = () => {
-  capsules.forEach((capsule) => {
-    capsule.images.forEach((src) => {
-      const img = new Image();
-      img.src = typeof src === 'string' ? src : src;
-    });
-  });
-};
 
 export const CapsuleCollectionSection = forwardRef<HTMLElement>(
   (props, ref) => {
     const [currentCapsuleIndex, setCurrentCapsuleIndex] = useState(1); // Start with Q75X (index 1)
-    const [isTransitioning, setIsTransitioning] = useState(false);
     const currentCapsule = capsules[currentCapsuleIndex];
 
-    // Preload all images on mount
+    // Check for return capsule on component mount
     useEffect(() => {
-      preloadImages();
+      const returnToCapsule = localStorage.getItem("returnToCapsule");
+      if (returnToCapsule) {
+        const capsuleIndex = capsules.findIndex(
+          (capsule) =>
+            capsule.name.toLowerCase() === returnToCapsule.toLowerCase()
+        );
+        if (capsuleIndex !== -1) {
+          setCurrentCapsuleIndex(capsuleIndex);
+        }
+        // Clear the stored capsule after using it
+        localStorage.removeItem("returnToCapsule");
+      }
     }, []);
 
     const nextCapsule = useCallback(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentCapsuleIndex((prev) => (prev + 1) % capsules.length);
-        setIsTransitioning(false);
-      }, 150);
+      setCurrentCapsuleIndex((prev) => (prev + 1) % capsules.length);
     }, []);
 
     const prevCapsule = useCallback(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentCapsuleIndex(
-          (prev) => (prev - 1 + capsules.length) % capsules.length
-        );
-        setIsTransitioning(false);
-      }, 150);
+      setCurrentCapsuleIndex(
+        (prev) => (prev - 1 + capsules.length) % capsules.length
+      );
     }, []);
 
     const selectCapsule = useCallback((index: number) => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentCapsuleIndex(index);
-        setIsTransitioning(false);
-      }, 150);
+      setCurrentCapsuleIndex(index);
     }, []);
 
     // Handle keyboard navigation
@@ -72,31 +65,25 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
       }
     };
 
+    const navigateToCapsulePage = (capsuleName: string) => {
+      const route = `/capsules/${capsuleName.toLowerCase()}?from=${capsuleName.toLowerCase()}`;
+      window.location.href = route;
+    };
+
     return (
       <section
         ref={ref}
         id="capsule-collection"
-        className="relative h-[100vh] flex items-center justify-center overflow-hidden sticky top-0"
+        className="relative h-[100vh] flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: `url(${currentCapsule.images[0]})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        {/* Pre-render all background images */}
-        {capsules.map((capsule, index) => (
-          <motion.div
-            key={`bg-${capsule.id}`}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${capsule.images[0]})`,
-            }}
-            initial={false}
-            animate={{ 
-              opacity: index === currentCapsuleIndex ? 1 : 0,
-              scale: index === currentCapsuleIndex ? 1 : 1.05
-            }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          />
-        ))}
-
         {/* Subtle Background Overlay */}
-        <div className="absolute inset-0 bg-black/20 z-0"></div>
+        <div className="absolute inset-0 bg-black/5 z-0"></div>
 
         {/* Top Left Capsule Type */}
         <motion.div
@@ -107,7 +94,7 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
         >
           <motion.p
             key={`top-left-${currentCapsule.id}`}
-            className="text-white text-2xl lg:text-4xl font-bold drop-shadow-lg"
+            className="text-white text-2xl lg:text-4xl font-bold drop-shadow-lg mb-4"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -118,6 +105,23 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
               {currentCapsule.sizeLabel} • {currentCapsule.dimensions}
             </span>
           </motion.p>
+
+          {/* Learn More Button */}
+          <motion.div
+            key={`learn-more-${currentCapsule.id}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="relative z-30"
+          >
+            <Button
+              onClick={() => navigateToCapsulePage(currentCapsule.name)}
+              className="bg-white/20 hover:bg-white/30 text-white border border-white/30 hover:border-white/50 transition-all duration-300 flex items-center gap-2 relative z-30 px-6 py-3 text-lg font-medium"
+            >
+              Learn More
+              <ExternalLink className="h-4 w-4" />
+            </Button>
+          </motion.div>
         </motion.div>
 
         {/* Top Right Collection Info */}
@@ -129,7 +133,7 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
         >
           <motion.div
             key={`top-right-${currentCapsule.id}`}
-            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 lg:p-6 hover:bg-white/20 hover:border-white/40 transition-all duration-300"
+            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 lg:p-3 hover:bg-white/20 hover:border-white/40 transition-all duration-300"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
