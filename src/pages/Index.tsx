@@ -22,6 +22,7 @@ import { Scrolling3DCapsule } from "@/components/Scrolling3DCapsule";
 import { CapsuleStructureSection } from "@/components/CapsuleStructureSection";
 import { CapsuleTechnologySection } from "@/components/CapsuleTechnologySection";
 import { TechnologySection } from "@/components/TechnologySection";
+import { CapsuleStructure3DSection } from "@/components/CapsuleStructure3DSection";
 
 const Index = () => {
   const {
@@ -42,7 +43,8 @@ const Index = () => {
         <Navigation />
         <HeroSection ref={heroRef} />
         <VisionSection ref={visionRef} />
-        <TechnologySection />
+        {/* <TechnologySection /> */}
+        <CapsuleStructure3DSection />
 
         {/* <CustomizationSection /> */}
         <CapsuleCollectionSection ref={capsuleCollectionRef} />
