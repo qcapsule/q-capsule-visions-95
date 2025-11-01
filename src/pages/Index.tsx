@@ -56,7 +56,7 @@ const Index = () => {
         <EnvironmentsSection /> */}
         <BrochureSection ref={brochureRef} />
         <AboutSection ref={aboutRef} />
-        <UseCasesSection />
+        {/* <UseCasesSection /> */}
         <BookingSection ref={bookingRef} />
 
         {/* <CrossSectionDiagram /> */}

@@ -4,11 +4,11 @@ import {
   Maximize2,
   Minimize2,
   RotateCcw,
-  Home,
   Bed,
   Bath,
-  Car,
   Utensils,
+  Home,
+  DoorOpen,
 } from "lucide-react";
 
 interface FloorPlanProps {
@@ -33,25 +33,9 @@ export const Q56XFloorPlan = ({ className = "" }: FloorPlanProps) => {
 
   const roomData = [
     {
-      id: "living",
-      name: "Living Area",
-      area: "18.5 m²",
-      icon: Home,
-      color: "bg-blue-500/20",
-      borderColor: "border-blue-400/50",
-    },
-    {
-      id: "kitchen",
-      name: "Kitchen",
-      area: "8.2 m²",
-      icon: Utensils,
-      color: "bg-green-500/20",
-      borderColor: "border-green-400/50",
-    },
-    {
-      id: "bedroom",
-      name: "Bedroom",
-      area: "12.8 m²",
+      id: "bedroom1",
+      name: "Bedroom 1",
+      area: "9 m²",
       icon: Bed,
       color: "bg-purple-500/20",
       borderColor: "border-purple-400/50",
@@ -59,186 +43,492 @@ export const Q56XFloorPlan = ({ className = "" }: FloorPlanProps) => {
     {
       id: "bathroom",
       name: "Bathroom",
-      area: "4.5 m²",
+      area: "4 m²",
       icon: Bath,
       color: "bg-orange-500/20",
       borderColor: "border-orange-400/50",
     },
     {
-      id: "storage",
-      name: "Storage",
-      area: "3.0 m²",
-      icon: Car,
+      id: "corridor",
+      name: "Corridor",
+      area: "4 m²",
+      icon: DoorOpen,
       color: "bg-gray-500/20",
       borderColor: "border-gray-400/50",
+    },
+    {
+      id: "kitchen",
+      name: "Kitchen",
+      area: "2 m²",
+      icon: Utensils,
+      color: "bg-green-500/20",
+      borderColor: "border-green-400/50",
+    },
+    {
+      id: "living",
+      name: "Living Area",
+      area: "Variable",
+      icon: Home,
+      color: "bg-blue-500/20",
+      borderColor: "border-blue-400/50",
+    },
+    {
+      id: "balcony",
+      name: "Balcony",
+      area: "4 m²",
+      icon: DoorOpen,
+      color: "bg-teal-500/20",
+      borderColor: "border-teal-400/50",
     },
   ];
 
   const FloorPlanContent = () => (
     <div className="relative w-full h-full bg-gray-800/30 rounded-2xl overflow-hidden">
-      {/* Floor Plan SVG */}
+      {/* Floor Plan SVG - Horizontal Layout */}
       <svg
-        viewBox="0 0 400 300"
+        viewBox="0 0 1000 400"
         className="w-full h-full"
         style={{
           transform: `rotate(${rotation}deg)`,
           transition: "transform 0.5s ease",
         }}
       >
-        {/* Living Area */}
+        {/* Outer Capsule Structure - Rounded Rectangle */}
         <rect
-          x="50"
-          y="50"
-          width="200"
-          height="120"
-          fill="rgba(59, 130, 246, 0.2)"
-          stroke="rgba(59, 130, 246, 0.5)"
-          strokeWidth="2"
-          rx="8"
+          x="20"
+          y="60"
+          width="960"
+          height="280"
+          fill="rgba(20, 20, 20, 0.3)"
+          stroke="rgba(59, 130, 246, 0.6)"
+          strokeWidth="3"
+          rx="38"
+          ry="38"
         />
-        <text
-          x="150"
-          y="110"
-          textAnchor="middle"
-          className="fill-white text-sm font-medium"
-        >
-          Living Area
-        </text>
-        <text
-          x="150"
-          y="125"
-          textAnchor="middle"
-          className="fill-white/70 text-xs"
-        >
-          18.5 m²
-        </text>
 
-        {/* Kitchen */}
+        {/* Left End - Bedroom 1 (9 m²) */}
         <rect
-          x="50"
-          y="180"
-          width="90"
-          height="70"
-          fill="rgba(34, 197, 94, 0.2)"
-          stroke="rgba(34, 197, 94, 0.5)"
-          strokeWidth="2"
-          rx="8"
-        />
-        <text
-          x="95"
-          y="210"
-          textAnchor="middle"
-          className="fill-white text-sm font-medium"
-        >
-          Kitchen
-        </text>
-        <text
-          x="95"
-          y="225"
-          textAnchor="middle"
-          className="fill-white/70 text-xs"
-        >
-          8.2 m²
-        </text>
-
-        {/* Bedroom */}
-        <rect
-          x="150"
-          y="180"
-          width="100"
-          height="70"
+          x="40"
+          y="80"
+          width="220"
+          height="240"
           fill="rgba(168, 85, 247, 0.2)"
           stroke="rgba(168, 85, 247, 0.5)"
           strokeWidth="2"
           rx="8"
         />
         <text
-          x="200"
-          y="210"
+          x="150"
+          y="130"
           textAnchor="middle"
-          className="fill-white text-sm font-medium"
+          className="fill-white text-sm font-bold"
         >
-          Bedroom
+          BED ROOM 1
         </text>
         <text
-          x="200"
-          y="225"
+          x="150"
+          y="150"
+          textAnchor="middle"
+          className="fill-white/80 text-xs"
+        >
+          9 m²
+        </text>
+        {/* Bed in Bedroom */}
+        <rect
+          x="60"
+          y="180"
+          width="180"
+          height="120"
+          fill="rgba(59, 130, 246, 0.4)"
+          stroke="rgba(59, 130, 246, 0.6)"
+          strokeWidth="1.5"
+          rx="4"
+        />
+        <text
+          x="150"
+          y="250"
           textAnchor="middle"
           className="fill-white/70 text-xs"
         >
-          12.8 m²
+          3000
         </text>
+        {/* Door to Bedroom */}
+        <path
+          d="M 260 200 A 30 30 0 0 1 260 260"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.6)"
+          strokeWidth="2"
+        />
+        <line
+          x1="260"
+          y1="200"
+          x2="260"
+          y2="260"
+          stroke="rgba(255, 255, 255, 0.6)"
+          strokeWidth="2"
+        />
 
-        {/* Bathroom */}
+        {/* Bathroom (4 m²) */}
         <rect
-          x="260"
-          y="50"
-          width="60"
-          height="80"
+          x="280"
+          y="80"
+          width="140"
+          height="120"
           fill="rgba(249, 115, 22, 0.2)"
           stroke="rgba(249, 115, 22, 0.5)"
           strokeWidth="2"
           rx="8"
         />
         <text
-          x="290"
-          y="90"
+          x="350"
+          y="130"
           textAnchor="middle"
-          className="fill-white text-sm font-medium"
+          className="fill-white text-sm font-bold"
         >
-          Bathroom
+          BATH
         </text>
         <text
-          x="290"
-          y="105"
+          x="350"
+          y="150"
           textAnchor="middle"
-          className="fill-white/70 text-xs"
+          className="fill-white/80 text-xs"
         >
-          4.5 m²
+          4 m²
         </text>
-
-        {/* Storage */}
+        {/* Toilet */}
+        <circle
+          cx="310"
+          cy="160"
+          r="15"
+          fill="rgba(255, 255, 255, 0.3)"
+          stroke="rgba(255, 255, 255, 0.5)"
+          strokeWidth="1"
+        />
+        {/* Shower Area */}
         <rect
-          x="260"
-          y="140"
-          width="60"
-          height="60"
+          x="340"
+          y="160"
+          width="50"
+          height="30"
+          fill="rgba(59, 130, 246, 0.3)"
+          stroke="rgba(59, 130, 246, 0.5)"
+          strokeWidth="1"
+          rx="2"
+        />
+        {/* Sink */}
+        <rect
+          x="330"
+          y="100"
+          width="25"
+          height="20"
+          fill="rgba(200, 200, 200, 0.3)"
+          stroke="rgba(200, 200, 200, 0.5)"
+          strokeWidth="1"
+          rx="2"
+        />
+        {/* Door to Bathroom */}
+        <path
+          d="M 420 200 A 30 30 0 0 1 420 260"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.6)"
+          strokeWidth="2"
+        />
+        <line
+          x1="420"
+          y1="200"
+          x2="420"
+          y2="260"
+          stroke="rgba(255, 255, 255, 0.6)"
+          strokeWidth="2"
+        />
+
+        {/* Central Corridor (4 m²) */}
+        <rect
+          x="280"
+          y="220"
+          width="220"
+          height="100"
           fill="rgba(107, 114, 128, 0.2)"
           stroke="rgba(107, 114, 128, 0.5)"
           strokeWidth="2"
           rx="8"
         />
         <text
-          x="290"
-          y="170"
+          x="390"
+          y="265"
           textAnchor="middle"
-          className="fill-white text-sm font-medium"
+          className="fill-white text-sm font-bold"
         >
-          Storage
+          COR
         </text>
         <text
-          x="290"
-          y="185"
+          x="390"
+          y="285"
+          textAnchor="middle"
+          className="fill-white/80 text-xs"
+        >
+          4 m²
+        </text>
+        {/* Entrance Steps */}
+        <rect
+          x="480"
+          y="300"
+          width="60"
+          height="20"
+          fill="rgba(200, 200, 200, 0.4)"
+          stroke="rgba(200, 200, 200, 0.6)"
+          strokeWidth="1"
+          rx="2"
+        />
+        <text
+          x="510"
+          y="315"
           textAnchor="middle"
           className="fill-white/70 text-xs"
         >
-          3.0 m²
+          ENTRANCE
         </text>
 
-        {/* Dimensions */}
+        {/* Kitchen (2 m²) */}
+        <rect
+          x="520"
+          y="80"
+          width="100"
+          height="120"
+          fill="rgba(34, 197, 94, 0.2)"
+          stroke="rgba(34, 197, 94, 0.5)"
+          strokeWidth="2"
+          rx="8"
+        />
         <text
-          x="200"
-          y="20"
+          x="570"
+          y="130"
+          textAnchor="middle"
+          className="fill-white text-sm font-bold"
+        >
+          KIT
+        </text>
+        <text
+          x="570"
+          y="150"
+          textAnchor="middle"
+          className="fill-white/80 text-xs"
+        >
+          2 m²
+        </text>
+        {/* Kitchen Counter */}
+        <rect
+          x="530"
+          y="160"
+          width="80"
+          height="30"
+          fill="rgba(200, 200, 200, 0.4)"
+          stroke="rgba(200, 200, 200, 0.6)"
+          strokeWidth="1"
+          rx="2"
+        />
+        {/* Sink */}
+        <circle
+          cx="560"
+          cy="175"
+          r="6"
+          fill="rgba(59, 130, 246, 0.4)"
+          stroke="rgba(59, 130, 246, 0.6)"
+          strokeWidth="1"
+        />
+        <circle
+          cx="590"
+          cy="175"
+          r="6"
+          fill="rgba(59, 130, 246, 0.4)"
+          stroke="rgba(59, 130, 246, 0.6)"
+          strokeWidth="1"
+        />
+        {/* Stove */}
+        <circle
+          cx="570"
+          cy="185"
+          r="5"
+          fill="rgba(239, 68, 68, 0.4)"
+          stroke="rgba(239, 68, 68, 0.6)"
+          strokeWidth="1"
+        />
+        <circle
+          cx="590"
+          cy="185"
+          r="5"
+          fill="rgba(239, 68, 68, 0.4)"
+          stroke="rgba(239, 68, 68, 0.6)"
+          strokeWidth="1"
+        />
+        {/* Stools */}
+        <circle
+          cx="550"
+          cy="210"
+          r="8"
+          fill="rgba(59, 130, 246, 0.3)"
+          stroke="rgba(59, 130, 246, 0.5)"
+          strokeWidth="1"
+        />
+        <circle
+          cx="610"
+          cy="210"
+          r="8"
+          fill="rgba(59, 130, 246, 0.3)"
+          stroke="rgba(59, 130, 246, 0.5)"
+          strokeWidth="1"
+        />
+
+        {/* Living Area */}
+        <rect
+          x="640"
+          y="80"
+          width="200"
+          height="240"
+          fill="rgba(59, 130, 246, 0.2)"
+          stroke="rgba(59, 130, 246, 0.5)"
+          strokeWidth="2"
+          rx="8"
+        />
+        {/* Sofa */}
+        <rect
+          x="660"
+          y="180"
+          width="120"
+          height="60"
+          fill="rgba(168, 85, 247, 0.4)"
+          stroke="rgba(168, 85, 247, 0.6)"
+          strokeWidth="1.5"
+          rx="4"
+        />
+        {/* Coffee Table */}
+        <circle
+          cx="740"
+          cy="250"
+          r="20"
+          fill="rgba(34, 197, 94, 0.3)"
+          stroke="rgba(34, 197, 94, 0.5)"
+          strokeWidth="1.5"
+        />
+        {/* Convertible Bed Outline */}
+        <rect
+          x="700"
+          y="280"
+          width="120"
+          height="30"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.4)"
+          strokeWidth="1"
+          strokeDasharray="5,5"
+        />
+        <line
+          x1="710"
+          y1="280"
+          x2="710"
+          y2="310"
+          stroke="rgba(255, 255, 255, 0.4)"
+          strokeWidth="1"
+        />
+        <line
+          x1="720"
+          y1="280"
+          x2="720"
+          y2="310"
+          stroke="rgba(255, 255, 255, 0.4)"
+          strokeWidth="1"
+        />
+        <text
+          x="760"
+          y="295"
           textAnchor="middle"
           className="fill-white/60 text-xs"
         >
-          7.2m × 5.6m Total Area
+          3000
+        </text>
+
+        {/* Right End - Balcony (4 m²) */}
+        <rect
+          x="860"
+          y="80"
+          width="100"
+          height="240"
+          fill="rgba(20, 184, 166, 0.2)"
+          stroke="rgba(20, 184, 166, 0.5)"
+          strokeWidth="2"
+          rx="8"
+        />
+        <text
+          x="910"
+          y="130"
+          textAnchor="middle"
+          className="fill-white text-sm font-bold"
+        >
+          BALCONY
         </text>
         <text
-          x="200"
-          y="280"
+          x="910"
+          y="150"
           textAnchor="middle"
-          className="fill-white/60 text-xs"
+          className="fill-white/80 text-xs"
+        >
+          4 m²
+        </text>
+        {/* Table */}
+        <circle
+          cx="910"
+          cy="200"
+          r="25"
+          fill="rgba(34, 197, 94, 0.3)"
+          stroke="rgba(34, 197, 94, 0.5)"
+          strokeWidth="1.5"
+        />
+        {/* Chairs */}
+        <circle
+          cx="880"
+          cy="230"
+          r="12"
+          fill="rgba(59, 130, 246, 0.3)"
+          stroke="rgba(59, 130, 246, 0.5)"
+          strokeWidth="1"
+        />
+        <circle
+          cx="940"
+          cy="230"
+          r="12"
+          fill="rgba(59, 130, 246, 0.3)"
+          stroke="rgba(59, 130, 246, 0.5)"
+          strokeWidth="1"
+        />
+        {/* Door to Balcony */}
+        <path
+          d="M 860 200 A 30 30 0 0 0 860 260"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.6)"
+          strokeWidth="2"
+        />
+        <line
+          x1="860"
+          y1="200"
+          x2="860"
+          y2="260"
+          stroke="rgba(255, 255, 255, 0.6)"
+          strokeWidth="2"
+        />
+
+        {/* Dimensions Labels */}
+        <text
+          x="150"
+          y="45"
+          textAnchor="middle"
+          className="fill-white/60 text-xs font-medium"
+        >
+          3150
+        </text>
+        <text
+          x="500"
+          y="35"
+          textAnchor="middle"
+          className="fill-white/60 text-xs font-medium"
         >
           Q56X Floor Plan
         </text>
@@ -270,7 +560,7 @@ export const Q56XFloorPlan = ({ className = "" }: FloorPlanProps) => {
       </div>
 
       {/* Room Legend */}
-      <div className="absolute bottom-4 left-4 bg-black/20 backdrop-blur-sm rounded-lg p-4">
+      <div className="absolute bottom-4 left-4 bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-white/20">
         <h4 className="text-white text-sm font-medium mb-3">Room Legend</h4>
         <div className="space-y-2">
           {roomData.map((room) => (
