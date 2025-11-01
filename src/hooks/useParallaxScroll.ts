@@ -27,65 +27,24 @@ export const useParallaxScroll = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
+        start: "top 80%",
+        end: "top 20%",
         scrub: 1,
-        pin: true,
-        pinSpacing: false,
       },
     });
 
-    // Hero section parallax effects
-    tl.to(heroRef.current.querySelector(".hero-bg"), {
-      scale: 1.1,
-      duration: 1,
-      ease: "none",
-    })
-      .to(
-        heroRef.current.querySelector(".hero-content"),
-        {
-          y: -100,
-          opacity: 0.7,
-          duration: 1,
-          ease: "none",
-        },
-        0
-      )
-      .to(
-        heroRef.current.querySelector(".hero-overlay"),
-        {
-          opacity: 0.8,
-          duration: 1,
-          ease: "none",
-        },
-        0
-      );
-
-    // Capsule collection entrance animation - complete when fully visible
-    const capsuleTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: capsuleCollectionRef.current,
-        start: "top bottom+=300px",
-        end: "top top",
-        scrub: 0.5,
-      },
-    });
-
-    capsuleTl.fromTo(
-      capsuleCollectionRef.current,
+    // Hero section parallax effects - removed background animation
+    tl.to(
+      heroRef.current.querySelector(".hero-overlay"),
       {
-        opacity: 0,
-        y: 100,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
+        opacity: 0.1,
         duration: 1,
-        ease: "power2.out",
-      }
+        ease: "none",
+      },
+      0
     );
+
+    // Capsule collection - no entrance animation, components animate themselves
 
     // All capsule collection elements - faster animation
     const allElements = capsuleCollectionRef.current.querySelectorAll(
@@ -115,31 +74,7 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Vision section entrance animation - smooth approach
-    const visionTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: visionRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 1,
-      },
-    });
-
-    visionTl.fromTo(
-      visionRef.current,
-      {
-        opacity: 0,
-        y: 100,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1,
-        ease: "power2.out",
-      }
-    );
+    // Vision section - no entrance animation, components animate themselves
 
     // Main content animations - faster
     const mainContent = visionRef.current.querySelector(".vision-content");
@@ -157,8 +92,8 @@ export const useParallaxScroll = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: visionRef.current,
-            start: "top 140%",
-            end: "top 10%",
+            start: "top 80%",
+            end: "top 20%",
             scrub: 0.3,
           },
         }
@@ -177,12 +112,39 @@ export const useParallaxScroll = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: visionRef.current,
-            start: "top 135%",
-            end: "top 15%",
+            start: "top 80%",
+            end: "top 20%",
             scrub: 0.3,
           },
         }
       );
+
+      // Vision grid items animation
+      const visionGridItems = mainContent.querySelectorAll(".parallax-element");
+      if (visionGridItems.length > 0) {
+        gsap.fromTo(
+          visionGridItems,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.9,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: visionRef.current,
+              start: "top 80%",
+              end: "top 20%",
+              scrub: 0.3,
+            },
+          }
+        );
+      }
     }
 
     // Individual element animations for vision section - faster
@@ -212,18 +174,7 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Vision section background parallax
-    gsap.to(visionRef.current.querySelector(".vision-bg"), {
-      scale: 1.1,
-      duration: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: visionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
+    // Vision section - removed background parallax
 
     // Bottom content animations for vision section
     const bottomContainer =
@@ -304,31 +255,7 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // About section entrance animation - smooth approach
-    const aboutTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: aboutRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 1,
-      },
-    });
-
-    aboutTl.fromTo(
-      aboutRef.current,
-      {
-        opacity: 0,
-        y: 100,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1,
-        ease: "power2.out",
-      }
-    );
+    // About section - no entrance animation, components animate themselves
 
     // Main content animations for about section - faster
     const aboutMainContent = aboutRef.current.querySelector(".about-content");
@@ -346,8 +273,8 @@ export const useParallaxScroll = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: aboutRef.current,
-            start: "top 140%",
-            end: "top 10%",
+            start: "top 80%",
+            end: "top 20%",
             scrub: 0.3,
           },
         }
@@ -366,12 +293,40 @@ export const useParallaxScroll = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: aboutRef.current,
-            start: "top 135%",
-            end: "top 15%",
+            start: "top 80%",
+            end: "top 20%",
             scrub: 0.3,
           },
         }
       );
+
+      // About grid items animation
+      const aboutGridItems =
+        aboutMainContent.querySelectorAll(".parallax-element");
+      if (aboutGridItems.length > 0) {
+        gsap.fromTo(
+          aboutGridItems,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.9,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: aboutRef.current,
+              start: "top 80%",
+              end: "top 20%",
+              scrub: 0.3,
+            },
+          }
+        );
+      }
     }
 
     // Individual element animations for about section - faster
@@ -401,18 +356,7 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // About section background parallax
-    gsap.to(aboutRef.current.querySelector(".about-bg"), {
-      scale: 1.1,
-      duration: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: aboutRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
+    // About section - removed background parallax
 
     // Bottom content animations for about section
     const aboutBottomContainer =
@@ -493,31 +437,7 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // Brochure section entrance animation - smooth approach
-    const brochureTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: brochureRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 1,
-      },
-    });
-
-    brochureTl.fromTo(
-      brochureRef.current,
-      {
-        opacity: 0,
-        y: 100,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1,
-        ease: "power2.out",
-      }
-    );
+    // Brochure section - no entrance animation, components animate themselves
 
     // Main content animations for brochure section - faster
     const brochureMainContent =
@@ -536,8 +456,8 @@ export const useParallaxScroll = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: brochureRef.current,
-            start: "top 140%",
-            end: "top 10%",
+            start: "top 80%",
+            end: "top 20%",
             scrub: 0.3,
           },
         }
@@ -556,12 +476,40 @@ export const useParallaxScroll = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: brochureRef.current,
-            start: "top 135%",
-            end: "top 15%",
+            start: "top 80%",
+            end: "top 20%",
             scrub: 0.3,
           },
         }
       );
+
+      // Brochure grid items animation
+      const brochureGridItems =
+        brochureMainContent.querySelectorAll(".parallax-element");
+      if (brochureGridItems.length > 0) {
+        gsap.fromTo(
+          brochureGridItems,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.9,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: brochureRef.current,
+              start: "top 80%",
+              end: "top 20%",
+              scrub: 0.3,
+            },
+          }
+        );
+      }
     }
 
     // Individual element animations for brochure section - faster
@@ -591,18 +539,7 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Brochure section background parallax
-    gsap.to(brochureRef.current.querySelector(".brochure-bg"), {
-      scale: 1.1,
-      duration: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: brochureRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
+    // Brochure section - removed background parallax
 
     // Bottom content animations for brochure section
     const brochureBottomContainer =
@@ -685,31 +622,7 @@ export const useParallaxScroll = () => {
       }
     }
 
-    // Booking section entrance animation - spans 2 sections (200vh)
-    const bookingTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: bookingRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: 1,
-      },
-    });
-
-    bookingTl.fromTo(
-      bookingRef.current,
-      {
-        opacity: 0,
-        y: 100,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1,
-        ease: "power2.out",
-      }
-    );
+    // Booking section - no entrance animation, components animate themselves
 
     // Main content animations for booking section - spans full scroll
     const bookingMainContent =
@@ -728,8 +641,8 @@ export const useParallaxScroll = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: bookingRef.current,
-            start: "top 140%",
-            end: "top 10%",
+            start: "top 80%",
+            end: "top 20%",
             scrub: 0.3,
           },
         }
@@ -748,12 +661,40 @@ export const useParallaxScroll = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: bookingRef.current,
-            start: "top 135%",
-            end: "top 15%",
+            start: "top 80%",
+            end: "top 20%",
             scrub: 0.3,
           },
         }
       );
+
+      // Booking grid items animation
+      const bookingGridItems =
+        bookingMainContent.querySelectorAll(".parallax-element");
+      if (bookingGridItems.length > 0) {
+        gsap.fromTo(
+          bookingGridItems,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.9,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: bookingRef.current,
+              start: "top 80%",
+              end: "top 20%",
+              scrub: 0.3,
+            },
+          }
+        );
+      }
     }
 
     // Individual element animations for booking section - spans full scroll
@@ -783,18 +724,7 @@ export const useParallaxScroll = () => {
       );
     });
 
-    // Booking section background parallax - spans 2 sections
-    gsap.to(bookingRef.current.querySelector(".booking-bg"), {
-      scale: 1.1,
-      duration: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: bookingRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
+    // Booking section - removed background parallax
 
     // Bottom content animations for booking section - spans full scroll
     const bookingBottomContainer =

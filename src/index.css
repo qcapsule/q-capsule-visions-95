@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbar for all browsers */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* WebKit browsers (Chrome, Safari, Edge) */
+}
+
+body {
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
 /* Q Capsules Design System - Sophisticated Brown & Gold Theme */
 
 @layer base {
