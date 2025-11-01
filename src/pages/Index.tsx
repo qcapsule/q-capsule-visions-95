@@ -23,6 +23,7 @@ import { CapsuleStructureSection } from "@/components/CapsuleStructureSection";
 import { CapsuleTechnologySection } from "@/components/CapsuleTechnologySection";
 import { TechnologySection } from "@/components/TechnologySection";
 import { CapsuleStructure3DSection } from "@/components/CapsuleStructure3DSection";
+import { UseCasesSection } from "@/components/UseCasesSection";
 
 const Index = () => {
   const {
@@ -55,6 +56,7 @@ const Index = () => {
         <EnvironmentsSection /> */}
         <BrochureSection ref={brochureRef} />
         <AboutSection ref={aboutRef} />
+        <UseCasesSection />
         <BookingSection ref={bookingRef} />
 
         {/* <CrossSectionDiagram /> */}

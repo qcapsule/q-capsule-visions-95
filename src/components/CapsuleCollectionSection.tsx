@@ -30,19 +30,27 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
       }
     }, []);
 
+    const [direction, setDirection] = useState(0);
+
     const nextCapsule = useCallback(() => {
+      setDirection(1);
       setCurrentCapsuleIndex((prev) => (prev + 1) % capsules.length);
     }, []);
 
     const prevCapsule = useCallback(() => {
+      setDirection(-1);
       setCurrentCapsuleIndex(
         (prev) => (prev - 1 + capsules.length) % capsules.length
       );
     }, []);
 
-    const selectCapsule = useCallback((index: number) => {
-      setCurrentCapsuleIndex(index);
-    }, []);
+    const selectCapsule = useCallback(
+      (index: number) => {
+        setDirection(index > currentCapsuleIndex ? 1 : -1);
+        setCurrentCapsuleIndex(index);
+      },
+      [currentCapsuleIndex]
+    );
 
     // Handle keyboard navigation
     useEffect(() => {
@@ -75,13 +83,44 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
         ref={ref}
         id="capsule-collection"
         className="relative h-[100vh] flex items-center justify-center overflow-hidden"
-        style={{
-          backgroundImage: `url(${currentCapsule.images[0]})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
       >
+        {/* Animated Background Images */}
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={currentCapsule.id}
+            custom={direction}
+            initial={{
+              opacity: 0,
+              x: direction > 0 ? 100 : -100,
+              scale: 1.05,
+              filter: "blur(10px)",
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              filter: "blur(0px)",
+            }}
+            exit={{
+              opacity: 0,
+              x: direction > 0 ? -100 : 100,
+              scale: 0.95,
+              filter: "blur(10px)",
+            }}
+            transition={{
+              duration: 0.8,
+              ease: [0.4, 0, 0.2, 1], // Custom easing curve
+            }}
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `url(${currentCapsule.images[0]})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        </AnimatePresence>
+
         {/* Subtle Background Overlay */}
         <div className="absolute inset-0 bg-black/5 z-0"></div>
 
