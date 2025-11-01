@@ -99,11 +99,11 @@ body {
   }
 
   .light {
-    --background: 45 35% 92%;
+    --background: 0 0% 98%;
     --foreground: 25 30% 15%;
-    --card: 0 0% 98%;
+    --card: 0 0% 100%;
     --card-foreground: 25 30% 15%;
-    --popover: 0 0% 98%;
+    --popover: 0 0% 100%;
     --popover-foreground: 25 30% 15%;
     --primary: 45 60% 50%;
     --primary-foreground: 0 0% 98%;

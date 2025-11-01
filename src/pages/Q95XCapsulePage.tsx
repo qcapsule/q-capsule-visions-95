@@ -149,7 +149,7 @@ export const Q95XCapsulePage = forwardRef<HTMLElement>((props, ref) => {
               {q95xCapsule.sizeLabel} • {q95xCapsule.dimensions}
             </p>
             <p className="text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-              {q95xCapsule.description}
+              {q95xCapsule.blurb}
             </p>
           </motion.div>
         </div>
