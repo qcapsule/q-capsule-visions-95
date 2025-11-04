@@ -98,6 +98,9 @@ export const BrochureSection = forwardRef<HTMLElement>((props, ref) => {
 
   return (
     <section ref={ref} id="brochure" className="relative overflow-hidden py-32">
+      {/* Light Background Overlay */}
+      <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
+
       {/* Background Effects */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"></div>
 
@@ -282,22 +285,6 @@ export const BrochureSection = forwardRef<HTMLElement>((props, ref) => {
                 <Eye className="h-5 w-5" />
                 Preview Online
               </motion.button>
-            </motion.div>
-
-            {/* Quote */}
-            <motion.div
-              className="mt-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 1, delay: 1 }}
-            >
-              <blockquote className="text-lg lg:text-xl text-foreground/90 italic leading-relaxed">
-                "Perfect for architects, contractors, and project stakeholders
-                to share vision and technical details."
-              </blockquote>
-              <cite className="text-primary text-base font-medium mt-3 block">
-                — Q Capsules Team
-              </cite>
             </motion.div>
           </div>
         </div>

@@ -97,6 +97,9 @@ export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
 
   return (
     <section ref={ref} id="about" className="relative overflow-hidden py-32">
+      {/* Light Background Overlay */}
+      <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
+
       {/* Background Effects */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"></div>
 
@@ -246,22 +249,6 @@ export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Quote - Bottom Center */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
-          <blockquote className="text-xl lg:text-2xl text-foreground/90 italic max-w-4xl mx-auto leading-relaxed">
-            "We don't just build homes, we craft experiences that connect people
-            with nature, innovation, and each other."
-          </blockquote>
-          <cite className="text-primary text-lg font-medium mt-4 block">
-            — Q Capsules Founders
-          </cite>
         </motion.div>
       </div>
     </section>

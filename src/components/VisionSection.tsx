@@ -63,6 +63,9 @@ export const VisionSection = forwardRef<HTMLElement>((props, ref) => {
 
   return (
     <section ref={ref} id="vision" className="relative overflow-hidden py-32">
+      {/* Light Background Overlay */}
+      <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
+
       {/* Background Effects */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"></div>
 
@@ -135,9 +138,9 @@ export const VisionSection = forwardRef<HTMLElement>((props, ref) => {
           </motion.p>
         </motion.div>
 
-        {/* Vision & Mission Content */}
+        {/* Vision & Mission Content - Split Layout */}
         <motion.div
-          className="max-w-6xl mx-auto grid grid-cols-1 gap-8"
+          className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch"
           variants={containerVariants}
           initial="hidden"
           animate={controls}
@@ -149,38 +152,56 @@ export const VisionSection = forwardRef<HTMLElement>((props, ref) => {
               variants={cardVariants}
               whileHover={{
                 scale: 1.02,
-                z: 50,
+                y: -5,
               }}
             >
-              <div className="glass-card p-8 lg:p-12 relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-500 h-full flex flex-col">
+              {/* Decorative Corner Accent */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-tl from-accent/20 to-transparent rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div className="glass-card p-8 lg:p-10 relative overflow-hidden border border-border/50 group-hover:border-primary/40 transition-all duration-500 h-full flex flex-col backdrop-blur-xl">
                 {/* Dynamic background effect */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-all duration-500`}
                 ></div>
 
+                {/* Animated gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
                 {/* Golden Divider */}
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent opacity-50"></div>
 
-                <div className="flex items-start space-x-6 relative z-10">
-                  {/* Icon */}
-                  <motion.div
-                    className="flex-shrink-0 w-16 h-16 bg-card/50 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-500 border border-border/30 group-hover:border-primary/30"
-                    whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <item.icon
-                      className={`h-8 w-8 ${item.iconColor} group-hover:drop-shadow-glow transition-all duration-500`}
-                    />
-                  </motion.div>
+                {/* Decorative line on left */}
+                <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                  {/* Content */}
-                  <div className="flex-1">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-all duration-300">
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* Icon and Title Row */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <motion.div
+                      className="flex-shrink-0 w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-500 border border-border/30 group-hover:border-primary/50 relative overflow-hidden"
+                      whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      {/* Icon background glow */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+                      ></div>
+                      <item.icon
+                        className={`h-7 w-7 lg:h-8 lg:w-8 ${item.iconColor} group-hover:drop-shadow-[0_0_15px_rgba(234,179,8,0.8)] transition-all duration-500 relative z-10`}
+                      />
+                    </motion.div>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-foreground group-hover:text-primary transition-all duration-300 flex-1">
                       {item.title}
                     </h3>
-                    <p className="text-lg text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-all duration-300">
-                      {item.content}
-                    </p>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 flex items-start">
+                    <div className="flex-1">
+                      <p className="text-base lg:text-lg text-muted-foreground leading-relaxed group-hover:text-foreground/90 transition-all duration-300">
+                        {item.content}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -188,19 +209,26 @@ export const VisionSection = forwardRef<HTMLElement>((props, ref) => {
           ))}
         </motion.div>
 
-        {/* Bottom Quote */}
+        {/* Connecting Element */}
         <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 1, delay: 0.8 }}
+          className="max-w-7xl mx-auto mt-12"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={
+            isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+          }
+          transition={{ duration: 0.8, delay: 1 }}
         >
-          <blockquote className="text-2xl lg:text-3xl text-foreground/90 italic max-w-4xl mx-auto leading-relaxed">
-            "Building the future of sustainable living, one capsule at a time."
-          </blockquote>
-          <cite className="text-primary text-lg font-medium mt-4 block">
-            — Q Capsules Team
-          </cite>
+          <div className="flex items-center justify-center gap-4">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-primary/50"></div>
+            <motion.div
+              className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30 flex items-center justify-center backdrop-blur-sm"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <Sparkles className="w-5 h-5 text-primary" />
+            </motion.div>
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent via-primary/30 to-primary/50"></div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -38,6 +38,28 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <BackgroundOrbs />
+
+      {/* LED Light Strips - Left and Right */}
+      <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
+        {/* Left LED Strip */}
+        <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-yellow-600 to-transparent opacity-90"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-gradient-to-b from-transparent via-yellow-400/60 to-transparent opacity-60 blur-[3px]"></div>
+        <div
+          className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-yellow-500 to-transparent opacity-100 animate-pulse"
+          style={{ animationDuration: "2s" }}
+        ></div>
+        <div className="absolute left-0 top-0 bottom-0 w-[6px] bg-gradient-to-b from-transparent via-yellow-500/30 to-transparent opacity-40 blur-[4px]"></div>
+
+        {/* Right LED Strip */}
+        <div className="absolute right-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-yellow-600 to-transparent opacity-90"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-[4px] bg-gradient-to-b from-transparent via-yellow-400/60 to-transparent opacity-60 blur-[3px]"></div>
+        <div
+          className="absolute right-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-yellow-500 to-transparent opacity-100 animate-pulse"
+          style={{ animationDuration: "2s" }}
+        ></div>
+        <div className="absolute right-0 top-0 bottom-0 w-[6px] bg-gradient-to-b from-transparent via-yellow-500/30 to-transparent opacity-40 blur-[4px]"></div>
+      </div>
+
       {/* <Scrolling3DCapsule /> */}
       <div className="relative z-10">
         <ScrollProgress />
