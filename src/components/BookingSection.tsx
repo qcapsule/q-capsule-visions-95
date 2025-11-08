@@ -83,7 +83,7 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
   return (
     <section ref={ref} id="booking" className="relative overflow-hidden py-32">
       {/* Light Background Overlay */}
-      <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-white/15 backdrop-blur-sm"></div>
 
       {/* Background Effects */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"></div>

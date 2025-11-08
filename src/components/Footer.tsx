@@ -1,91 +1,281 @@
-import { motion } from 'framer-motion';
-import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Mail,
+  Phone,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import qcapsuleLogo from "@/assets/qcapsule-logo4.png";
 
 export const Footer = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      const elementTop = (element as HTMLElement).offsetTop;
+      window.scrollTo({ top: elementTop, behavior: "smooth" });
+    }
+  };
+
+  const navLinks = [
+    { label: "Home", href: "#hero" },
+    { label: "Vision", href: "#vision" },
+    { label: "Capsules", href: "#capsule-collection" },
+    { label: "Brochure", href: "#brochure" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#booking" },
+  ];
+
+  const services = [
+    "Custom Design",
+    "Installation",
+    "Maintenance",
+    "Consultation",
+    "Project Management",
+  ];
+
+  const socialLinks = [
+    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+  ];
+
   return (
-    <footer id="footer" className="bg-card/50 backdrop-blur-xl border-t border-border/50 py-16">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-4 gap-12">
+    <footer ref={ref} id="footer" className="relative overflow-hidden py-20">
+      {/* Light Background Overlay */}
+      <div className="absolute inset-0 bg-white/15 backdrop-blur-sm"></div>
+
+      {/* Background Effects */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary-glow/5 rounded-full blur-3xl animate-float"></div>
+
+      {/* Animated particles */}
+      <div className="absolute inset-0">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-primary/30 rounded-full"
+            initial={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+              opacity: 0,
+            }}
+            animate={{
+              y: [null, -50, -100],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+              ease: "easeOut",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Golden Divider at top */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent"></div>
+
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
+        <div className="grid lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
-          <div className="space-y-6">
+          <motion.div
+            className="space-y-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center shadow-glow">
-                <span className="text-primary-foreground font-bold text-xl">Q</span>
-              </div>
-              <span className="text-2xl font-bold text-gradient">Capsules</span>
+              <img
+                src={qcapsuleLogo}
+                alt="Q Capsules Logo"
+                className="h-12 w-auto"
+              />
             </div>
-            <p className="text-muted-foreground leading-relaxed">
-              Revolutionizing modular living with sustainable, innovative capsule homes made in Qatar.
+            <p className="text-muted-foreground leading-relaxed text-sm">
+              Revolutionizing modular living with sustainable, innovative
+              capsule homes made in Qatar.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary/20 transition-colors">
-                <Instagram className="h-5 w-5 text-primary" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary/20 transition-colors">
-                <Facebook className="h-5 w-5 text-primary" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary/20 transition-colors">
-                <Twitter className="h-5 w-5 text-primary" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary/20 transition-colors">
-                <Linkedin className="h-5 w-5 text-primary" />
-              </a>
+            <div className="flex space-x-3">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 group"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                  }
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                >
+                  <social.icon className="h-5 w-5 text-primary group-hover:text-primary-glow transition-colors" />
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-gradient">Quick Links</h3>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3 className="text-lg font-bold mb-6 text-foreground flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-primary" />
+              Quick Links
+            </h3>
             <div className="space-y-3">
-              {['Home', 'Vision', 'Capsules', 'Use Cases', 'About', 'Contact'].map((link) => (
-                <a key={link} href={`#${link.toLowerCase()}`} className="block text-muted-foreground hover:text-primary transition-colors">
-                  {link}
-                </a>
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.href);
+                  }}
+                  className="block text-muted-foreground hover:text-primary transition-colors text-sm group"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={
+                    isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                  }
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="w-1 h-1 bg-primary/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    {link.label}
+                  </span>
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-gradient">Services</h3>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <h3 className="text-lg font-bold mb-6 text-foreground flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-primary" />
+              Services
+            </h3>
             <div className="space-y-3">
-              {['Custom Design', 'Installation', 'Maintenance', 'Consultation', 'Project Management'].map((service) => (
-                <span key={service} className="block text-muted-foreground">
+              {services.map((service, index) => (
+                <motion.span
+                  key={service}
+                  className="block text-muted-foreground text-sm"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={
+                    isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                  }
+                  transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
+                >
                   {service}
-                </span>
+                </motion.span>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-gradient">Contact</h3>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <h3 className="text-lg font-bold mb-6 text-foreground flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-primary" />
+              Contact
+            </h3>
             <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-primary" />
-                <span className="text-muted-foreground">Doha, Qatar</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-primary" />
-                <span className="text-muted-foreground">+974 1234 5678</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-primary" />
-                <span className="text-muted-foreground">hello@qcapsules.qa</span>
-              </div>
+              <motion.div
+                className="flex items-start space-x-3 group"
+                initial={{ opacity: 0, x: -20 }}
+                animate={
+                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                }
+                transition={{ duration: 0.4, delay: 0.5 }}
+              >
+                <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0 group-hover:text-primary-glow transition-colors" />
+                <span className="text-muted-foreground text-sm">
+                  Doha, Qatar
+                </span>
+              </motion.div>
+              <motion.a
+                href="tel:+97412345678"
+                className="flex items-start space-x-3 group"
+                initial={{ opacity: 0, x: -20 }}
+                animate={
+                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                }
+                transition={{ duration: 0.4, delay: 0.6 }}
+              >
+                <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0 group-hover:text-primary-glow transition-colors" />
+                <span className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
+                  +974 1234 5678
+                </span>
+              </motion.a>
+              <motion.a
+                href="mailto:hello@qcapsules.qa"
+                className="flex items-start space-x-3 group"
+                initial={{ opacity: 0, x: -20 }}
+                animate={
+                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                }
+                transition={{ duration: 0.4, delay: 0.7 }}
+              >
+                <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0 group-hover:text-primary-glow transition-colors" />
+                <span className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
+                  hello@qcapsules.qa
+                </span>
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="border-t border-border/50 mt-12 pt-8 flex flex-col lg:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm">
-            © 2024 Q Capsules. All rights reserved. Made in Qatar
-          </p>
-          <div className="flex space-x-6 mt-4 lg:mt-0">
-            <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">Privacy Policy</a>
-            <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">Terms of Service</a>
+        {/* Bottom Section */}
+        <motion.div
+          className="relative pt-8 mt-8"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          {/* Golden Divider */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent opacity-50"></div>
+
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
+            <p className="text-muted-foreground text-sm text-center lg:text-left">
+              © 2024 Q Capsules. All rights reserved.{" "}
+              <span className="text-primary">Made in Qatar</span>
+            </p>
+            <div className="flex space-x-6">
+              <motion.a
+                href="#"
+                className="text-muted-foreground hover:text-primary text-sm transition-colors"
+                whileHover={{ scale: 1.05 }}
+              >
+                Privacy Policy
+              </motion.a>
+              <motion.a
+                href="#"
+                className="text-muted-foreground hover:text-primary text-sm transition-colors"
+                whileHover={{ scale: 1.05 }}
+              >
+                Terms of Service
+              </motion.a>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

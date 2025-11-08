@@ -86,7 +86,7 @@ const Index = () => {
         {/* <ScrollCapsuleSection /> */}
         {/* <CertificationsSection /> */}
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </div>
   );

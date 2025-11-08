@@ -1,9 +1,9 @@
 import { useRef, Suspense, useEffect } from "react";
 import { forwardRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { Sparkles, Box, Layers } from "lucide-react";
 
 function CapsuleStructureModel() {
@@ -39,15 +39,11 @@ function CapsuleStructureModel() {
 
 export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
   (props, ref) => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
     const controls = useAnimation();
 
     useEffect(() => {
-      if (isInView) {
-        controls.start("visible");
-      }
-    }, [isInView, controls]);
+      controls.start("visible");
+    }, [controls]);
 
     const structureFeatures = [
       {
@@ -112,7 +108,7 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
         className="relative overflow-hidden py-32"
       >
         {/* Light Background Overlay */}
-        <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-white/15 backdrop-blur-sm"></div>
 
         {/* Background Effects */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"></div>
@@ -142,23 +138,18 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
           ))}
         </div>
 
-        <div
-          className="container mx-auto px-6 relative z-10 max-w-7xl"
-          ref={containerRef}
-        >
+        <div className="container mx-auto px-6 relative z-10 max-w-7xl">
           {/* Header */}
           <motion.div
             className="text-center mb-20"
             initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <motion.div
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-8 border border-white/20"
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={
-                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-              }
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               whileHover={{ scale: 1.05 }}
             >
@@ -169,7 +160,7 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
             <motion.h2
               className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-foreground"
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               Revolutionary Capsule Structure
@@ -178,7 +169,7 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
             <motion.p
               className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               Experience the engineering excellence behind every Q Capsule. Our
@@ -190,14 +181,7 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - 3D Model */}
-            <motion.div
-              className="w-full h-[600px] relative"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={
-                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }
-              }
-              transition={{ duration: 1, delay: 0.8 }}
-            >
+            <div className="w-full h-[600px] relative">
               <Canvas
                 camera={{ position: [35, 18, 35], fov: 50 }}
                 style={{ background: "transparent" }}
@@ -225,20 +209,13 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
                 >
                   <CapsuleStructureModel />
                 </Suspense>
-                <OrbitControls
-                  enablePan={false}
-                  enableZoom={false}
-                  autoRotate={false}
-                  maxPolarAngle={Math.PI / 2}
-                  minPolarAngle={Math.PI / 4}
-                />
               </Canvas>
 
               {/* Golden glow effect around model */}
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-glow/10 rounded-full blur-3xl"></div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Right Side - Feature Cards */}
             <motion.div
