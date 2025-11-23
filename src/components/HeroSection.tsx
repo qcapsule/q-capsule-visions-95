@@ -7,6 +7,7 @@ import capsule_transparent from "@/assets/transparent_image_q56x.png";
 import capsule_transparent2 from "@/assets/transparent_capsule_q75x.png";
 import capsule_transparent3 from "@/assets/capsule_transparent3.png";
 import transparentCapsule1 from "@/assets/transparent_capsule_115x.png";
+import heroSectionBg from "@/assets/herosection-bg.svg";
 
 // Map capsules to their transparent images
 const capsuleTransparentMap: Record<string, string> = {
@@ -50,99 +51,69 @@ export const HeroSection = forwardRef<HTMLElement>((props, ref) => {
 
   return (
     <div className="relative h-[100vh] w-full">
-      {/* Transparent Capsule - Full Size, Center Bottom */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-end",
-          zIndex: 20,
-          pointerEvents: "none",
-        }}
-      >
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.img
-            key={currentCapsule.id}
-            src={currentTransparentImage}
-            alt={currentCapsule.name}
-            className="w-full object-contain object-bottom rounded-2xl"
-            custom={direction}
-            initial={{
-              opacity: 0,
-              scale: 0.9,
-              x: direction > 0 ? 50 : -50,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              x: 0,
-            }}
-            exit={{
-              opacity: 0,
-              scale: 1.1,
-              x: direction > 0 ? -50 : 50,
-            }}
-            transition={{
-              duration: 0.6,
-              ease: [0.4, 0, 0.2, 1],
-            }}
-            style={{
-              height: "35%",
-              mixBlendMode: "normal",
-              display: "block",
-              margin: 0,
-              padding: 0,
-            }}
-          />
-        </AnimatePresence>
-      </div>
-
       <section
         ref={ref}
         id="hero"
-        className="relative h-[100vh] flex flex-col overflow-hidden bg-background"
+        className="relative h-[100vh] flex flex-col overflow-hidden"
+        style={{
+          backgroundImage: `url(${heroSectionBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        {/* Main Content Area - Dead Center */}
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          {/* Large Brand Name Text */}
-          <motion.h1
-            className="text-7xl lg:text-9xl xl:text-[12rem] font-bold text-foreground leading-none tracking-tight text-center relative z-[5] -mt-16 lg:-mt-20"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Luxury living anywhere...
-          </motion.h1>
+        {/* Transparent Capsule - Centered */}
+        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.img
+              key={currentCapsule.id}
+              src={currentTransparentImage}
+              alt={currentCapsule.name}
+              className="object-contain rounded-2xl"
+              custom={direction}
+              initial={{
+                opacity: 0,
+                scale: 0.9,
+                x: direction > 0 ? 50 : -50,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                x: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 1.1,
+                x: direction > 0 ? -50 : 50,
+              }}
+              transition={{
+                duration: 0.6,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+              style={{
+                height: "45%",
+                maxWidth: "65%",
+                mixBlendMode: "normal",
+                display: "block",
+                margin: 0,
+                padding: 0,
+              }}
+            />
+          </AnimatePresence>
         </div>
 
         {/* Bottom Content Section */}
         <div className="absolute bottom-0 left-0 right-0 px-8 lg:px-16 pb-8 lg:pb-12 z-30">
           <div className="w-full flex flex-row items-end justify-between">
-            {/* Left - Mission Text */}
+            {/* Left - Luxury Living Text */}
             <motion.div
-              className="max-w-xs lg:max-w-sm w-[280px]"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 1.0 }}
             >
-              <p className="text-base lg:text-md text-muted-foreground leading-relaxed mb-6 text-justify">
-                Our mission is to deliver bespoke capsule homes that are purely
-                made from sustainable materials and natural supplies. Our
-                products reflect modern minimalism with a touch of creativity.
-              </p>
-              <Button
-                className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8 py-3 text-sm lg:text-base font-medium transition-all duration-300 flex items-center gap-2 group"
-                onClick={() => scrollToSection("#customization")}
-              >
-                explore
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <h1 className="text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-amber-50 leading-tight tracking-tight">
+                Luxury living anywhere...
+              </h1>
             </motion.div>
 
             {/* Right - Collection Carousel */}
