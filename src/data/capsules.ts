@@ -24,26 +24,26 @@ export type Capsule = {
 };
 
 export const capsules: Capsule[] = [
-  {
-    id: "q56x",
-    name: "Q56X",
-    sizeLabel: "1 Room",
-    dimensions: "18m²",
-    rooms: "Studio",
-    blurb:
-      "Compact living spaces designed for efficiency and modern minimalism.",
-    features: [
-      "Smart home integration",
-      "Energy-efficient systems",
-      "Premium finishes",
-      "Space optimization",
-    ],
-    images: [
-      q56xCapsule2,
-      residentialCapsule,
-      modernInteriorCapsule,
-    ],
-  },
+  // {
+  //   id: "q56x",
+  //   name: "Q56X",
+  //   sizeLabel: "1 Room",
+  //   dimensions: "18m²",
+  //   rooms: "Studio",
+  //   blurb:
+  //     "Compact living spaces designed for efficiency and modern minimalism.",
+  //   features: [
+  //     "Smart home integration",
+  //     "Energy-efficient systems",
+  //     "Premium finishes",
+  //     "Space optimization",
+  //   ],
+  //   images: [
+  //     q56xCapsule2,
+  //     residentialCapsule,
+  //     modernInteriorCapsule,
+  //   ],
+  // },
   {
     id: "q75x",
     name: "Q75X",
@@ -58,32 +58,28 @@ export const capsules: Capsule[] = [
       "Premium finishes",
       "Modern appliances",
     ],
-    images: [
-      q75xCapsule2,
-      q75xCapsulel,
-      q75xCapsule3,
-    ],
+    images: [q75xCapsule2, q75xCapsulel, q75xCapsule3],
   },
-  {
-    id: "q95x",
-    name: "Q95X",
-    sizeLabel: "3 Rooms",
-    dimensions: "30m²",
-    rooms: "Bed/Living/Bath",
-    blurb:
-      "Spacious capsules with outdoor connectivity perfect for nature lovers.",
-    features: [
-      "Outdoor deck access",
-      "Enhanced air circulation",
-      "Luxury amenities",
-      "Panoramic windows",
-    ],
-    images: [
-      q95Capsule1,
-      livingRoom1,
-      floorplanBg,
-    ],
-  },
+  // {
+  //   id: "q95x",
+  //   name: "Q95X",
+  //   sizeLabel: "3 Rooms",
+  //   dimensions: "30m²",
+  //   rooms: "Bed/Living/Bath",
+  //   blurb:
+  //     "Spacious capsules with outdoor connectivity perfect for nature lovers.",
+  //   features: [
+  //     "Outdoor deck access",
+  //     "Enhanced air circulation",
+  //     "Luxury amenities",
+  //     "Panoramic windows",
+  //   ],
+  //   images: [
+  //     q95Capsule1,
+  //     livingRoom1,
+  //     floorplanBg,
+  //   ],
+  // },
   {
     id: "q115x",
     name: "Q115X",
@@ -97,10 +93,6 @@ export const capsules: Capsule[] = [
       "Premium materials",
       "Advanced insulation",
     ],
-    images: [
-      q115xCapsule1,
-      healthcareCapsule,
-      retailCapsule,
-    ],
+    images: [q115xCapsule1, healthcareCapsule, retailCapsule],
   },
 ];

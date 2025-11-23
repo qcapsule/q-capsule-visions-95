@@ -14,10 +14,10 @@ if (typeof window !== "undefined") {
 
 function CapsuleStructureModel() {
   const meshRef = useRef<THREE.Group>(null);
-
+  
   // Load the GLB model
   const { scene } = useGLTF("/capsulestructure.glb");
-
+  
   useFrame((state) => {
     if (meshRef.current) {
       // Smooth continuous rotation on X axis
@@ -36,11 +36,11 @@ function CapsuleStructureModel() {
   }
 
   return (
-    <group ref={meshRef} position={[0, 0, 0]}>
+      <group ref={meshRef} position={[0, 0, 0]}>
       <primitive object={scene} scale={[24, 24, 24]}>
-        <meshStandardMaterial color="white" />
-      </primitive>
-    </group>
+          <meshStandardMaterial color="white" />
+        </primitive>
+      </group>
   );
 }
 
@@ -168,7 +168,7 @@ export const TechnologySection = ({ className }: TechnologySectionProps) => {
   ];
 
   return (
-    <section
+    <section 
       ref={sectionRef}
       className={`relative py-32 overflow-hidden ${className || ""}`}
     >
@@ -185,7 +185,7 @@ export const TechnologySection = ({ className }: TechnologySectionProps) => {
       {/* Background Image */}
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-15"
-        style={{
+      style={{
           backgroundImage: `url(/src/assets/q56x-capsule2sections.png)`,
           backgroundAttachment: "fixed",
         }}
@@ -233,16 +233,16 @@ export const TechnologySection = ({ className }: TechnologySectionProps) => {
           </motion.div>
 
           <h2 className="text-5xl lg:text-6xl font-bold text-white mb-4">
-            Building Capsules with Advanced Technology
-          </h2>
+                Building Capsules with Advanced Technology
+              </h2>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
             Q-Capsules built using cutting-edge modular technology have gained
             widespread recognition worldwide, with some structures serving
             communities for decades with exceptional reliability and
             performance.
-          </p>
-        </div>
-
+              </p>
+            </div>
+            
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
           {/* Left Section - 3D Model */}
           <div className="lg:col-span-2">
@@ -266,15 +266,15 @@ export const TechnologySection = ({ className }: TechnologySectionProps) => {
                 />
                 <Suspense
                   fallback={
-                    <mesh>
-                      <boxGeometry args={[2, 2, 2]} />
-                      <meshStandardMaterial color="gray" />
-                    </mesh>
+                  <mesh>
+                    <boxGeometry args={[2, 2, 2]} />
+                    <meshStandardMaterial color="gray" />
+                  </mesh>
                   }
                 >
                   <CapsuleStructureModel />
                 </Suspense>
-                <OrbitControls
+                <OrbitControls 
                   enablePan={false}
                   enableZoom={false}
                   autoRotate={false}
@@ -304,18 +304,18 @@ export const TechnologySection = ({ className }: TechnologySectionProps) => {
                 {/* Golden Divider */}
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent opacity-50"></div>
 
-                <div className="flex items-start space-x-4 relative z-10">
+              <div className="flex items-start space-x-4 relative z-10">
                   <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-white/30 transition-all duration-300">
                     <card.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="flex-1">
+                </div>
+                <div className="flex-1">
                     <h3 className="text-xl font-bold text-white mb-2">
                       {card.title}
                     </h3>
                     <p className="text-white/70 leading-relaxed text-sm">
                       {card.description}
-                    </p>
-                  </div>
+                  </p>
+                </div>
                 </div>
               </motion.div>
             ))}

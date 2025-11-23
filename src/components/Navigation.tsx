@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
-import qcapsuleLogo from "@/assets/qcapsule-logo4.png";
+import qcapsuleLogo from "@/assets/qcapsule-logo.png";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,7 +41,7 @@ export const Navigation = () => {
     <>
       {/* Navigation */}
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-md transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md transition-all duration-300"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -58,7 +58,7 @@ export const Navigation = () => {
                 <img
                   src={qcapsuleLogo}
                   alt="QCapsule Logo"
-                  className="h-16 w-auto"
+                  className="h-16 w-auto py-2"
                 />
               </div>
             </motion.div>
@@ -70,7 +70,7 @@ export const Navigation = () => {
                   <div key={item.label} className="flex items-center">
                     <motion.button
                       onClick={() => scrollToSection(item.href)}
-                      className="text-sm font-medium text-white hover:text-white transition-all duration-300 px-4 py-2"
+                      className="text-sm font-medium text-foreground hover:text-primary transition-all duration-300 px-4 py-2"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -95,7 +95,7 @@ export const Navigation = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button
-                  className="bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 transition-all duration-300 rounded-full px-6 py-3"
+                  className="bg-foreground backdrop-blur-md border border-border text-background hover:bg-foreground/90 transition-all duration-300 rounded-full px-6 py-3"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                   onClick={() => scrollToSection("#booking")}
                 >
@@ -108,7 +108,7 @@ export const Navigation = () => {
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <motion.button
-                className="text-white/70 hover:text-white transition-colors duration-200"
+                className="text-foreground/70 hover:text-foreground transition-colors duration-200"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -135,7 +135,7 @@ export const Navigation = () => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden bg-black/40 backdrop-blur-md border-t border-yellow-200/30"
+              className="md:hidden bg-white backdrop-blur-md border-t border-yellow-200/30"
               initial={{ opacity: 0, height: 0, y: -20 }}
               animate={{ opacity: 1, height: "auto", y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
@@ -150,7 +150,7 @@ export const Navigation = () => {
                     >
                       <motion.button
                         onClick={() => scrollToSection(item.href)}
-                        className="text-white hover:text-white transition-all duration-300 font-medium py-3 px-4 w-full"
+                        className="text-foreground hover:text-primary transition-all duration-300 font-medium py-3 px-4 w-full"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -176,7 +176,7 @@ export const Navigation = () => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Button
-                      className="bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 transition-all duration-300 w-full py-3 rounded-lg"
+                      className="bg-foreground backdrop-blur-md border border-border text-background hover:bg-foreground/90 transition-all duration-300 w-full py-3 rounded-lg"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                       onClick={() => scrollToSection("#booking")}
                     >

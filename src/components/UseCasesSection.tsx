@@ -195,18 +195,18 @@ export const UseCasesSection = forwardRef<HTMLElement>((props, ref) => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Built for Every Vision
-          </motion.h2>
+            </motion.h2>
 
-          <motion.p
+            <motion.p
             className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            Discover how Q Capsules transform ideas into reality across
-            industries and applications.
-          </motion.p>
-        </motion.div>
+            >
+              Discover how Q Capsules transform ideas into reality across
+              industries and applications.
+            </motion.p>
+          </motion.div>
 
         {/* Use Cases Grid - Interactive Cards */}
         <motion.div
@@ -215,9 +215,9 @@ export const UseCasesSection = forwardRef<HTMLElement>((props, ref) => {
           initial="hidden"
           animate={controls}
         >
-          {useCases.map((useCase, index) => (
-            <motion.div
-              key={useCase.title}
+            {useCases.map((useCase, index) => (
+              <motion.div
+                key={useCase.title}
               className="group relative h-full"
               variants={cardVariants}
               onHoverStart={() => setSelectedIndex(index)}
@@ -318,44 +318,44 @@ export const UseCasesSection = forwardRef<HTMLElement>((props, ref) => {
                     </div>
                   </motion.div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                </div>
+              </motion.div>
+            ))}
         </motion.div>
 
-        {/* Call to Action */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
+          {/* Call to Action */}
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 1, delay: 0.8 }}
-        >
+          >
           <div className="glass-card p-12 max-w-4xl mx-auto border border-border/50 hover:border-primary/30 transition-all duration-500 rounded-2xl relative overflow-hidden group">
             {/* Golden Divider */}
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent opacity-50"></div>
 
-            <motion.h3
+              <motion.h3
               className="text-3xl lg:text-4xl font-bold mb-6 text-foreground group-hover:text-primary transition-all duration-300"
               whileHover={{ scale: 1.02 }}
-            >
-              Ready to Bring Your Vision to Life?
-            </motion.h3>
+              >
+                Ready to Bring Your Vision to Life?
+              </motion.h3>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed group-hover:text-foreground/80 transition-all duration-300">
-              Every project is unique. Let's collaborate to create a Q Capsule
-              solution tailored specifically to your needs and vision.
-            </p>
-            <motion.button
+                Every project is unique. Let's collaborate to create a Q Capsule
+                solution tailored specifically to your needs and vision.
+              </p>
+                <motion.button
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-              whileHover={{
-                scale: 1.05,
+                  whileHover={{
+                    scale: 1.05,
                 boxShadow: "0 0 30px rgba(var(--primary), 0.4)",
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Discuss Your Project
-            </motion.button>
-          </div>
-        </motion.div>
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Discuss Your Project
+                </motion.button>
+            </div>
+          </motion.div>
       </div>
     </section>
   );
