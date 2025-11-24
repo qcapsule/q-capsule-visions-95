@@ -50,37 +50,7 @@ export const Footer = () => {
   // ];
 
   return (
-    <footer ref={ref} id="footer" className="relative overflow-hidden py-20">
-      {/* Light Background Overlay */}
-      <div className="absolute inset-0 bg-white/15 backdrop-blur-sm"></div>
-
-      {/* Background Effects */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary-glow/5 rounded-full blur-3xl animate-float"></div>
-
-      {/* Animated particles */}
-      <div className="absolute inset-0">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              opacity: 0,
-            }}
-            animate={{
-              y: [null, -50, -100],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 3,
-              ease: "easeOut",
-            }}
-          />
-        ))}
-      </div>
+    <footer ref={ref} id="footer" className="relative overflow-hidden py-20 bg-white">
 
       {/* Golden Divider at top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent"></div>
@@ -255,7 +225,7 @@ export const Footer = () => {
 
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center lg:text-left">
-              © 2024 Q Capsules. All rights reserved.{" "}
+              © 2025 Q Capsules. All rights reserved.{" "}
               <span className="text-primary">Made in Qatar</span>
             </p>
             <div className="flex space-x-6">

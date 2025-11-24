@@ -1,139 +1,149 @@
-import { forwardRef, useRef, useEffect } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { forwardRef, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import visionMissionImage from "@/assets/visionmission.png";
 
 export const VisionSection = forwardRef<HTMLElement>((props, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [isInView, controls]);
 
   const visionMissionData = [
     {
       title: "Our Vision",
       content:
-"To lead the global shift toward intelligent, modular living : where architectural beauty meets sustainability, and mobility meets true luxury."   },
+        "To lead the global shift toward intelligent, modular living: where architectural beauty meets sustainability, and mobility meets true luxury.",
+    },
     {
       title: "Our Mission",
       content:
-"To design and manufacture modular living capsules that integrate smart technology, resilient engineering, and refined interiors. Enabling luxury living experiences anywhere..."    },
+        "To design and manufacture modular living capsules that integrate smart technology, resilient engineering, and refined interiors. Enabling luxury living experiences anywhere...",
+    },
   ];
 
   return (
     <section
       ref={ref}
       id="vision"
-      className="relative overflow-hidden min-h-screen"
+      className="relative overflow-hidden py-32 bg-background"
     >
-      {/* Subtle Beach Background */}
-      <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 bg-gradient-to-br from-[#e8d5b7] via-[#d4c4a8] to-[#c9b896]"
-          style={{
-            backgroundImage: `url(${visionMissionImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center bottom',
-            backgroundRepeat: 'no-repeat',
-            filter: 'blur(8px) opacity(0.3)',
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f5e6d3]/40 via-transparent to-[#d4a574]/30" />
-      </div>
-
-      {/* Split Layout Container */}
-      <div className="relative z-10 min-h-screen flex flex-col lg:flex-row">
-        {/* Left Side - Large Capsule Image */}
+      <div
+        className="container mx-auto px-8 lg:px-16 relative z-10 max-w-7xl"
+        ref={containerRef}
+      >
+        {/* Header Pattern */}
         <motion.div
-          className="lg:w-1/2 relative min-h-[50vh] lg:min-h-screen flex items-center justify-center p-8 lg:p-12"
-          initial={{ opacity: 0, x: -100 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          className="mb-16"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="relative w-full max-w-2xl">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <span className="text-2xl text-foreground">✦</span>
+            <span className="text-4xl lg:text-6xl font-bold text-foreground">
+              Vision
+            </span>
+            <span className="text-2xl text-foreground">✦</span>
+            <span className="text-4xl lg:text-6xl font-bold text-foreground">
+              Mission
+            </span>
+            <span className="text-2xl text-foreground">✦</span>
+          </div>
+          <p className="text-md lg:text-lg text-muted-foreground text-center mt-4 leading-relaxed max-w-3xl mx-auto">
+            Driving innovation in modular living through intelligent design,
+            sustainable practices, and uncompromising luxury.
+          </p>
+        </motion.div>
+
+        {/* Main Content - Image Left, Cards Right */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+          {/* Left Side - Capsule Image */}
+          <motion.div
+            className="relative w-full h-full"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="relative w-full h-full overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src={visionMissionImage}
                 alt="Luxury Modular Living Capsule"
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover rounded-2xl"
               />
+
               {/* Golden LED Glow Overlay */}
               <div className="absolute inset-0 pointer-events-none">
-                <div 
+                <div
                   className="absolute top-4 left-4 right-4 h-[3px] bg-[#FFEED6] rounded-full opacity-80 blur-[2px]"
                   style={{
-                    boxShadow: "0 0 20px rgba(255, 238, 214, 0.8), 0 0 40px rgba(255, 238, 214, 0.5)",
+                    boxShadow:
+                      "0 0 20px rgba(255, 238, 214, 0.8), 0 0 40px rgba(255, 238, 214, 0.5)",
                   }}
                 />
-                <div 
+                <div
                   className="absolute bottom-4 left-4 right-4 h-[3px] bg-[#FFEED6] rounded-full opacity-80 blur-[2px]"
                   style={{
-                    boxShadow: "0 0 20px rgba(255, 238, 214, 0.8), 0 0 40px rgba(255, 238, 214, 0.5)",
+                    boxShadow:
+                      "0 0 20px rgba(255, 238, 214, 0.8), 0 0 40px rgba(255, 238, 214, 0.5)",
                   }}
                 />
               </div>
             </div>
-          </div>
-        </motion.div>
-
-        {/* Right Side - Content */}
-        <div
-          className="lg:w-1/2 flex flex-col justify-center p-8 lg:p-16 lg:pl-12"
-          ref={containerRef}
-        >
-          {/* Heading */}
-          <motion.div
-            className="mb-12 lg:mb-16"
-            initial={{ opacity: 0, y: -20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h2 className="text-5xl lg:text-7xl xl:text-8xl font-bold text-[#3d2817] dark:text-[#5a3d2a] leading-tight">
-              Vision & Mission
-            </h2>
           </motion.div>
 
-          {/* Vision & Mission Boxes - Stacked */}
-          <div className="space-y-6 lg:space-y-8">
-            {/* Vision Box */}
-            <motion.div
-              className="rounded-2xl p-6 lg:p-8 shadow-xl backdrop-blur-sm border border-white/10"
-              style={{
-                background: "linear-gradient(135deg, rgba(61, 40, 23, 0.65) 0%, rgba(45, 30, 18, 0.55) 50%, rgba(61, 40, 23, 0.65) 100%)",
-              }}
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-                {visionMissionData[0].title}
-              </h3>
-              <p className="text-base lg:text-lg text-white/90 leading-relaxed">
-                {visionMissionData[0].content}
-              </p>
-            </motion.div>
+          {/* Right Side - Vision & Mission Cards in Column */}
+          <div className="space-y-6 lg:space-y-8 h-full flex flex-col">
+            {visionMissionData.map((item, index) => (
+              <motion.div
+                key={item.title}
+                className="group relative flex-1"
+                initial={{ opacity: 0, x: 50 }}
+                animate={
+                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }
+                }
+                transition={{
+                  duration: 0.6,
+                  delay: 0.4 + index * 0.1,
+                }}
+              >
+                <div className="relative backdrop-blur-xl rounded-2xl p-6 lg:p-8 shadow-2xl overflow-hidden h-full border border-border/50 group-hover:border-primary/30 transition-all duration-500">
+                  {/* Background gradient */}
+                  <div
+                    className="absolute inset-0 pointer-events-none rounded-2xl"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(180, 130, 70, 0.15) 0%, rgba(200, 150, 90, 0.1) 50%, rgba(160, 110, 60, 0.08) 100%)",
+                      boxShadow:
+                        "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 1px 0 rgba(220, 170, 110, 0.2)",
+                    }}
+                  ></div>
 
-            {/* Mission Box */}
-            <motion.div
-              className="rounded-2xl p-6 lg:p-8 shadow-xl backdrop-blur-sm border border-white/10"
-              style={{
-                background: "linear-gradient(135deg, rgba(61, 40, 23, 0.65) 0%, rgba(45, 30, 18, 0.55) 50%, rgba(61, 40, 23, 0.65) 100%)",
-              }}
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-                {visionMissionData[1].title}
-              </h3>
-              <p className="text-base lg:text-lg text-white/90 leading-relaxed">
-                {visionMissionData[1].content}
-              </p>
-            </motion.div>
+                  {/* Shine Effect */}
+                  <div
+                    className="absolute inset-0 pointer-events-none rounded-2xl"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 30%, transparent 60%)",
+                      mixBlendMode: "overlay",
+                    }}
+                  ></div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-all duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-base lg:text-lg text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-all duration-300">
+                      {item.content}
+                    </p>
+                  </div>
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl">
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

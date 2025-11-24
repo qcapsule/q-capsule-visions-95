@@ -69,34 +69,37 @@ const Index = () => {
         <ScrollProgress />
         <Navigation />
         <HeroSection ref={heroRef} />
-        <GoldenLEDSeparator />
-        <VisionSection ref={visionRef} />
-        <GlassFeaturesSection />
+        <CapsuleCollectionSection ref={capsuleCollectionRef} />
+
         <CapsuleRoomsSection />
-        <GoldenLEDSeparator />
-        {/* <TechnologySection /> */}
+        <GlassFeaturesSection />
+        {/* <GoldenLEDSeparator /> */}
         <CapsuleStructure3DSection />
-        <GoldenLEDSeparator />
+
+        <VisionSection ref={visionRef} />
+
+        {/* <GoldenLEDSeparator /> */}
+        {/* <TechnologySection /> */}
+        {/* <GoldenLEDSeparator /> */}
         {/* <SmartLightingSection /> */}
         {/* <GoldenLEDSeparator /> */}
 
         {/* <CustomizationSection /> */}
-        <CapsuleCollectionSection ref={capsuleCollectionRef} />
-        <GoldenLEDSeparator />
+        {/* <GoldenLEDSeparator /> */}
 
         {/* <CollectionSection /> */}
         {/* <FloorPlanSpotlightExample />
 
         <EnvironmentsSection /> */}
         <BrochureSection ref={brochureRef} />
-        <GoldenLEDSeparator />
+        {/* <GoldenLEDSeparator /> */}
         <AboutSection ref={aboutRef} />
-        <GoldenLEDSeparator />
+        {/* <GoldenLEDSeparator /> */}
         <CertificationsSection />
-        <GoldenLEDSeparator />
+        {/* <GoldenLEDSeparator /> */}
         {/* <UseCasesSection /> */}
         <BookingSection ref={bookingRef} />
-        <GoldenLEDSeparator />
+        {/* <GoldenLEDSeparator /> */}
 
         {/* <CrossSectionDiagram /> */}
         {/* <StatisticsSection /> */}

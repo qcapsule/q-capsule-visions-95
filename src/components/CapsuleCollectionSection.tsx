@@ -1,14 +1,9 @@
 import { motion } from "framer-motion";
-import { useState, useCallback, useEffect, forwardRef } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ArrowRight,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect, forwardRef, useRef } from "react";
+import { useInView } from "framer-motion";
 import q56xCapsuleImage from "@/assets/q56x-capsule2.png";
 import q75xCapsuleImage from "@/assets/q75x-capsule2.png";
-import q95xCapsuleImage from "@/assets/q95x-capsule.png";
+import q95xCapsuleImage from "@/assets/q95-capsule1.png";
 import q115xCapsuleImage from "@/assets/q115x-capsule1.png";
 
 // Complete capsule catalog data
@@ -19,6 +14,8 @@ const allCapsules = [
     size: "18m²",
     dimensions: "3.2 x 3.2 x 5.6m",
     rooms: "1 Room",
+    description:
+      "Compact and efficient, perfect for single occupancy or intimate spaces",
     image: q56xCapsuleImage,
   },
   {
@@ -27,6 +24,7 @@ const allCapsules = [
     size: "24m²",
     dimensions: "3.2 x 3.2 x 7.5m",
     rooms: "2 Rooms",
+    description: "Spacious two-room design ideal for couples or small families",
     image: q75xCapsuleImage,
   },
   {
@@ -35,6 +33,8 @@ const allCapsules = [
     size: "30m²",
     dimensions: "3.2 x 3.2 x 9.5m",
     rooms: "2 Rooms + Deck",
+    description:
+      "Premium living with additional deck space for outdoor relaxation",
     image: q95xCapsuleImage,
   },
   {
@@ -43,251 +43,328 @@ const allCapsules = [
     size: "38m²",
     dimensions: "3.2 x 3.2 x 11.5m",
     rooms: "3 Rooms",
+    description:
+      "Luxurious three-room configuration for maximum comfort and space",
     image: q115xCapsuleImage,
   },
 ];
 
+// Mobile Component - Simple grid with always visible content
+const MobileCapsuleGrid = ({
+  capsules,
+  isInView,
+}: {
+  capsules: typeof allCapsules;
+  isInView: boolean;
+}) => {
+  return (
+    <div className="grid grid-cols-1 gap-6 md:hidden">
+      {capsules.map((capsule, index) => (
+        <motion.div
+          key={capsule.id}
+          className="relative h-[350px] sm:h-[400px] overflow-hidden rounded-2xl shadow-2xl"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{
+            duration: 0.6,
+            delay: index * 0.1,
+          }}
+        >
+          {/* Capsule Image */}
+          <div className="absolute inset-0">
+            <img
+              src={capsule.image}
+              alt={capsule.name}
+              className="w-full h-full object-cover"
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30"></div>
+          </div>
+
+          {/* Content Overlay - Always visible */}
+          <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1 + 0.2,
+              }}
+            >
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                {capsule.name}
+              </h3>
+              <div className="mb-2">
+                <p className="text-lg sm:text-xl text-white font-medium mb-1">
+                  {capsule.size}
+                </p>
+                <p className="text-sm sm:text-base text-white/90 mb-2">
+                  {capsule.rooms}
+                </p>
+                <p className="text-sm sm:text-base text-white/80 leading-relaxed">
+                  {capsule.description}
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
+// Desktop Component - 2x2 grid with hover expand effect
+const DesktopCapsuleGrid = ({
+  capsules,
+  isInView,
+}: {
+  capsules: typeof allCapsules;
+  isInView: boolean;
+}) => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  return (
+    <div className="hidden md:flex flex-col gap-1 lg:gap-2">
+      {/* First Row */}
+      <div className="flex flex-row gap-1 lg:gap-2">
+        {capsules.slice(0, 2).map((capsule, index) => {
+          const isHovered = hoveredIndex === index;
+          const isRowHovered = hoveredIndex !== null && hoveredIndex < 2;
+          const flexBasis = isHovered
+            ? "60%"
+            : isRowHovered && !isHovered
+            ? "40%"
+            : "50%";
+
+          return (
+            <motion.div
+              key={capsule.id}
+              className="group relative h-[400px] lg:h-[500px] overflow-hidden rounded-2xl shadow-2xl"
+              initial={{ opacity: 0, y: 50 }}
+              animate={
+                isInView
+                  ? {
+                      opacity: 1,
+                      y: 0,
+                      flexBasis: flexBasis,
+                    }
+                  : { opacity: 0, y: 50 }
+              }
+              onHoverStart={() => setHoveredIndex(index)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              style={{
+                flexGrow: isHovered ? 1 : 0,
+                flexShrink: isHovered ? 0 : 1,
+                zIndex: isHovered ? 10 : 1,
+              }}
+              transition={{
+                opacity: { duration: 0.6, delay: index * 0.1 },
+                y: { duration: 0.6, delay: index * 0.1 },
+                flexBasis: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                },
+              }}
+            >
+              {/* Capsule Image */}
+              <div className="absolute inset-0">
+                <motion.img
+                  src={capsule.image}
+                  alt={capsule.name}
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.4 }}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 group-hover:from-black/60 group-hover:via-black/30 group-hover:to-black/10 transition-all duration-300"></div>
+              </div>
+
+              {/* Content Overlay - Visible on hover */}
+              <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8 z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isInView && isHovered
+                      ? { opacity: 1, y: 0 }
+                      : { opacity: 0, y: 20 }
+                  }
+                  transition={{
+                    duration: isHovered ? 0.4 : 0,
+                    delay: isHovered ? 0.4 : 0,
+                    ease: "easeOut",
+                  }}
+                >
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">
+                    {capsule.name}
+                  </h3>
+                  <div className="mb-2">
+                    <p className="text-lg lg:text-xl text-white font-medium mb-1">
+                      {capsule.size}
+                    </p>
+                    <p className="text-sm lg:text-base text-white/90 mb-2">
+                      {capsule.rooms}
+                    </p>
+                    <p className="text-sm lg:text-base text-white/80 leading-relaxed">
+                      {capsule.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-transparent to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Second Row */}
+      <div className="flex flex-row gap-1 lg:gap-2">
+        {capsules.slice(2, 4).map((capsule, index) => {
+          const actualIndex = index + 2;
+          const isHovered = hoveredIndex === actualIndex;
+          const isRowHovered = hoveredIndex !== null && hoveredIndex >= 2;
+          const flexBasis = isHovered
+            ? "60%"
+            : isRowHovered && !isHovered
+            ? "40%"
+            : "50%";
+
+          return (
+            <motion.div
+              key={capsule.id}
+              className="group relative h-[400px] lg:h-[500px] overflow-hidden rounded-2xl shadow-2xl"
+              initial={{ opacity: 0, y: 50 }}
+              animate={
+                isInView
+                  ? {
+                      opacity: 1,
+                      y: 0,
+                      flexBasis: flexBasis,
+                    }
+                  : { opacity: 0, y: 50 }
+              }
+              onHoverStart={() => setHoveredIndex(actualIndex)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              style={{
+                flexGrow: isHovered ? 1 : 0,
+                flexShrink: isHovered ? 0 : 1,
+                zIndex: isHovered ? 10 : 1,
+              }}
+              transition={{
+                opacity: { duration: 0.6, delay: actualIndex * 0.1 },
+                y: { duration: 0.6, delay: actualIndex * 0.1 },
+                flexBasis: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                },
+              }}
+            >
+              {/* Capsule Image */}
+              <div className="absolute inset-0">
+                <motion.img
+                  src={capsule.image}
+                  alt={capsule.name}
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.4 }}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 group-hover:from-black/60 group-hover:via-black/30 group-hover:to-black/10 transition-all duration-300"></div>
+              </div>
+
+              {/* Content Overlay - Visible on hover */}
+              <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8 z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isInView && isHovered
+                      ? { opacity: 1, y: 0 }
+                      : { opacity: 0, y: 20 }
+                  }
+                  transition={{
+                    duration: isHovered ? 0.4 : 0,
+                    delay: isHovered ? 0.4 : 0,
+                    ease: "easeOut",
+                  }}
+                >
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">
+                    {capsule.name}
+                  </h3>
+                  <div className="mb-2">
+                    <p className="text-lg lg:text-xl text-white font-medium mb-1">
+                      {capsule.size}
+                    </p>
+                    <p className="text-sm lg:text-base text-white/90 mb-2">
+                      {capsule.rooms}
+                    </p>
+                    <p className="text-sm lg:text-base text-white/80 leading-relaxed">
+                      {capsule.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-transparent to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 export const CapsuleCollectionSection = forwardRef<HTMLElement>(
   (props, ref) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [visibleCards, setVisibleCards] = useState(4); // Show 4 cards at once
-
-    // Check for return capsule on component mount
-    useEffect(() => {
-      const returnToCapsule = localStorage.getItem("returnToCapsule");
-      if (returnToCapsule) {
-        const capsuleIndex = allCapsules.findIndex(
-          (capsule) =>
-            capsule.name.toLowerCase() === returnToCapsule.toLowerCase()
-        );
-        if (capsuleIndex !== -1) {
-          setCurrentIndex(capsuleIndex);
-        }
-        localStorage.removeItem("returnToCapsule");
-      }
-    }, []);
-
-    // Responsive: show fewer cards on smaller screens
-    useEffect(() => {
-      const updateVisibleCards = () => {
-        if (window.innerWidth < 768) {
-          setVisibleCards(1);
-        } else if (window.innerWidth < 1024) {
-          setVisibleCards(2);
-        } else {
-          setVisibleCards(4);
-        }
-      };
-      updateVisibleCards();
-      window.addEventListener("resize", updateVisibleCards);
-      return () => window.removeEventListener("resize", updateVisibleCards);
-    }, []);
-
-    const nextCapsule = useCallback(() => {
-      setCurrentIndex((prev) => {
-        const maxIndex = Math.max(0, allCapsules.length - visibleCards);
-        return prev >= maxIndex ? 0 : prev + 1;
-      });
-    }, [visibleCards]);
-
-    const prevCapsule = useCallback(() => {
-      setCurrentIndex((prev) => {
-        const maxIndex = Math.max(0, allCapsules.length - visibleCards);
-        return prev <= 0 ? maxIndex : prev - 1;
-      });
-    }, [visibleCards]);
-
-    const navigateToCapsulePage = (capsuleName: string) => {
-      const route = `/capsules/${capsuleName.toLowerCase()}?from=${capsuleName.toLowerCase()}`;
-      window.location.href = route;
-    };
-
-    const scrollToSection = (id: string) => {
-      const element = document.querySelector(id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    };
-
-    // Get visible capsules based on current index
-    const visibleCapsules = allCapsules.slice(
-      currentIndex,
-      currentIndex + visibleCards
-    );
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
     return (
       <section
         ref={ref}
         id="capsule-collection"
-        className="relative min-h-screen flex flex-col py-16 lg:py-24 bg-gray-100"
+        className="relative overflow-hidden py-32 bg-background"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          {/* Header Section */}
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-12 lg:mb-16">
-            {/* Top Left - Title */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-6 lg:mb-0"
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
-                Catalog of Our Capsules
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-600">
-                for 2024
-              </p>
-            </motion.div>
-
-            {/* Top Right - Description */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:max-w-md lg:text-right"
-            >
-              <p className="text-base sm:text-lg text-gray-700">
-                Modern modular capsule technology at the peak of innovation,
-                designed for sustainable living and exceptional comfort.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Capsule Cards Grid */}
-          <div className="relative mb-12">
-            {/* Desktop: Show all capsules */}
-            <div className="hidden lg:grid lg:grid-cols-4 gap-6 lg:gap-8">
-              {allCapsules.map((capsule, idx) => (
-                <motion.div
-                  key={capsule.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="group cursor-pointer"
-                  onClick={() => navigateToCapsulePage(capsule.name)}
-                >
-                  <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                    {/* Capsule Image */}
-                    <div className="relative h-64 lg:h-80 overflow-hidden bg-gray-200">
-                      <img
-                        src={capsule.image}
-                        alt={capsule.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-
-                    {/* Capsule Info */}
-                    <div className="p-6 flex-1 flex flex-col">
-                      <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">
-                        {capsule.name}
-                      </h3>
-                      <p className="text-lg text-gray-700 mb-2 font-medium">
-                        {capsule.size}
-                      </p>
-                      <p className="text-sm text-gray-600 mb-4">
-                        {capsule.rooms}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+        <div
+          className="container mx-auto px-8 lg:px-16 relative z-10 max-w-7xl"
+          ref={containerRef}
+        >
+          {/* Header Pattern */}
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <span className="text-2xl text-foreground">✦</span>
+              <span className="text-4xl lg:text-6xl font-bold text-foreground">
+                Capsule
+              </span>
+              <span className="text-2xl text-foreground">✦</span>
+              <span className="text-4xl lg:text-6xl font-bold text-foreground">
+                Collection
+              </span>
+              <span className="text-2xl text-foreground">✦</span>
             </div>
+            <p className="text-md lg:text-lg text-muted-foreground text-center mt-4 leading-relaxed max-w-3xl mx-auto">
+              Modern modular capsule technology at the peak of innovation,
+              designed for sustainable living and exceptional comfort.
+            </p>
+          </motion.div>
 
-            {/* Mobile/Tablet: Carousel view */}
-            <div className="lg:hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {visibleCapsules.map((capsule, idx) => (
-                  <motion.div
-                    key={capsule.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="group cursor-pointer"
-                    onClick={() => navigateToCapsulePage(capsule.name)}
-                  >
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                      {/* Capsule Image */}
-                      <div className="relative h-64 md:h-72 overflow-hidden bg-gray-200">
-                        <img
-                          src={capsule.image}
-                          alt={capsule.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-
-                      {/* Capsule Info */}
-                      <div className="p-6 flex-1 flex flex-col">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">
-                          {capsule.name}
-                        </h3>
-                        <p className="text-lg text-gray-700 mb-2 font-medium">
-                          {capsule.size}
-                        </p>
-                        <p className="text-sm text-gray-600 mb-4">
-                          {capsule.rooms}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Controls */}
-          <div className="flex items-center justify-between">
-            {/* Bottom Left - View Catalog Button */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <Button
-                onClick={() => {
-                  // Scroll to booking section or show more info
-                  const bookingSection = document.querySelector("#booking");
-                  if (bookingSection) {
-                    bookingSection.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center gap-2"
-              >
-                Explore Collection
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </motion.div>
-
-            {/* Bottom Right - Navigation Arrows (only on mobile/tablet) */}
-            {visibleCards < allCapsules.length && (
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="flex items-center gap-3"
-              >
-                <button
-                  onClick={prevCapsule}
-                  className="w-12 h-12 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 shadow-sm"
-                  aria-label="Previous capsules"
-                >
-                  <ChevronLeft className="w-6 h-6 text-gray-700" />
-                </button>
-                <button
-                  onClick={nextCapsule}
-                  className="w-12 h-12 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 shadow-sm"
-                  aria-label="Next capsules"
-                >
-                  <ChevronRight className="w-6 h-6 text-gray-700" />
-                </button>
-              </motion.div>
-            )}
-          </div>
+          {/* Mobile and Desktop Components */}
+          <MobileCapsuleGrid capsules={allCapsules} isInView={isInView} />
+          <DesktopCapsuleGrid capsules={allCapsules} isInView={isInView} />
         </div>
       </section>
     );

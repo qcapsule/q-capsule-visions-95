@@ -168,23 +168,23 @@ export const RoomVariationsCarousel = ({
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="relative w-full max-w-7xl mx-auto px-8 pointer-events-auto"
             >
-              {/* Left Arrow Button */}
-              <button
-                onClick={onClose}
-                className="absolute -top-12 left-0 text-foreground/80 hover:text-foreground transition-colors z-10"
-                aria-label="Close carousel"
-              >
-                <ArrowLeft size={32} strokeWidth={1.5} />
-              </button>
-
-              {/* Title */}
+              {/* Title with Back Button */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="text-center mb-12"
+                className="relative mb-12"
               >
                 <div className="flex items-center justify-center gap-4">
+                  {/* Left Arrow Button */}
+                  <button
+                    onClick={onClose}
+                    className="absolute left-0 text-foreground/80 hover:text-foreground transition-colors z-10 flex items-center"
+                    aria-label="Close carousel"
+                  >
+                    <ArrowLeft size={32} strokeWidth={1.5} />
+                  </button>
+
                   <span className="text-2xl text-foreground">✦</span>
                   <span className="text-4xl lg:text-6xl font-bold text-foreground">
                     {roomType} Variations

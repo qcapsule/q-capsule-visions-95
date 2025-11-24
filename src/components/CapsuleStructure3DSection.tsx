@@ -4,10 +4,164 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { motion, useInView } from "framer-motion";
-import { Box, Shield, Thermometer } from "lucide-react";
+import { Box, Shield, Thermometer, ArrowRight, LucideIcon } from "lucide-react";
 import structureImage from "@/assets/Structure.jpeg";
 import insulationImage from "@/assets/insulation.png";
 import exteriorShellImage from "@/assets/exterior-shell.png";
+
+type StructureFeature = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  color: string;
+  iconColor: string;
+  image: string;
+};
+
+const structureFeatures: StructureFeature[] = [
+  {
+    icon: Box,
+    title: "STRUCTURE",
+    description:
+      "Reinforced, fully welded steel frame built for long-term stability, safe lifting, and smooth transportation.",
+    color: "from-primary/20 to-primary/10",
+    iconColor: "text-primary",
+    image: structureImage,
+  },
+  {
+    icon: Shield,
+    title: "EXTERIOR SHELL",
+    description:
+      "Aluminum panel façade with PVDF coating and insulated core for durability, fire resistance, and all-climate performance.",
+    color: "from-primary/20 to-primary/10",
+    iconColor: "text-primary",
+    image: exteriorShellImage,
+  },
+  {
+    icon: Thermometer,
+    title: "INSULATION & COMFORT",
+    description:
+      "Multi-layer eco insulation with Rockwool, PIR, and XPS, paired with premium interior cladding and SPC flooring for quiet, stable, climate-controlled living.",
+    color: "from-primary-glow/20 to-primary-glow/10",
+    iconColor: "text-primary-glow",
+    image: insulationImage,
+  },
+];
+
+// Mobile Component - Simple vertical stack with always visible content
+const MobileStructureFeatures = ({
+  features,
+  isInView,
+}: {
+  features: StructureFeature[];
+  isInView: boolean;
+}) => {
+  return (
+    <div className="md:hidden space-y-6">
+      {features.map((feature, index) => (
+        <motion.div
+          key={feature.title}
+          className="relative h-[300px] sm:h-[350px] overflow-hidden rounded-2xl shadow-2xl"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src={feature.image}
+              alt={feature.title}
+              className="w-full h-full object-cover"
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30"></div>
+          </div>
+
+          {/* Content Overlay - Always visible */}
+          <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+            >
+              <div className="mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  {feature.title}
+                </h3>
+              </div>
+              <p className="text-sm sm:text-base text-white/90 leading-relaxed">
+                {feature.description}
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
+// Desktop Component - Horizontal row with hover effects
+const DesktopStructureFeatures = ({
+  features,
+  isInView,
+}: {
+  features: StructureFeature[];
+  isInView: boolean;
+}) => {
+  return (
+    <div className="hidden md:flex flex-row gap-1 lg:gap-2">
+      {features.map((feature, index) => (
+        <motion.div
+          key={feature.title}
+          className="group relative flex-1 h-[250px] lg:h-[280px] overflow-hidden rounded-2xl cursor-pointer shadow-2xl"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src={feature.image}
+              alt={feature.title}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/60 group-hover:via-black/30 group-hover:to-black/10 transition-all duration-300"></div>
+          </div>
+
+          {/* Content Overlay - Only visible on hover */}
+          <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8 z-10 overflow-visible">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{
+                duration: 0.4,
+                delay: 0.4,
+                ease: "easeOut",
+              }}
+              className="overflow-visible opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+              <div className="mb-2 overflow-visible">
+                <h3 className="text-xl lg:text-2xl font-bold text-white">
+                  {feature.title}
+                </h3>
+              </div>
+              <p className="text-sm lg:text-base text-white/90 leading-relaxed">
+                {feature.description}
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Hover Glow Effect */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-transparent to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 function CapsuleStructureModel() {
   const meshRef = useRef<THREE.Group>(null);
@@ -45,86 +199,48 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
-    const structureFeatures = [
-      {
-        icon: Box,
-        title: "STRUCTURE",
-        description:
-          "Reinforced, fully welded steel frame built for long-term stability, safe lifting, and smooth transportation.",
-        color: "from-primary/20 to-primary/10",
-        iconColor: "text-primary",
-        image: structureImage,
-      },
-      {
-        icon: Shield,
-        title: "EXTERIOR SHELL",
-        description:
-          "Aluminum panel façade with PVDF coating and insulated core for durability, fire resistance, and all-climate performance.",
-        color: "from-primary/20 to-primary/10",
-        iconColor: "text-primary",
-        image: exteriorShellImage,
-      },
-      {
-        icon: Thermometer,
-        title: "INSULATION & COMFORT",
-        description:
-          "Multi-layer eco insulation with Rockwool, PIR, and XPS, paired with premium interior cladding and SPC flooring for quiet, stable, climate-controlled living.",
-        color: "from-primary-glow/20 to-primary-glow/10",
-        iconColor: "text-primary-glow",
-        image: insulationImage,
-      },
-    ];
-
     return (
       <section
         ref={ref}
         id="capsule-structure"
-        className="relative overflow-hidden py-16 lg:py-24"
-        style={{
-          background: "linear-gradient(to bottom, #f5e6d3, #faf5ef, #f5e6d3)",
-        }}
+        className="relative overflow-hidden py-32 bg-background"
       >
         <div
           className="container mx-auto px-8 lg:px-16 relative z-10 max-w-7xl"
           ref={containerRef}
         >
-          {/* Header */}
+          {/* Header Pattern */}
           <motion.div
-            className="text-center mb-12 lg:mb-16"
-            initial={{ opacity: 0, y: -20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+            className=""
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h2
-              className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight"
-              style={{ color: "#2d1f15" }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              The Art of Engineered Luxury
-            </motion.h2>
-
-            <motion.p
-              className="text-base lg:text-lg leading-relaxed max-w-4xl mx-auto"
-              style={{ color: "#2d1f15" }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
+            <div className="flex items-center justify-center gap-4">
+              <span className="text-2xl text-foreground">✦</span>
+              <span className="text-4xl lg:text-6xl font-bold text-foreground">
+                Engineered
+              </span>
+              <span className="text-2xl text-foreground">✦</span>
+              <span className="text-4xl lg:text-6xl font-bold text-foreground">
+                Luxury
+              </span>
+              <span className="text-2xl text-foreground">✦</span>
+            </div>
+            <p className="text-md lg:text-lg text-muted-foreground leading-relaxed text-center mt-4">
               Experience the engineering excellence behind every Q Capsule. Our
               3D structure showcases the precision and innovation that makes
               modular living possible.
-            </motion.p>
+            </p>
           </motion.div>
 
-          {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left Side - 3D Model */}
+          {/* Main Content - Column Layout */}
+          <div className="flex flex-col gap-8 lg:gap-10">
+            {/* 3D Model - Shown on both mobile and desktop */}
             <motion.div
-              className="w-full h-[500px] lg:h-[600px] relative"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              className="w-full h-[400px] sm:h-[500px] md:h-[500px] lg:h-[600px] relative -mx-4 lg:-mx-8"
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Canvas
@@ -157,53 +273,15 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
               </Canvas>
             </motion.div>
 
-            {/* Right Side - Feature Cards */}
-            <div className="space-y-8 lg:space-y-10">
-              {structureFeatures.map((feature, index) => (
-                <motion.div
-                  key={feature.title}
-                  className="group relative"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-                  transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
-                >
-                  <div className="flex flex-col lg:flex-row gap-6 items-start">
-                    {/* Image */}
-                    <div className="flex-shrink-0 w-full lg:w-40 h-40 rounded-2xl overflow-hidden shadow-lg">
-                      <img
-                        src={feature.image}
-                        alt={feature.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 space-y-3">
-                      {/* Title with Icon */}
-                      <div className="flex items-center gap-3">
-                        <feature.icon
-                          className="h-6 w-6 flex-shrink-0"
-                          style={{ color: "#8b6f47" }}
-                        />
-                        <h3 className="text-2xl lg:text-3xl font-bold" style={{ color: "#2d1f15" }}>
-                          {feature.title}
-                        </h3>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-base lg:text-lg leading-relaxed" style={{ color: "#2d1f15" }}>
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Subtle divider line */}
-                  {index < structureFeatures.length - 1 && (
-                    <div className="mt-8 lg:mt-10 h-px bg-gradient-to-r from-transparent via-[#8b6f47]/20 to-transparent" />
-                  )}
-                </motion.div>
-              ))}
-            </div>
+            {/* Mobile and Desktop Feature Components */}
+            <MobileStructureFeatures
+              features={structureFeatures}
+              isInView={isInView}
+            />
+            <DesktopStructureFeatures
+              features={structureFeatures}
+              isInView={isInView}
+            />
           </div>
         </div>
       </section>

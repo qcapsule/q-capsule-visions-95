@@ -18,8 +18,8 @@ export const Navigation = () => {
 
   const navItems = [
     { label: "Home", href: "#hero" },
-    { label: "Vision", href: "#vision" },
     { label: "Capsules", href: "#capsule-collection" },
+    { label: "Vision", href: "#vision" },
     { label: "Brochure", href: "#brochure" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#booking" },
