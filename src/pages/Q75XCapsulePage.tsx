@@ -377,10 +377,10 @@ export const Q75XCapsulePage = forwardRef<HTMLElement>((props, ref) => {
                   Schedule Consultation
                 </Button>
                 <Button
-                  variant="outline"
                   size="lg"
-                  className="border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 hover:border-yellow-600 px-8 py-4 text-lg bg-transparent"
+                  className="bg-gradient-to-r from-[#8b6f47] to-[#6b5233] hover:from-[#9b7f57] hover:to-[#7b6243] text-white font-semibold text-base lg:text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
+                  <Download className="w-5 h-5 mr-2" />
                   Download Brochure
                 </Button>
               </div>

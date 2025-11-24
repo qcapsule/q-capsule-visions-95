@@ -271,22 +271,22 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
 
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <motion.a
-                      href="tel:+97412345678"
+                      href="tel:+97455842290"
                       className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 rounded-full px-6 py-3 font-medium flex items-center justify-center gap-2"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Phone className="h-4 w-4" />
-                      +974 1234 5678
+                      +97455842290
                     </motion.a>
                     <motion.a
-                      href="mailto:hello@qcapsules.qa"
+                      href="mailto:info@Qcapsules.com"
                       className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/40 text-foreground transition-all duration-300 rounded-full px-6 py-3 font-medium flex items-center justify-center gap-2"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Mail className="h-4 w-4" />
-                      hello@qcapsules.qa
+                      info@Qcapsules.com
                     </motion.a>
                   </div>
                 </div>

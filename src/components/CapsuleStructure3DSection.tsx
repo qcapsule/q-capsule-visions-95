@@ -1,10 +1,13 @@
-import { useRef, Suspense, useEffect } from "react";
+import { useRef, Suspense } from "react";
 import { forwardRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { motion, useAnimation } from "framer-motion";
-import { Sparkles, Box, Layers } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { Box, Shield, Thermometer } from "lucide-react";
+import structureImage from "@/assets/Structure.jpeg";
+import insulationImage from "@/assets/insulation.png";
+import exteriorShellImage from "@/assets/exterior-shell.png";
 
 function CapsuleStructureModel() {
   const meshRef = useRef<THREE.Group>(null);
@@ -39,138 +42,75 @@ function CapsuleStructureModel() {
 
 export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
   (props, ref) => {
-    const controls = useAnimation();
-
-    useEffect(() => {
-      controls.start("visible");
-    }, [controls]);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
     const structureFeatures = [
       {
         icon: Box,
-        title: "Modular Design",
+        title: "STRUCTURE",
         description:
-          "Pre-fabricated components that assemble seamlessly for rapid deployment and maximum efficiency.",
+          "Reinforced, fully welded steel frame built for long-term stability, safe lifting, and smooth transportation.",
         color: "from-primary/20 to-primary/10",
         iconColor: "text-primary",
+        image: structureImage,
       },
       {
-        icon: Layers,
-        title: "Advanced Engineering",
+        icon: Shield,
+        title: "EXTERIOR SHELL",
         description:
-          "Cutting-edge structural technology ensures durability, stability, and long-lasting performance.",
+          "Aluminum panel façade with PVDF coating and insulated core for durability, fire resistance, and all-climate performance.",
         color: "from-primary/20 to-primary/10",
         iconColor: "text-primary",
+        image: exteriorShellImage,
       },
       {
-        icon: Sparkles,
-        title: "Precision Manufacturing",
+        icon: Thermometer,
+        title: "INSULATION & COMFORT",
         description:
-          "Factory-controlled production guarantees consistent quality and superior craftsmanship in every capsule.",
+          "Multi-layer eco insulation with Rockwool, PIR, and XPS, paired with premium interior cladding and SPC flooring for quiet, stable, climate-controlled living.",
         color: "from-primary-glow/20 to-primary-glow/10",
         iconColor: "text-primary-glow",
+        image: insulationImage,
       },
     ];
-
-    const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.1,
-          delayChildren: 0.2,
-        },
-      },
-    };
-
-    const cardVariants = {
-      hidden: {
-        opacity: 0,
-        y: 50,
-        scale: 0.9,
-      },
-      visible: {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: {
-          type: "spring" as const,
-          damping: 20,
-          stiffness: 300,
-        },
-      },
-    };
 
     return (
       <section
         ref={ref}
         id="capsule-structure"
-        className="relative overflow-hidden py-32"
+        className="relative overflow-hidden py-16 lg:py-24"
+        style={{
+          background: "linear-gradient(to bottom, #f5e6d3, #faf5ef, #f5e6d3)",
+        }}
       >
-        {/* Light Background Overlay */}
-        <div className="absolute inset-0 bg-white/15 backdrop-blur-sm"></div>
-
-        {/* Background Effects */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-glow/5 rounded-full blur-2xl animate-float"></div>
-
-        {/* Animated particles */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-primary/30 rounded-full"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                opacity: 0,
-              }}
-              animate={{
-                y: [null, -50, -100],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 4,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeOut",
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10 max-w-7xl">
+        <div
+          className="container mx-auto px-8 lg:px-16 relative z-10 max-w-7xl"
+          ref={containerRef}
+        >
           {/* Header */}
           <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-center mb-12 lg:mb-16"
+            initial={{ opacity: 0, y: -20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+            transition={{ duration: 0.8 }}
           >
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-8 border border-white/20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-foreground">Advanced Structure</span>
-            </motion.div>
-
             <motion.h2
-              className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-foreground"
+              className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight"
+              style={{ color: "#2d1f15" }}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Revolutionary Capsule Structure
+              The Art of Engineered Luxury
             </motion.h2>
 
             <motion.p
-              className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+              className="text-base lg:text-lg leading-relaxed max-w-4xl mx-auto"
+              style={{ color: "#2d1f15" }}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
               Experience the engineering excellence behind every Q Capsule. Our
               3D structure showcases the precision and innovation that makes
@@ -179,9 +119,14 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
           </motion.div>
 
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Side - 3D Model */}
-            <div className="w-full h-[600px] relative">
+            <motion.div
+              className="w-full h-[500px] lg:h-[600px] relative"
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               <Canvas
                 camera={{ position: [35, 18, 35], fov: 50 }}
                 style={{ background: "transparent" }}
@@ -210,63 +155,55 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
                   <CapsuleStructureModel />
                 </Suspense>
               </Canvas>
-
-              {/* Golden glow effect around model */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-glow/10 rounded-full blur-3xl"></div>
-              </div>
-            </div>
+            </motion.div>
 
             {/* Right Side - Feature Cards */}
-            <motion.div
-              className="space-y-6"
-              variants={containerVariants}
-              initial="hidden"
-              animate={controls}
-            >
+            <div className="space-y-8 lg:space-y-10">
               {structureFeatures.map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  className="group relative h-full"
-                  variants={cardVariants}
-                  whileHover={{
-                    scale: 1.02,
-                    z: 50,
-                  }}
+                  className="group relative"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                  transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
                 >
-                  <div className="glass-card p-8 relative overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-500 h-full flex flex-col">
-                    {/* Dynamic background effect */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 transition-all duration-500`}
-                    ></div>
+                  <div className="flex flex-col lg:flex-row gap-6 items-start">
+                    {/* Image */}
+                    <div className="flex-shrink-0 w-full lg:w-40 h-40 rounded-2xl overflow-hidden shadow-lg">
+                      <img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
 
-                    {/* Golden Divider */}
-                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent opacity-50"></div>
-
-                    <div className="relative z-10">
-                      {/* Icon */}
-                      <motion.div
-                        className="w-16 h-16 mb-6 bg-card/50 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-500 border border-border/30 group-hover:border-primary/30"
-                        whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                      >
+                    {/* Content */}
+                    <div className="flex-1 space-y-3">
+                      {/* Title with Icon */}
+                      <div className="flex items-center gap-3">
                         <feature.icon
-                          className={`h-8 w-8 ${feature.iconColor} group-hover:drop-shadow-glow transition-all duration-500`}
+                          className="h-6 w-6 flex-shrink-0"
+                          style={{ color: "#8b6f47" }}
                         />
-                      </motion.div>
+                        <h3 className="text-2xl lg:text-3xl font-bold" style={{ color: "#2d1f15" }}>
+                          {feature.title}
+                        </h3>
+                      </div>
 
-                      {/* Content */}
-                      <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-all duration-300">
-                        {feature.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-all duration-300">
+                      {/* Description */}
+                      <p className="text-base lg:text-lg leading-relaxed" style={{ color: "#2d1f15" }}>
                         {feature.description}
                       </p>
                     </div>
                   </div>
+
+                  {/* Subtle divider line */}
+                  {index < structureFeatures.length - 1 && (
+                    <div className="mt-8 lg:mt-10 h-px bg-gradient-to-r from-transparent via-[#8b6f47]/20 to-transparent" />
+                  )}
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

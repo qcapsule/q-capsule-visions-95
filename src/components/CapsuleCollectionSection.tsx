@@ -1,70 +1,106 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useCallback, useEffect, forwardRef } from "react";
 import {
   ChevronLeft,
   ChevronRight,
   ArrowRight,
-  ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { capsules } from "@/data/capsules";
+import q56xCapsuleImage from "@/assets/q56x-capsule2.png";
+import q75xCapsuleImage from "@/assets/q75x-capsule2.png";
+import q95xCapsuleImage from "@/assets/q95x-capsule.png";
+import q115xCapsuleImage from "@/assets/q115x-capsule1.png";
+
+// Complete capsule catalog data
+const allCapsules = [
+  {
+    id: "q56x",
+    name: "Q56X",
+    size: "18m²",
+    dimensions: "3.2 x 3.2 x 5.6m",
+    rooms: "1 Room",
+    image: q56xCapsuleImage,
+  },
+  {
+    id: "q75x",
+    name: "Q75X",
+    size: "24m²",
+    dimensions: "3.2 x 3.2 x 7.5m",
+    rooms: "2 Rooms",
+    image: q75xCapsuleImage,
+  },
+  {
+    id: "q95x",
+    name: "Q95X",
+    size: "30m²",
+    dimensions: "3.2 x 3.2 x 9.5m",
+    rooms: "2 Rooms + Deck",
+    image: q95xCapsuleImage,
+  },
+  {
+    id: "q115x",
+    name: "Q115X",
+    size: "38m²",
+    dimensions: "3.2 x 3.2 x 11.5m",
+    rooms: "3 Rooms",
+    image: q115xCapsuleImage,
+  },
+];
 
 export const CapsuleCollectionSection = forwardRef<HTMLElement>(
   (props, ref) => {
-    const [currentCapsuleIndex, setCurrentCapsuleIndex] = useState(1); // Start with Q75X (index 1)
-    const currentCapsule = capsules[currentCapsuleIndex];
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [visibleCards, setVisibleCards] = useState(4); // Show 4 cards at once
 
     // Check for return capsule on component mount
     useEffect(() => {
       const returnToCapsule = localStorage.getItem("returnToCapsule");
       if (returnToCapsule) {
-        const capsuleIndex = capsules.findIndex(
+        const capsuleIndex = allCapsules.findIndex(
           (capsule) =>
             capsule.name.toLowerCase() === returnToCapsule.toLowerCase()
         );
         if (capsuleIndex !== -1) {
-          setCurrentCapsuleIndex(capsuleIndex);
+          setCurrentIndex(capsuleIndex);
         }
-        // Clear the stored capsule after using it
         localStorage.removeItem("returnToCapsule");
       }
     }, []);
 
-    const [direction, setDirection] = useState(0);
-
-    const nextCapsule = useCallback(() => {
-      setDirection(1);
-      setCurrentCapsuleIndex((prev) => (prev + 1) % capsules.length);
-    }, []);
-
-    const prevCapsule = useCallback(() => {
-      setDirection(-1);
-      setCurrentCapsuleIndex(
-        (prev) => (prev - 1 + capsules.length) % capsules.length
-      );
-    }, []);
-
-    const selectCapsule = useCallback(
-      (index: number) => {
-        setDirection(index > currentCapsuleIndex ? 1 : -1);
-        setCurrentCapsuleIndex(index);
-      },
-      [currentCapsuleIndex]
-    );
-
-    // Handle keyboard navigation
+    // Responsive: show fewer cards on smaller screens
     useEffect(() => {
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "ArrowLeft") {
-          prevCapsule();
-        } else if (e.key === "ArrowRight") {
-          nextCapsule();
+      const updateVisibleCards = () => {
+        if (window.innerWidth < 768) {
+          setVisibleCards(1);
+        } else if (window.innerWidth < 1024) {
+          setVisibleCards(2);
+        } else {
+          setVisibleCards(4);
         }
       };
+      updateVisibleCards();
+      window.addEventListener("resize", updateVisibleCards);
+      return () => window.removeEventListener("resize", updateVisibleCards);
+    }, []);
 
-      window.addEventListener("keydown", handleKeyDown);
-      return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [nextCapsule, prevCapsule]);
+    const nextCapsule = useCallback(() => {
+      setCurrentIndex((prev) => {
+        const maxIndex = Math.max(0, allCapsules.length - visibleCards);
+        return prev >= maxIndex ? 0 : prev + 1;
+      });
+    }, [visibleCards]);
+
+    const prevCapsule = useCallback(() => {
+      setCurrentIndex((prev) => {
+        const maxIndex = Math.max(0, allCapsules.length - visibleCards);
+        return prev <= 0 ? maxIndex : prev - 1;
+      });
+    }, [visibleCards]);
+
+    const navigateToCapsulePage = (capsuleName: string) => {
+      const route = `/capsules/${capsuleName.toLowerCase()}?from=${capsuleName.toLowerCase()}`;
+      window.location.href = route;
+    };
 
     const scrollToSection = (id: string) => {
       const element = document.querySelector(id);
@@ -73,294 +109,186 @@ export const CapsuleCollectionSection = forwardRef<HTMLElement>(
       }
     };
 
-    const navigateToCapsulePage = (capsuleName: string) => {
-      const route = `/capsules/${capsuleName.toLowerCase()}?from=${capsuleName.toLowerCase()}`;
-      window.location.href = route;
-    };
+    // Get visible capsules based on current index
+    const visibleCapsules = allCapsules.slice(
+      currentIndex,
+      currentIndex + visibleCards
+    );
 
     return (
       <section
         ref={ref}
         id="capsule-collection"
-        className="relative h-[100vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex flex-col py-16 lg:py-24 bg-gray-100"
       >
-        {/* Animated Background Images */}
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            key={currentCapsule.id}
-            custom={direction}
-            initial={{
-              opacity: 0,
-              x: direction > 0 ? 100 : -100,
-              scale: 1.05,
-              filter: "blur(10px)",
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              scale: 1,
-              filter: "blur(0px)",
-            }}
-            exit={{
-              opacity: 0,
-              x: direction > 0 ? -100 : 100,
-              scale: 0.95,
-              filter: "blur(10px)",
-            }}
-            transition={{
-              duration: 0.8,
-              ease: [0.4, 0, 0.2, 1], // Custom easing curve
-            }}
-            className="absolute inset-0 z-0"
-            style={{
-              backgroundImage: `url(${currentCapsule.images[0]})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
-        </AnimatePresence>
-
-        {/* Subtle Background Overlay */}
-        <div className="absolute inset-0 bg-black/5 z-0"></div>
-
-        {/* Top Left Capsule Type */}
-        <motion.div
-          className="parallax-element absolute top-20 left-8 z-20"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <motion.p
-            key={`top-left-${currentCapsule.id}`}
-            className="text-white text-2xl lg:text-4xl font-bold drop-shadow-lg mb-4"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            {currentCapsule.name}
-            <br />
-            <span className="text-white/90 text-lg lg:text-xl font-medium">
-              {currentCapsule.sizeLabel} • {currentCapsule.dimensions}
-            </span>
-          </motion.p>
-
-          {/* Learn More Button */}
-          <motion.div
-            key={`learn-more-${currentCapsule.id}`}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="relative z-30"
-          >
-            <Button
-              onClick={() => navigateToCapsulePage(currentCapsule.name)}
-              className="bg-white/20 hover:bg-white/30 text-white border border-white/30 hover:border-white/50 transition-all duration-300 flex items-center gap-2 relative z-30 px-6 py-3 text-lg font-medium"
-            >
-              Learn More
-              <ExternalLink className="h-4 w-4" />
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        {/* Top Right Collection Info */}
-        <motion.div
-          className="parallax-element absolute top-20 right-8 z-20 text-right"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <motion.div
-            key={`top-right-${currentCapsule.id}`}
-            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 lg:p-3 hover:bg-white/20 hover:border-white/40 transition-all duration-300"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="text-white text-sm lg:text-base font-medium">
-              Capsule Collection
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Main Content - Centered */}
-        <div className="container mx-auto px-6 relative z-10 flex items-center justify-center h-full">
-          {/* Empty container to maintain layout structure */}
-        </div>
-
-        {/* Bottom Content - All in One Flex Row */}
-        <motion.div
-          className="parallax-element absolute bottom-8 left-8 right-8 z-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
-        >
-          <div className="flex items-center justify-between gap-4">
-            {/* Left Tagline */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          {/* Header Section */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-12 lg:mb-16">
+            {/* Top Left - Title */}
             <motion.div
-              className="flex-shrink-0"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 1.2 }}
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-6 lg:mb-0"
             >
-              <p className="text-white text-lg lg:text-xl font-medium drop-shadow-lg">
-                {currentCapsule.name === "Q56X" && (
-                  <>
-                    Minimalist Living—
-                    <br />
-                    Maximum Freedom
-                  </>
-                )}
-                {currentCapsule.name === "Q75X" && (
-                  <>
-                    Modern Comfort—
-                    <br />
-                    Sustainable Luxury
-                  </>
-                )}
-                {currentCapsule.name === "Q95X" && (
-                  <>
-                    Nature Connected—
-                    <br />
-                    Urban Sophisticated
-                  </>
-                )}
-                {currentCapsule.name === "Q115X" && (
-                  <>
-                    Family Harmony—
-                    <br />
-                    Premium Living
-                  </>
-                )}
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
+                Catalog of Our Capsules
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600">
+                for 2024
               </p>
             </motion.div>
 
-            {/* Navigator */}
-            <div className="flex gap-6 items-center">
-              {capsules.map((capsule, index) => (
-                <div key={index} className="flex flex-col items-center gap-3">
-                  <button
-                    onClick={() => selectCapsule(index)}
-                    className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                      index === currentCapsuleIndex
-                        ? "bg-white scale-125"
-                        : "bg-white/30 hover:bg-white/50"
-                    }`}
-                  />
-                  <span
-                    className={`text-sm font-semibold transition-all duration-300 ${
-                      index === currentCapsuleIndex
-                        ? "text-white"
-                        : "text-white/60 hover:text-white/80"
-                    }`}
-                  >
-                    {capsule.name}
-                  </span>
-                </div>
+            {/* Top Right - Description */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:max-w-md lg:text-right"
+            >
+              <p className="text-base sm:text-lg text-gray-700">
+                Modern modular capsule technology at the peak of innovation,
+                designed for sustainable living and exceptional comfort.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Capsule Cards Grid */}
+          <div className="relative mb-12">
+            {/* Desktop: Show all capsules */}
+            <div className="hidden lg:grid lg:grid-cols-4 gap-6 lg:gap-8">
+              {allCapsules.map((capsule, idx) => (
+                <motion.div
+                  key={capsule.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="group cursor-pointer"
+                  onClick={() => navigateToCapsulePage(capsule.name)}
+                >
+                  <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                    {/* Capsule Image */}
+                    <div className="relative h-64 lg:h-80 overflow-hidden bg-gray-200">
+                      <img
+                        src={capsule.image}
+                        alt={capsule.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+
+                    {/* Capsule Info */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">
+                        {capsule.name}
+                      </h3>
+                      <p className="text-lg text-gray-700 mb-2 font-medium">
+                        {capsule.size}
+                      </p>
+                      <p className="text-sm text-gray-600 mb-4">
+                        {capsule.rooms}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
             </div>
 
-            {/* Center Stats */}
-            <motion.div
-              className="flex gap-4 lg:gap-6 text-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-            >
-              <motion.div
-                key={`stat-1-${currentCapsule.id}`}
-                className="bg-white/10 backdrop-blur-md rounded-full px-4 lg:px-6 py-3 border border-white/20 hover:bg-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 cursor-pointer"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              >
-                <div className="text-xl lg:text-2xl font-bold text-white">
-                  {currentCapsule.dimensions}
-                </div>
-                <div className="text-xs lg:text-sm text-white/80">
-                  Total Area
-                </div>
-              </motion.div>
-              <motion.div
-                key={`stat-2-${currentCapsule.id}`}
-                className="bg-white/10 backdrop-blur-md rounded-full px-4 lg:px-6 py-3 border border-white/20 hover:bg-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 cursor-pointer"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-              >
-                <div className="text-xl lg:text-2xl font-bold text-white">
-                  {currentCapsule.sizeLabel}
-                </div>
-                <div className="text-xs lg:text-sm text-white/80">
-                  Room Count
-                </div>
-              </motion.div>
-              <motion.div
-                key={`stat-3-${currentCapsule.id}`}
-                className="bg-white/10 backdrop-blur-md rounded-full px-4 lg:px-6 py-3 border border-white/20 hover:bg-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 cursor-pointer"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-              >
-                <div className="text-xl lg:text-2xl font-bold text-white">
-                  100%
-                </div>
-                <div className="text-xs lg:text-sm text-white/80">
-                  Sustainable
-                </div>
-              </motion.div>
-            </motion.div>
+            {/* Mobile/Tablet: Carousel view */}
+            <div className="lg:hidden">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {visibleCapsules.map((capsule, idx) => (
+                  <motion.div
+                    key={capsule.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    className="group cursor-pointer"
+                    onClick={() => navigateToCapsulePage(capsule.name)}
+                  >
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                      {/* Capsule Image */}
+                      <div className="relative h-64 md:h-72 overflow-hidden bg-gray-200">
+                        <img
+                          src={capsule.image}
+                          alt={capsule.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
 
-            {/* Right Content */}
-            <motion.div
-              className="flex-shrink-0 text-right"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 1.4 }}
-            >
-              <div className="flex flex-col items-end gap-4">
-                {/* Right Description */}
-                <motion.p
-                  key={`bottom-right-${currentCapsule.id}`}
-                  className="text-white/90 text-sm lg:text-base drop-shadow-md max-w-xs"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
-                  {currentCapsule.features[0]} and{" "}
-                  {currentCapsule.features[1].toLowerCase()}—
-                  <br />
-                  Perfect for {currentCapsule.rooms.toLowerCase()} living.
-                </motion.p>
+                      {/* Capsule Info */}
+                      <div className="p-6 flex-1 flex flex-col">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">
+                          {capsule.name}
+                        </h3>
+                        <p className="text-lg text-gray-700 mb-2 font-medium">
+                          {capsule.size}
+                        </p>
+                        <p className="text-sm text-gray-600 mb-4">
+                          {capsule.rooms}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
 
-        {/* Navigation Arrows - Left and Right */}
-        <motion.button
-          onClick={prevCapsule}
-          className="absolute left-8 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </motion.button>
+          {/* Bottom Controls */}
+          <div className="flex items-center justify-between">
+            {/* Bottom Left - View Catalog Button */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Button
+                onClick={() => {
+                  // Scroll to booking section or show more info
+                  const bookingSection = document.querySelector("#booking");
+                  if (bookingSection) {
+                    bookingSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center gap-2"
+              >
+                Explore Collection
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </motion.div>
 
-        <motion.button
-          onClick={nextCapsule}
-          className="absolute right-8 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <ChevronRight className="w-6 h-6" />
-        </motion.button>
+            {/* Bottom Right - Navigation Arrows (only on mobile/tablet) */}
+            {visibleCards < allCapsules.length && (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-3"
+              >
+                <button
+                  onClick={prevCapsule}
+                  className="w-12 h-12 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 shadow-sm"
+                  aria-label="Previous capsules"
+                >
+                  <ChevronLeft className="w-6 h-6 text-gray-700" />
+                </button>
+                <button
+                  onClick={nextCapsule}
+                  className="w-12 h-12 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 shadow-sm"
+                  aria-label="Next capsules"
+                >
+                  <ChevronRight className="w-6 h-6 text-gray-700" />
+                </button>
+              </motion.div>
+            )}
+          </div>
+        </div>
       </section>
     );
   }
