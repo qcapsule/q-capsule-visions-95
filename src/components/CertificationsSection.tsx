@@ -1,266 +1,221 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { forwardRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Shield, Thermometer, Zap, Leaf, Award, CheckCircle, Star, Globe } from 'lucide-react';
+import { Shield, Leaf, CheckCircle, Sprout } from 'lucide-react';
 import certificationsImage from '@/assets/certifications.png';
+import constructionImage from '@/assets/construction-capsule.png';
 
-export const CertificationsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+export const CertificationsSection = forwardRef<HTMLElement>((props, ref) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
-  const certifications = [
+  const isoCertifications = [
     {
-      icon: Shield,
-      title: "ISO 9001:2015",
-      subtitle: "Quality Management",
-      description: "International standard for quality management systems ensuring consistent quality",
-      color: "from-blue-500 to-blue-600",
-      verified: true
+      number: "9001",
+      title: "Quality Management System",
+      color: "#0066CC",
     },
     {
-      icon: Leaf,
-      title: "LEED Platinum",
-      subtitle: "Green Building",
-      description: "Leadership in Energy and Environmental Design certification for sustainable building",
-      color: "from-green-500 to-green-600",
-      verified: true
+      number: "14001",
+      title: "Environmental Management",
+      color: "#00AA44",
     },
     {
-      icon: Zap,
-      title: "Energy Star",
-      subtitle: "Energy Efficiency",
-      description: "Government-backed symbol for energy efficiency and environmental protection",
-      color: "from-yellow-500 to-yellow-600",
-      verified: true
+      number: "45001",
+      title: "Health and Safety",
+      color: "#FF6600",
     },
-    {
-      icon: Thermometer,
-      title: "Climate Control",
-      subtitle: "HVAC Excellence",
-      description: "Advanced climate control systems maintaining optimal temperature and humidity",
-      color: "from-cyan-500 to-cyan-600",
-      verified: true
-    },
-    {
-      icon: Shield,
-      title: "Fire Safety",
-      subtitle: "UL Listed",
-      description: "Underwriters Laboratories certification for fire safety and electrical systems",
-      color: "from-red-500 to-red-600",
-      verified: true
-    },
-    {
-      icon: Globe,
-      title: "Qatar Standards",
-      subtitle: "QS Compliance",
-      description: "Full compliance with Qatar National Standards for construction and safety",
-      color: "from-purple-500 to-purple-600",
-      verified: true
-    }
-  ];
-
-  const features = [
-    "Advanced Insulation Technology",
-    "Smart Temperature Control",
-    "Renewable Energy Integration",
-    "Sustainable Materials",
-    "Fire Resistant Construction", 
-    "Structural Engineering Excellence",
-    "Quality Assurance Testing",
-    "Environmental Compliance"
   ];
 
   return (
-    <section id="certifications" className="relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+    <section
+      ref={ref}
+      id="certifications"
+      className="relative overflow-hidden py-16 lg:py-24"
+      style={{
+        background: "linear-gradient(to bottom, #f5e6d3, #faf5ef, #f5e6d3)",
+      }}
+    >
+      <div
+        className="container mx-auto px-8 lg:px-16 relative z-10 max-w-7xl"
+        ref={containerRef}
+      >
+        {/* Main Title */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          className="mb-12 lg:mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div
-            className="inline-flex items-center px-4 py-2 rounded-full glass-card text-sm text-primary font-medium mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Quality & Standards
-          </motion.div>
-          
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-            <span className="text-gradient">Certifications & Standards</span>
+          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6" style={{ color: "#2d1f15" }}>
+            Certified excellence: Built to global standards
           </h2>
-          
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our commitment to excellence is validated by industry-leading certifications 
-            and rigorous compliance with international standards.
+          <p className="text-base lg:text-lg leading-relaxed max-w-4xl" style={{ color: "#2d1f15" }}>
+            All materials are tested and certified to meet international standards, conforming to ASTM, EN, and ISO specifications for fire resistance, thermal insulation, and structural integrity. This ensures every installation delivers safety, sustainability, and superior build quality in every detail.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Certifications Grid */}
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-12">
+          {/* Left Side - Construction Image */}
           <motion.div
-            className="grid md:grid-cols-2 gap-6"
+            className="order-2 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={cert.title}
-                className="glass-card p-6 hover-lift group relative overflow-hidden"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-              >
-                {/* Background Gradient Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${cert.color} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-500`}>
-                      <cert.icon className="h-6 w-6 text-white" />
-                    </div>
-                    {cert.verified && (
-                      <div className="flex items-center space-x-1 text-primary">
-                        <CheckCircle className="h-4 w-4" />
-                        <span className="text-xs font-medium">Verified</span>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <h3 className="text-lg font-bold mb-1 group-hover:text-gradient transition-all duration-300">
-                    {cert.title}
-                  </h3>
-                  
-                  <p className="text-sm text-primary font-medium mb-3">
-                    {cert.subtitle}
-                  </p>
-                  
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {cert.description}
-                  </p>
-                </div>
-
-                {/* Hover Border Effect */}
-                <div className="absolute inset-0 golden-border opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </motion.div>
-            ))}
+            <div className="rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src={constructionImage}
+                alt="Capsule Construction"
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </motion.div>
 
-          {/* Certifications Image & Features */}
+          {/* Right Side - Eco-Conscious Section */}
           <motion.div
-            className="space-y-8"
+            className="order-1 lg:order-2 space-y-8"
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="glass-card p-8 text-center">
-              <img 
-                src={certificationsImage} 
-                alt="Q Capsules Certifications" 
-                className="w-full max-w-sm mx-auto mb-6 rounded-lg shadow-lg"
-              />
-              <h3 className="text-xl font-bold text-gradient mb-3">
-                Certified Excellence
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Every Q Capsule meets or exceeds the most stringent international standards 
-                for safety, quality, and environmental responsibility.
-              </p>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-[#8b6f47]/20">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-[#8b6f47]/20 flex items-center justify-center flex-shrink-0">
+                  <Sprout className="w-6 h-6" style={{ color: "#8b6f47" }} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl lg:text-3xl font-bold mb-4" style={{ color: "#2d1f15" }}>
+                    Eco-Conscious by Design
+                  </h3>
+                  <ul className="space-y-3">
+                    {[
+                      "Minimal land disruption (no foundations needed)",
+                      "Solar panels, water tanks, and off-grid readiness",
+                      "Sustainable and recyclable materials",
+                      "Light footprint, long life",
+                    ].map((item, index) => (
+                      <motion.li
+                        key={item}
+                        className="flex items-start gap-3 text-base lg:text-lg"
+                        style={{ color: "#2d1f15" }}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                        transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                      >
+                        <span className="text-[#8b6f47] mt-1">•</span>
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            {/* Key Features List */}
-            <div className="glass-card p-8">
-              <h3 className="text-xl font-bold mb-6 text-gradient">
-                Quality Features
-              </h3>
-              
-              <div className="grid grid-cols-1 gap-3">
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={feature}
-                    className="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors duration-300"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                    transition={{ duration: 0.4, delay: 0.8 + index * 0.05 }}
-                  >
-                    <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                    <span className="text-sm text-foreground">{feature}</span>
-                    <Star className="h-3 w-3 text-primary ml-auto" />
-                  </motion.div>
-                ))}
+            {/* Worker Image */}
+            <motion.div
+              className="rounded-2xl overflow-hidden shadow-xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <img
+                src={certificationsImage}
+                alt="Quality Manufacturing"
+                className="w-full h-auto object-cover"
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Bottom Section - Health & Management and Quality Management */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          {/* Health & Management */}
+          <motion.div
+            className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-[#8b6f47]/20"
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-[#8b6f47]/20 flex items-center justify-center flex-shrink-0">
+                <Shield className="w-6 h-6" style={{ color: "#8b6f47" }} />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl lg:text-3xl font-bold mb-4" style={{ color: "#2d1f15" }}>
+                  Health & Management
+                </h3>
+                <p className="text-base lg:text-lg leading-relaxed" style={{ color: "#2d1f15" }}>
+                  Each capsule is engineered with strict safety standards to protect occupants and stored systems.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Quality Management */}
+          <motion.div
+            className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-[#8b6f47]/20"
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-[#8b6f47]/20 flex items-center justify-center flex-shrink-0">
+                <CheckCircle className="w-6 h-6" style={{ color: "#8b6f47" }} />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl lg:text-3xl font-bold mb-4" style={{ color: "#2d1f15" }}>
+                  Quality Management
+                </h3>
+                <p className="text-base lg:text-lg leading-relaxed" style={{ color: "#2d1f15" }}>
+                  Each capsule is manufactured under strict, ISO-aligned quality processes to deliver consistent performance and durable construction that withstands all seasons, climates, and deployment environments.
+                </p>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Trust Indicators */}
+        {/* ISO Certifications */}
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          <div className="glass-card p-8 text-center bg-gradient-primary/5 border-primary/20">
-            <Award className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gradient mb-3">Industry Recognition</h3>
-            <p className="text-muted-foreground">
-              Recognized by leading industry bodies for innovation and excellence in modular construction.
-            </p>
-          </div>
-
-          <div className="glass-card p-8 text-center bg-gradient-accent/5 border-accent/20">
-            <Shield className="h-12 w-12 text-accent mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gradient mb-3">Safety First</h3>
-            <p className="text-muted-foreground">
-              Comprehensive safety certifications ensuring the highest standards of structural integrity and fire safety.
-            </p>
-          </div>
-
-          <div className="glass-card p-8 text-center bg-gradient-secondary/5 border-border/50">
-            <Leaf className="h-12 w-12 text-success mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gradient mb-3">Sustainability</h3>
-            <p className="text-muted-foreground">
-              Environmental certifications validating our commitment to sustainable and eco-friendly construction practices.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Verification Statement */}
-        <motion.div
-          className="mt-16 text-center"
+          className="flex flex-wrap justify-center lg:justify-end gap-6 lg:gap-8"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="glass-card p-8 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <CheckCircle className="h-8 w-8 text-primary" />
-              <h3 className="text-2xl font-bold text-gradient">
-                Verified & Trusted
-              </h3>
-            </div>
-            
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              All certifications are independently verified and regularly audited to ensure 
-              continued compliance with evolving industry standards. Our commitment to quality 
-              is not just a promise—it's proven.
-            </p>
-            
-            <button className="bg-gradient-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:shadow-glow transition-all duration-300">
-              View Certification Documents
-            </button>
-          </div>
+          {isoCertifications.map((iso, index) => (
+            <motion.div
+              key={iso.number}
+              className="text-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+            >
+              <div
+                className="w-24 h-24 lg:w-28 lg:h-28 rounded-full mx-auto mb-3 flex items-center justify-center border-4 shadow-lg"
+                style={{
+                  borderColor: iso.color,
+                  background: "white",
+                }}
+              >
+                <div className="text-center">
+                  <div className="text-xs lg:text-sm font-bold" style={{ color: iso.color }}>
+                    ISO
+                  </div>
+                  <div className="text-lg lg:text-xl font-bold" style={{ color: iso.color }}>
+                    {iso.number}
+                  </div>
+                </div>
+              </div>
+              <p className="text-sm lg:text-base font-medium" style={{ color: "#2d1f15" }}>
+                {iso.title}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
   );
-};
+});
+
+CertificationsSection.displayName = "CertificationsSection";

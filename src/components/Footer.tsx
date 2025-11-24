@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import {
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin,
+  // Facebook,
+  // Instagram,
+  // Twitter,
+  // Linkedin,
   Mail,
   Phone,
   MapPin,
@@ -42,12 +42,12 @@ export const Footer = () => {
     "Project Management",
   ];
 
-  const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-  ];
+  // const socialLinks = [
+  //   { icon: Instagram, href: "#", label: "Instagram" },
+  //   { icon: Facebook, href: "#", label: "Facebook" },
+  //   { icon: Twitter, href: "#", label: "Twitter" },
+  //   { icon: Linkedin, href: "#", label: "LinkedIn" },
+  // ];
 
   return (
     <footer ref={ref} id="footer" className="relative overflow-hidden py-20">
@@ -105,7 +105,7 @@ export const Footer = () => {
               Revolutionizing modular living with sustainable, innovative
               capsule homes made in Qatar.
             </p>
-            <div className="flex space-x-3">
+            {/* <div className="flex space-x-3">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.label}
@@ -122,7 +122,7 @@ export const Footer = () => {
                   <social.icon className="h-5 w-5 text-primary group-hover:text-primary-glow transition-colors" />
                 </motion.a>
               ))}
-            </div>
+            </div> */}
           </motion.div>
 
           {/* Quick Links */}
@@ -212,7 +212,7 @@ export const Footer = () => {
                 </span>
               </motion.div>
               <motion.a
-                href="tel:+97412345678"
+                href="tel:+97455842290"
                 className="flex items-start space-x-3 group"
                 initial={{ opacity: 0, x: -20 }}
                 animate={
@@ -222,11 +222,11 @@ export const Footer = () => {
               >
                 <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0 group-hover:text-primary-glow transition-colors" />
                 <span className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
-                  +974 1234 5678
+                  +97455842290
                 </span>
               </motion.a>
               <motion.a
-                href="mailto:hello@qcapsules.qa"
+                href="mailto:info@Qcapsules.com"
                 className="flex items-start space-x-3 group"
                 initial={{ opacity: 0, x: -20 }}
                 animate={
@@ -236,7 +236,7 @@ export const Footer = () => {
               >
                 <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0 group-hover:text-primary-glow transition-colors" />
                 <span className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
-                  hello@qcapsules.qa
+                  info@Qcapsules.com
                 </span>
               </motion.a>
             </div>

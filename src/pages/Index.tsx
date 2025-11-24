@@ -24,6 +24,8 @@ import { CapsuleTechnologySection } from "@/components/CapsuleTechnologySection"
 import { TechnologySection } from "@/components/TechnologySection";
 import { CapsuleStructure3DSection } from "@/components/CapsuleStructure3DSection";
 import { UseCasesSection } from "@/components/UseCasesSection";
+import { GoldenLEDSeparator } from "@/components/GoldenLEDSeparator";
+import { SmartLightingSection } from "@/components/SmartLightingSection";
 
 const Index = () => {
   const {
@@ -65,26 +67,36 @@ const Index = () => {
         <ScrollProgress />
         <Navigation />
         <HeroSection ref={heroRef} />
+        <GoldenLEDSeparator />
         <VisionSection ref={visionRef} />
+        <GoldenLEDSeparator />
         {/* <TechnologySection /> */}
         <CapsuleStructure3DSection />
+        <GoldenLEDSeparator />
+        {/* <SmartLightingSection /> */}
+        {/* <GoldenLEDSeparator /> */}
 
         {/* <CustomizationSection /> */}
         <CapsuleCollectionSection ref={capsuleCollectionRef} />
+        <GoldenLEDSeparator />
 
         {/* <CollectionSection /> */}
         {/* <FloorPlanSpotlightExample />
 
         <EnvironmentsSection /> */}
         <BrochureSection ref={brochureRef} />
+        <GoldenLEDSeparator />
         <AboutSection ref={aboutRef} />
+        <GoldenLEDSeparator />
+        <CertificationsSection />
+        <GoldenLEDSeparator />
         {/* <UseCasesSection /> */}
         <BookingSection ref={bookingRef} />
+        <GoldenLEDSeparator />
 
         {/* <CrossSectionDiagram /> */}
         {/* <StatisticsSection /> */}
         {/* <ScrollCapsuleSection /> */}
-        {/* <CertificationsSection /> */}
 
         <Footer />
       </div>
