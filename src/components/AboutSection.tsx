@@ -13,7 +13,10 @@ export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
     <section
       ref={ref}
       id="about"
-      className="relative overflow-hidden py-32 bg-background"
+      className="relative overflow-hidden py-32"
+      style={{
+        background: "linear-gradient(to bottom, #f5e6d3, #faf5ef, #f5e6d3)",
+      }}
     >
       <div
         className="container mx-auto px-8 lg:px-16 relative z-10 max-w-7xl"
@@ -185,7 +188,7 @@ export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
             className="bg-gradient-to-r from-[#8b6f47] to-[#6b5233] hover:from-[#9b7f57] hover:to-[#7b6243] text-white font-semibold text-base lg:text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <a
-              href="/company-profile.pdf"
+              href="/QCapsules-Company-Profile.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3"

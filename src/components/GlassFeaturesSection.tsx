@@ -207,7 +207,10 @@ export const GlassFeaturesSection = forwardRef<HTMLElement>((props, ref) => {
     <section
       ref={ref}
       id="glass-features"
-      className="relative overflow-hidden py-32 pb-8 lg:pb-12 bg-background"
+      className="relative overflow-hidden py-32 pb-8 lg:pb-12"
+      style={{
+        background: "linear-gradient(to bottom, #f5e6d3, #faf5ef, #f5e6d3)",
+      }}
     >
       <div
         className="container mx-auto  relative z-10 max-w-7xl flex flex-col"

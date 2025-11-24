@@ -69,16 +69,17 @@ const Index = () => {
         <ScrollProgress />
         <Navigation />
         <HeroSection ref={heroRef} />
+        <GoldenLEDSeparator />
         <CapsuleCollectionSection ref={capsuleCollectionRef} />
-
+        <GoldenLEDSeparator />
         <CapsuleRoomsSection />
+        <GoldenLEDSeparator />
         <GlassFeaturesSection />
-        {/* <GoldenLEDSeparator /> */}
+        <GoldenLEDSeparator />
         <CapsuleStructure3DSection />
-
+        <GoldenLEDSeparator />
         <VisionSection ref={visionRef} />
-
-        {/* <GoldenLEDSeparator /> */}
+        <GoldenLEDSeparator />
         {/* <TechnologySection /> */}
         {/* <GoldenLEDSeparator /> */}
         {/* <SmartLightingSection /> */}
@@ -92,19 +93,14 @@ const Index = () => {
 
         <EnvironmentsSection /> */}
         <BrochureSection ref={brochureRef} />
-        {/* <GoldenLEDSeparator /> */}
+        <GoldenLEDSeparator />
         <AboutSection ref={aboutRef} />
-        {/* <GoldenLEDSeparator /> */}
+        <GoldenLEDSeparator />
         <CertificationsSection />
-        {/* <GoldenLEDSeparator /> */}
+        <GoldenLEDSeparator />
         {/* <UseCasesSection /> */}
         <BookingSection ref={bookingRef} />
-        {/* <GoldenLEDSeparator /> */}
-
-        {/* <CrossSectionDiagram /> */}
-        {/* <StatisticsSection /> */}
-        {/* <ScrollCapsuleSection /> */}
-
+        <GoldenLEDSeparator />
         <Footer />
       </div>
     </div>

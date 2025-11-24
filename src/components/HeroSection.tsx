@@ -20,7 +20,10 @@ export const HeroSection = forwardRef<HTMLElement>((props, ref) => {
       <section
         ref={ref}
         id="hero"
-        className="relative h-[100vh] flex items-center justify-center overflow-hidden bg-background"
+        className="relative h-[100vh] flex items-center justify-center overflow-hidden"
+        style={{
+          background: "linear-gradient(to bottom, #f5e6d3, #faf5ef, #f5e6d3)",
+        }}
       >
         {/* Floating Capsule Images - Background Decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

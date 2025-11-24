@@ -210,7 +210,10 @@ export const CapsuleRoomsSection = forwardRef<HTMLElement>((props, ref) => {
     <section
       ref={ref}
       id="capsule-rooms"
-      className="relative overflow-hidden py-32 bg-background"
+      className="relative overflow-hidden py-32"
+      style={{
+        background: "linear-gradient(to bottom, #f5e6d3, #faf5ef, #f5e6d3)",
+      }}
     >
       <div
         className="container mx-auto px-8 lg:px-16 relative z-10 max-w-7xl"
