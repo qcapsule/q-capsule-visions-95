@@ -24,6 +24,8 @@ import { CapsuleTechnologySection } from "@/components/CapsuleTechnologySection"
 import { TechnologySection } from "@/components/TechnologySection";
 import { CapsuleStructure3DSection } from "@/components/CapsuleStructure3DSection";
 import { UseCasesSection } from "@/components/UseCasesSection";
+import { GlassFeaturesSection } from "@/components/GlassFeaturesSection";
+import { CapsuleRoomsSection } from "@/components/CapsuleRoomsSection";
 
 const Index = () => {
   const {
@@ -66,6 +68,8 @@ const Index = () => {
         <Navigation />
         <HeroSection ref={heroRef} />
         <VisionSection ref={visionRef} />
+        <GlassFeaturesSection />
+        <CapsuleRoomsSection />
         {/* <TechnologySection /> */}
         <CapsuleStructure3DSection />
 
