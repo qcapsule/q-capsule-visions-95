@@ -60,7 +60,7 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
         serviceId,
         templateId,
         {
-          to_email: "info@qcapsule.com",
+          to_email: "info@qcapsules.com",
           from_name: formData.name,
           from_email: formData.email,
           phone: formData.phone,
@@ -70,6 +70,7 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
         },
         publicKey
       );
+      
 
       console.log("Email sent successfully:", result);
       
