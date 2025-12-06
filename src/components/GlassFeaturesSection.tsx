@@ -234,15 +234,12 @@ export const GlassFeaturesSection = forwardRef<HTMLElement>((props, ref) => {
             }}
           ></div>
           <div className="relative z-10 flex items-center justify-center w-full gap-4 px-4 py-8">
-            <span className="text-2xl text-foreground">✦</span>
             <span className="text-4xl lg:text-6xl font-bold text-foreground">
               Glass
             </span>
-            <span className="text-2xl text-foreground">✦</span>
             <span className="text-4xl lg:text-6xl font-bold text-foreground">
               Features
             </span>
-            <span className="text-2xl text-foreground">✦</span>
           </div>
         </motion.div>
 

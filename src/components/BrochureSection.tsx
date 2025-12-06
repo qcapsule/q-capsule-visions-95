@@ -46,15 +46,12 @@ export const BrochureSection = forwardRef<HTMLElement>((props, ref) => {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <span className="text-2xl text-foreground">✦</span>
             <span className="text-4xl lg:text-6xl font-bold text-foreground">
               Download
             </span>
-            <span className="text-2xl text-foreground">✦</span>
             <span className="text-4xl lg:text-6xl font-bold text-foreground">
               Brochure
             </span>
-            <span className="text-2xl text-foreground">✦</span>
           </div>
           <p className="text-md lg:text-lg text-muted-foreground text-center mt-4 leading-relaxed max-w-3xl mx-auto">
             Explore our complete collection and discover everything Q Capsules

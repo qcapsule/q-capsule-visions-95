@@ -179,15 +179,12 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center justify-center gap-4 flex-wrap mb-6">
-            <span className="text-2xl text-foreground">✦</span>
             <span className="text-4xl lg:text-6xl font-bold text-foreground">
               Contact
             </span>
-            <span className="text-2xl text-foreground">✦</span>
             <span className="text-4xl lg:text-6xl font-bold text-foreground">
               Us
             </span>
-            <span className="text-2xl text-foreground">✦</span>
           </div>
           <p className="text-md lg:text-lg text-muted-foreground text-center mt-4 leading-relaxed max-w-4xl mx-auto">
             Ready to bring your vision to life? Schedule a personalized

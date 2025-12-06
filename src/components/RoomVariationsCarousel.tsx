@@ -185,11 +185,9 @@ export const RoomVariationsCarousel = ({
                     <ArrowLeft size={32} strokeWidth={1.5} />
                   </button>
 
-                  <span className="text-2xl text-foreground">✦</span>
                   <span className="text-4xl lg:text-6xl font-bold text-foreground">
                     {roomType} Variations
                   </span>
-                  <span className="text-2xl text-foreground">✦</span>
                 </div>
               </motion.div>
 

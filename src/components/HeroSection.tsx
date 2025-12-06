@@ -85,17 +85,14 @@ export const HeroSection = forwardRef<HTMLElement>((props, ref) => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="flex items-center gap-4 flex-wrap">
-                <span className="text-2xl text-foreground">✦</span>
                 <span className="text-5xl lg:text-7xl xl:text-8xl font-bold text-foreground">
                   Luxury
                 </span>
-                <span className="text-2xl text-foreground">✦</span>
               </div>
               <div className="flex items-center gap-4 flex-wrap">
                 <span className="text-5xl lg:text-7xl xl:text-8xl font-bold text-foreground">
                   living
                 </span>
-                <span className="text-2xl text-foreground">✦</span>
               </div>
               <div className="flex items-center gap-4 flex-wrap">
                 <span className="text-5xl lg:text-7xl xl:text-8xl font-bold text-foreground relative inline-block">
@@ -126,7 +123,6 @@ export const HeroSection = forwardRef<HTMLElement>((props, ref) => {
                     style={{ width: "50%" }}
                   />
                 </span>
-                <span className="text-2xl text-foreground">✦</span>
               </div>
               <motion.p
                 className="text-md lg:text-lg text-muted-foreground leading-relaxed mt-8"
