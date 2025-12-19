@@ -100,7 +100,7 @@ const MobileStructureFeatures = ({
   );
 };
 
-// Desktop Component - Horizontal row with hover effects
+// Desktop Component - Vertical stack on the right side
 const DesktopStructureFeatures = ({
   features,
   isInView,
@@ -109,13 +109,13 @@ const DesktopStructureFeatures = ({
   isInView: boolean;
 }) => {
   return (
-    <div className="hidden md:flex flex-row gap-1 lg:gap-2">
+    <div className="hidden md:flex flex-col gap-3 lg:gap-4 flex-1">
       {features.map((feature, index) => (
         <motion.div
           key={feature.title}
-          className="group relative flex-1 h-[250px] lg:h-[280px] overflow-hidden rounded-2xl cursor-pointer shadow-2xl"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          className="group relative h-[180px] lg:h-[200px] overflow-hidden rounded-2xl cursor-pointer shadow-2xl"
+          initial={{ opacity: 0, x: 50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
           transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
         >
           {/* Background Image */}
@@ -130,7 +130,7 @@ const DesktopStructureFeatures = ({
           </div>
 
           {/* Content Overlay - Only visible on hover */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8 z-10 overflow-visible">
+          <div className="absolute inset-0 flex flex-col justify-end p-4 lg:p-6 z-10 overflow-visible">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -142,11 +142,11 @@ const DesktopStructureFeatures = ({
               className="overflow-visible opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             >
               <div className="mb-2 overflow-visible">
-                <h3 className="text-xl lg:text-2xl font-bold text-white">
+                <h3 className="text-lg lg:text-xl font-bold text-white">
                   {feature.title}
                 </h3>
               </div>
-              <p className="text-sm lg:text-base text-white/90 leading-relaxed">
+              <p className="text-xs lg:text-sm text-white/90 leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
@@ -214,7 +214,7 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
         >
           {/* Header Pattern */}
           <motion.div
-            className=""
+            className="mb-16"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8 }}
@@ -234,17 +234,17 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
             </p>
           </motion.div>
 
-          {/* Main Content - Column Layout */}
-          <div className="flex flex-col gap-8 lg:gap-10">
-            {/* 3D Model - Shown on both mobile and desktop */}
+          {/* Main Content - Side by side on desktop, column on mobile */}
+          <div className="flex flex-col md:flex-row gap-4 lg:gap-6 items-start">
+            {/* 3D Model - Left side on desktop */}
             <motion.div
-              className="w-full h-[400px] sm:h-[500px] md:h-[500px] lg:h-[600px] relative -mx-4 lg:-mx-8"
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              className="w-full md:w-1/2 md:flex-shrink-0 h-[400px] sm:h-[500px] md:h-[600px] lg:h-[650px] relative"
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Canvas
-                camera={{ position: [35, 18, 35], fov: 50 }}
+                camera={{ position: [50, 5, 0], fov: 50 }}
                 style={{ background: "transparent" }}
               >
                 <ambientLight intensity={0.6} />
@@ -273,15 +273,17 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
               </Canvas>
             </motion.div>
 
-            {/* Mobile and Desktop Feature Components */}
-            <MobileStructureFeatures
-              features={structureFeatures}
-              isInView={isInView}
-            />
-            <DesktopStructureFeatures
-              features={structureFeatures}
-              isInView={isInView}
-            />
+            {/* Cards - Right side on desktop */}
+            <div className="w-full md:w-1/2 md:flex-shrink-0">
+              <MobileStructureFeatures
+                features={structureFeatures}
+                isInView={isInView}
+              />
+              <DesktopStructureFeatures
+                features={structureFeatures}
+                isInView={isInView}
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -100,7 +100,7 @@ export const Navigation = () => {
                   onClick={() => scrollToSection("#booking")}
                 >
                   <Sparkles className="w-4 h-4 mr-2" />
-                  Book Meeting
+                  Book Showing
                 </Button>
               </motion.div>
             </div>
@@ -129,7 +129,7 @@ export const Navigation = () => {
         </div>
 
         {/* Dark Golden Divider Line */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent"></div>
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-yellow-600 to-transparent shadow-[0_0_8px_rgba(217,119,6,0.6),0_0_16px_rgba(217,119,6,0.4)]"></div>
 
         {/* Mobile Menu */}
         <AnimatePresence>
@@ -181,7 +181,7 @@ export const Navigation = () => {
                       onClick={() => scrollToSection("#booking")}
                     >
                       <Sparkles className="w-4 h-4 mr-2" />
-                      Book Meeting
+                      Book Showing
                     </Button>
                   </motion.div>
                 </div>

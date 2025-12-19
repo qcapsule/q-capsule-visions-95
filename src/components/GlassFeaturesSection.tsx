@@ -15,26 +15,26 @@ const glassFeatures: GlassFeature[] = [
   {
     title: "Grade A safety glass",
     subtitle: "ANSI Z97.1 / IBC Compliant ISO 12150 / ASTM C1048",
-    position: "left",
-    top: "7.5%",
+    position: "right",
+    top: "21%",
   },
   {
     title: "Glass skylight with electric blinds",
     subtitle: "Remote-controlled privacy and natural light management",
-    position: "right",
-    top: "25.5%",
+    position: "left",
+    top: "35%",
   },
   {
     title: "Thermal + Sound insulation",
     subtitle: "Energy-efficient climate control and acoustic privacy",
-    position: "left",
-    top: "43.5%",
+    position: "right",
+    top: "51%",
   },
   {
     title: "Panoramic glass balcony",
     subtitle: "Unobstructed views with seamless connection to nature",
-    position: "right",
-    top: "61.5%",
+    position: "left",
+    top: "66%",
   },
 ];
 
@@ -99,7 +99,7 @@ const DesktopGlassFeatures = ({
   isInView: boolean;
 }) => {
   return (
-    <div className="hidden md:block relative flex-1 min-h-[800px] lg:min-h-[1000px]">
+    <div className="hidden md:block relative flex flex-1 flex-wrap font-medium min-h-[800px] lg:min-h-[1000px] -mt-32 z-0">
       {/* Glass Corners Element - Center */}
       <div
         className="absolute left-1/2 top-0 -translate-x-1/2 z-0"
