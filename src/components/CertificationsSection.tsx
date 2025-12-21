@@ -3,7 +3,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef } from "react";
 import { Shield, CheckCircle, Sprout, X } from "lucide-react";
 import structureImage from "@/assets/Structure.jpeg";
-import constructionImage from "@/assets/construction-capsule.png";
+import constructionImage from "@/assets/construction_capsule.jpeg";
 import iso9001Image from "@/assets/iso-9001.png";
 import iso14001Image from "@/assets/iso-14001.png";
 import iso45001Image from "@/assets/iso-45001.png";
@@ -115,27 +115,14 @@ export const CertificationsSection = forwardRef<HTMLElement>((props, ref) => {
                     Eco-Conscious by Design
                   </h3>
                 </div>
-                <ul className="space-y-3">
-                  {[
-                    "Minimal land disruption (no foundations needed)",
-                    "Solar panels, water tanks, and off-grid readiness",
-                    "Sustainable and recyclable materials",
-                    "Light footprint, long life",
-                  ].map((item, index) => (
-                    <motion.li
-                      key={item}
-                      className="flex items-start gap-3 text-base lg:text-lg text-muted-foreground group-hover:text-foreground/80 transition-all duration-300"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={
-                        isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
-                      }
-                      transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    >
-                      <span className="text-primary mt-1">•</span>
-                      <span>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
+                <motion.p
+                  className="text-base lg:text-lg text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-all duration-300"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  Designed with minimal land disruption and no foundations required. Each unit features solar panels, water tanks, and off-grid readiness. Built with sustainable, recyclable materials for a light footprint and long life span.
+                </motion.p>
               </div>
 
               {/* Hover Glow Effect */}
