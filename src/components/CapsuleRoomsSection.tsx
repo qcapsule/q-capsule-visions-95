@@ -15,6 +15,16 @@ type Room = {
 
 const rooms: Room[] = [
   {
+    title: "Bedroom",
+    description: "Peaceful bedrooms designed for rest and rejuvenation",
+    image: bedroomImage,
+  },
+  {
+    title: "Bathroom",
+    description: "Luxurious bathrooms with premium fixtures and elegant design",
+    image: bathroomImage,
+  },
+  {
     title: "Living Room",
     description:
       "Spacious and comfortable living areas designed for relaxation and entertainment",
@@ -25,16 +35,6 @@ const rooms: Room[] = [
     description:
       "Modern, fully-equipped kitchens with premium appliances and smart storage",
     image: kitchenImage,
-  },
-  {
-    title: "Bathroom",
-    description: "Luxurious bathrooms with premium fixtures and elegant design",
-    image: bathroomImage,
-  },
-  {
-    title: "Bedroom",
-    description: "Peaceful bedrooms designed for rest and rejuvenation",
-    image: bedroomImage,
   },
 ];
 

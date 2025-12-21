@@ -706,7 +706,7 @@ export const FloorPlanSpotlight = ({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="glass-card p-4 border border-border/50"
+                className="glass-card p-4 border border-border/50 rounded-2xl"
               >
                 <div className="relative mb-3 rounded-lg overflow-hidden h-full">
                   <img

@@ -333,7 +333,7 @@ export default function CapsuleCarousel({ items }: CapsuleCarouselProps) {
       <div className="lg:hidden space-y-6">
         {/* Image First on Mobile */}
         <div className="relative">
-          <div className="absolute top-4 left-4 z-20 glass-card p-3 backdrop-blur-xl border border-white/20 rounded-xl">
+          <div className="absolute top-4 left-4 z-20 glass-card p-3 backdrop-blur-xl border border-white/20 rounded-2xl">
             <div className="text-white text-xs font-semibold">
               Q Capsule {currentCapsule.name}
             </div>

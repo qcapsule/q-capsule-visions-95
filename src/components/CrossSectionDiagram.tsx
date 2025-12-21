@@ -135,7 +135,7 @@ export const CrossSectionDiagram = () => {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="glass-card p-8 relative">
+            <div className="glass-card p-8 relative rounded-2xl">
               <div className="relative w-full h-96 bg-gradient-to-br from-muted/30 to-muted/50 rounded-2xl overflow-hidden">
                 {/* Capsule Outline */}
                 <div className="absolute inset-4 border-2 border-dashed border-primary/30 rounded-xl">

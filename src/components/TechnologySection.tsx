@@ -298,7 +298,7 @@ export const TechnologySection = ({ className }: TechnologySectionProps) => {
             {techCards.map((card, index) => (
               <motion.div
                 key={card.title}
-                className="tech-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
+                className="tech-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
                 whileHover={{ scale: 1.02 }}
               >
                 {/* Golden Divider */}

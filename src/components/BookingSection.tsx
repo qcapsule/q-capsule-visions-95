@@ -215,7 +215,7 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className={`glass-card p-6 relative overflow-hidden border transition-all duration-500 h-full flex flex-col ${
+                  <div className={`glass-card p-6 relative overflow-hidden border transition-all duration-500 h-full flex flex-col rounded-2xl ${
                     selectedMeetingType === meeting.title
                       ? "border-primary/50 bg-primary/10"
                       : "border-border/50 group-hover:border-primary/30"
@@ -268,7 +268,7 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
           {/* Right Side - Schedule Form/Card */}
           <div className="lg:col-span-2">
             <motion.div
-              className="glass-card p-8 lg:p-12 relative overflow-hidden border border-border/50 transition-all duration-500"
+              className="glass-card p-8 lg:p-12 relative overflow-hidden border border-border/50 transition-all duration-500 rounded-2xl"
               initial={{ opacity: 0, x: 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.8, delay: 0.8 }}
