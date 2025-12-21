@@ -4,7 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { motion, useInView } from "framer-motion";
-import { Box, Shield, Thermometer, ArrowRight, LucideIcon } from "lucide-react";
+import { Box, Shield, Thermometer, LucideIcon } from "lucide-react";
 import structureImage from "@/assets/Structure.jpeg";
 import insulationImage from "@/assets/insulation.png";
 import exteriorShellImage from "@/assets/exterior-shell.png";
@@ -100,69 +100,6 @@ const MobileStructureFeatures = ({
   );
 };
 
-// Desktop Component - Vertical stack on the right side
-const DesktopStructureFeatures = ({
-  features,
-  isInView,
-}: {
-  features: StructureFeature[];
-  isInView: boolean;
-}) => {
-  return (
-    <div className="hidden md:flex flex-col gap-3 lg:gap-4 flex-1">
-      {features.map((feature, index) => (
-        <motion.div
-          key={feature.title}
-          className="group relative h-[180px] lg:h-[200px] overflow-hidden rounded-2xl cursor-pointer shadow-2xl"
-          initial={{ opacity: 0, x: 50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-          transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-        >
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img
-              src={feature.image}
-              alt={feature.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/60 group-hover:via-black/30 group-hover:to-black/10 transition-all duration-300"></div>
-          </div>
-
-          {/* Content Overlay - Only visible on hover */}
-          <div className="absolute inset-0 flex flex-col justify-end p-4 lg:p-6 z-10 overflow-visible">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{
-                duration: 0.4,
-                delay: 0.4,
-                ease: "easeOut",
-              }}
-              className="overflow-visible opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            >
-              <div className="mb-2 overflow-visible">
-                <h3 className="text-lg lg:text-xl font-bold text-white">
-                  {feature.title}
-                </h3>
-              </div>
-              <p className="text-xs lg:text-sm text-white/90 leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Hover Glow Effect */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-transparent to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-
 function CapsuleStructureModel() {
   const meshRef = useRef<THREE.Group>(null);
 
@@ -187,7 +124,7 @@ function CapsuleStructureModel() {
 
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
-      <primitive object={scene} scale={[18, 18, 18]}>
+      <primitive object={scene} scale={[24, 24, 24]}>
         <meshStandardMaterial color="white" />
       </primitive>
     </group>
@@ -214,7 +151,7 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
         >
           {/* Header Pattern */}
           <motion.div
-            className="mb-16"
+            className="mb-2"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8 }}
@@ -234,52 +171,164 @@ export const CapsuleStructure3DSection = forwardRef<HTMLElement>(
             </p>
           </motion.div>
 
-          {/* Main Content - Side by side on desktop, column on mobile */}
-          <div className="flex flex-col md:flex-row gap-4 lg:gap-6 items-start">
-            {/* 3D Model - Left side on desktop */}
-            <motion.div
-              className="w-full md:w-1/2 md:flex-shrink-0 h-[400px] sm:h-[500px] md:h-[600px] lg:h-[650px] relative"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <Canvas
-                camera={{ position: [50, 5, 0], fov: 50 }}
-                style={{ background: "transparent" }}
+          {/* Main Content - Canvas centered with cards below */}
+          <div className="relative">
+            {/* Desktop Layout */}
+            <div className="hidden md:block">
+              {/* 3D Model - Centered */}
+              <motion.div
+                className="w-full max-w-5xl mx-auto h-[300px] lg:h-[350px] relative flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={
+                  isInView
+                    ? { opacity: 1, scale: 1 }
+                    : { opacity: 0, scale: 0.95 }
+                }
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <ambientLight intensity={0.6} />
-                <directionalLight
-                  position={[10, 10, 5]}
-                  intensity={1}
-                  color="#ffffff"
-                  castShadow
-                />
-                <pointLight
-                  position={[0, -2, 0]}
-                  intensity={0.8}
-                  color="#ffffff"
-                  distance={10}
-                />
-                <Suspense
-                  fallback={
-                    <mesh>
-                      <boxGeometry args={[2, 2, 2]} />
-                      <meshStandardMaterial color="gray" />
-                    </mesh>
-                  }
+                <Canvas
+                  camera={{ position: [50, 5, 0], fov: 50 }}
+                  style={{
+                    background: "transparent",
+                    display: "block",
+                    margin: "0 auto",
+                  }}
                 >
-                  <CapsuleStructureModel />
-                </Suspense>
-              </Canvas>
-            </motion.div>
+                  <ambientLight intensity={0.6} />
+                  <directionalLight
+                    position={[10, 10, 5]}
+                    intensity={1}
+                    color="#ffffff"
+                    castShadow
+                  />
+                  <pointLight
+                    position={[0, -2, 0]}
+                    intensity={0.8}
+                    color="#ffffff"
+                    distance={10}
+                  />
+                  <Suspense
+                    fallback={
+                      <mesh>
+                        <boxGeometry args={[2, 2, 2]} />
+                        <meshStandardMaterial color="gray" />
+                      </mesh>
+                    }
+                  >
+                    <CapsuleStructureModel />
+                  </Suspense>
+                </Canvas>
+              </motion.div>
 
-            {/* Cards - Right side on desktop */}
-            <div className="w-full md:w-1/2 md:flex-shrink-0">
+              {/* Bottom Row - Three cards in a row */}
+              <div className="grid grid-cols-3 gap-4 lg:gap-6 mt-1">
+                {structureFeatures.map((feature, index) => (
+                  <motion.div
+                    key={feature.title}
+                    className="group relative h-[180px] lg:h-[200px] overflow-hidden rounded-2xl cursor-pointer shadow-2xl"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={
+                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                    }
+                    transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                  >
+                    {/* Background Image */}
+                    <div className="absolute inset-0">
+                      <img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      {/* Dark Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/60 group-hover:via-black/30 group-hover:to-black/10 transition-all duration-300"></div>
+                    </div>
+
+                    {/* Content Overlay - Only visible on hover */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-4 lg:p-6 z-10 overflow-visible">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, y: 0 }
+                            : { opacity: 0, y: 20 }
+                        }
+                        transition={{
+                          duration: 0.4,
+                          delay: 0.4,
+                          ease: "easeOut",
+                        }}
+                        className="overflow-visible opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      >
+                        <div className="mb-2 overflow-visible">
+                          <h3 className="text-lg lg:text-xl font-bold text-white">
+                            {feature.title}
+                          </h3>
+                        </div>
+                        <p className="text-xs lg:text-sm text-white/90 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </motion.div>
+                    </div>
+
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Layout */}
+            <div className="md:hidden">
+              {/* 3D Model */}
+              <motion.div
+                className="w-full h-[400px] sm:h-[500px] relative mb-6 flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={
+                  isInView
+                    ? { opacity: 1, scale: 1 }
+                    : { opacity: 0, scale: 0.95 }
+                }
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <Canvas
+                  camera={{ position: [50, 5, 0], fov: 50 }}
+                  style={{
+                    background: "transparent",
+                    display: "block",
+                    margin: "0 auto",
+                  }}
+                >
+                  <ambientLight intensity={0.6} />
+                  <directionalLight
+                    position={[10, 10, 5]}
+                    intensity={1}
+                    color="#ffffff"
+                    castShadow
+                  />
+                  <pointLight
+                    position={[0, -2, 0]}
+                    intensity={0.8}
+                    color="#ffffff"
+                    distance={10}
+                  />
+                  <Suspense
+                    fallback={
+                      <mesh>
+                        <boxGeometry args={[2, 2, 2]} />
+                        <meshStandardMaterial color="gray" />
+                      </mesh>
+                    }
+                  >
+                    <CapsuleStructureModel />
+                  </Suspense>
+                </Canvas>
+              </motion.div>
+
+              {/* Mobile Cards */}
               <MobileStructureFeatures
-                features={structureFeatures}
-                isInView={isInView}
-              />
-              <DesktopStructureFeatures
                 features={structureFeatures}
                 isInView={isInView}
               />
