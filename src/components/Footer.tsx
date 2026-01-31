@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import {
   // Facebook,
-  // Instagram,
+  Instagram,
   // Twitter,
   // Linkedin,
   Mail,
@@ -182,7 +182,7 @@ export const Footer = () => {
                 </span>
               </motion.div>
               <motion.a
-                href="tel:+97455842290"
+                href="tel:+97466449963"
                 className="flex items-start space-x-3 group"
                 initial={{ opacity: 0, x: -20 }}
                 animate={
@@ -192,7 +192,7 @@ export const Footer = () => {
               >
                 <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0 group-hover:text-primary-glow transition-colors" />
                 <span className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
-                  +97455842290
+                  +974 6644 9963
                 </span>
               </motion.a>
               <motion.a
@@ -207,6 +207,22 @@ export const Footer = () => {
                 <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0 group-hover:text-primary-glow transition-colors" />
                 <span className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
                   info@Qcapsules.com
+                </span>
+              </motion.a>
+              <motion.a
+                href="https://www.instagram.com/qcapsules_qa/?utm_source=ig_web_button_share_sheet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start space-x-3 group"
+                initial={{ opacity: 0, x: -20 }}
+                animate={
+                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                }
+                transition={{ duration: 0.4, delay: 0.8 }}
+              >
+                <Instagram className="h-5 w-5 text-primary mt-0.5 flex-shrink-0 group-hover:text-primary-glow transition-colors" />
+                <span className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
+                  @qcapsules_qa
                 </span>
               </motion.a>
             </div>

@@ -7,6 +7,8 @@ import {
   Phone,
   Mail,
   Send,
+  MessageCircle,
+  Instagram,
 } from "lucide-react";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { Input } from "@/components/ui/input";
@@ -14,11 +16,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import emailjs from "@emailjs/browser";
 
+// Instagram profile data
+const INSTAGRAM_PROFILE = {
+  username: "qcapsules_qa",
+  profilePic: "https://instagram.fdoh6-1.fna.fbcdn.net/v/t51.2885-19/538685811_17845308747556497_1843869026349193709_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41MDAuYzIifQ&_nc_ht=instagram.fdoh6-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2QFcJiLJfW50RXqLFr8yMel9r3gbW_UP3C3tdZa7aiOxjWfTsRl775ptgVi4K99yeahRnDlworqvQSFjkdX7CLup&_nc_ohc=EOQFOvFnPKUQ7kNvwGrHkAB&_nc_gid=ixaCoI1jwiPpV2kTq8XvnA&edm=AHzjunoBAAAA&ccb=7-5&oh=00_AfvNewQ5pWq2yAEECznSRwEhHcRTFqCAd1pgNGMDBVRXrw&oe=698450A7&_nc_sid=ba8368",
+  bio: "Luxury Living. Limitless Locations.\nMade in Qatar 🇶🇦",
+  followers: 2,
+  url: "https://www.instagram.com/qcapsules_qa/?utm_source=ig_web_button_share_sheet",
+};
+
 export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
   const controls = useAnimation();
-  const [selectedMeetingType, setSelectedMeetingType] = useState<string | null>(null);
+  const [selectedMeetingType, setSelectedMeetingType] = useState<string | null>(
+    null,
+  );
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,7 +39,9 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   useEffect(() => {
     if (isInView) {
@@ -34,7 +49,9 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
     }
   }, [isInView, controls]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -68,22 +85,21 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
           message: formData.message,
           subject: `Consultation Request: ${selectedMeetingType}`,
         },
-        publicKey
+        publicKey,
       );
-      
 
       console.log("Email sent successfully:", result);
-      
+
       setSubmitStatus("success");
       setFormData({ name: "", email: "", phone: "", message: "" });
       setSelectedMeetingType(null);
-      
+
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 3000);
     } catch (error: any) {
       console.error("Error sending email:", error);
-      
+
       // Provide more detailed error message
       let errorMessage = "Failed to send message. Please try again.";
       if (error?.text) {
@@ -91,7 +107,7 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
       } else if (error?.message) {
         errorMessage = `Error: ${error.message}`;
       }
-      
+
       alert(errorMessage);
       setSubmitStatus("error");
     } finally {
@@ -102,7 +118,7 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
   const meetingTypes = [
     {
       icon: Video,
-      title: "Virtual Consultation",
+      title: "Pre Order",
       description: "30-minute online meeting to discuss your project",
       duration: "30 min",
       type: "Online",
@@ -159,9 +175,9 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
   };
 
   return (
-    <section 
-      ref={ref} 
-      id="booking" 
+    <section
+      ref={ref}
+      id="booking"
       className="relative overflow-hidden py-32"
       style={{
         background: "linear-gradient(to bottom, #f5e6d3, #faf5ef, #f5e6d3)",
@@ -215,11 +231,13 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className={`glass-card p-6 relative overflow-hidden border transition-all duration-500 h-full flex flex-col rounded-2xl ${
-                    selectedMeetingType === meeting.title
-                      ? "border-primary/50 bg-primary/10"
-                      : "border-border/50 group-hover:border-primary/30"
-                  }`}>
+                  <div
+                    className={`glass-card p-6 relative overflow-hidden border transition-all duration-500 h-full flex flex-col rounded-2xl ${
+                      selectedMeetingType === meeting.title
+                        ? "border-primary/50 bg-primary/10"
+                        : "border-border/50 group-hover:border-primary/30"
+                    }`}
+                  >
                     {/* Dynamic background effect */}
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${meeting.color} opacity-0 group-hover:opacity-100 transition-all duration-500`}
@@ -293,8 +311,12 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-6 p-4 bg-primary/10 border border-primary/30 rounded-lg"
                   >
-                    <p className="text-sm text-muted-foreground mb-1">Selected Consultation Type:</p>
-                    <p className="text-lg font-semibold text-primary">{selectedMeetingType}</p>
+                    <p className="text-sm text-muted-foreground mb-1">
+                      Selected Consultation Type:
+                    </p>
+                    <p className="text-lg font-semibold text-primary">
+                      {selectedMeetingType}
+                    </p>
                   </motion.div>
                 )}
 
@@ -302,7 +324,10 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         Full Name *
                       </label>
                       <Input
@@ -317,7 +342,10 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         Email Address *
                       </label>
                       <Input
@@ -334,7 +362,10 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
                       Phone Number *
                     </label>
                     <Input
@@ -350,7 +381,10 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
                       Message
                     </label>
                     <Textarea
@@ -379,7 +413,8 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                       animate={{ opacity: 1 }}
                       className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-600 text-sm"
                     >
-                      There was an error sending your message. Please try again or contact us directly.
+                      There was an error sending your message. Please try again
+                      or contact us directly.
                     </motion.div>
                   )}
 
@@ -428,13 +463,24 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
 
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <motion.a
-                      href="tel:+97455842290"
+                      href="tel:+97466449963"
                       className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 rounded-full px-6 py-3 font-medium flex items-center justify-center gap-2"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Phone className="h-4 w-4" />
-                      +97455842290
+                      +974 6644 9963
+                    </motion.a>
+                    <motion.a
+                      href="https://wa.me/97466449963"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#25D366] hover:bg-[#25D366]/90 text-white transition-all duration-300 rounded-full px-6 py-3 font-medium flex items-center justify-center gap-2"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      WhatsApp
                     </motion.a>
                     <motion.a
                       href="mailto:info@Qcapsules.com"
@@ -445,6 +491,93 @@ export const BookingSection = forwardRef<HTMLElement>((props, ref) => {
                       <Mail className="h-4 w-4" />
                       info@Qcapsules.com
                     </motion.a>
+                  </div>
+                </div>
+
+                {/* Instagram Profile Embed */}
+                <div className="mt-8 pt-6 border-t border-border/30">
+                  <div className="text-center mb-6">
+                    <h4 className="text-xl font-semibold text-foreground mb-2">
+                      Follow Us
+                    </h4>
+                    <p className="text-muted-foreground text-sm">
+                      Stay updated with our latest projects and designs
+                    </p>
+                  </div>
+                  <div className="relative backdrop-blur-xl rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
+                    {/* Background gradient */}
+                    <div
+                      className="absolute inset-0 pointer-events-none rounded-2xl"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(180, 130, 70, 0.15) 0%, rgba(200, 150, 90, 0.1) 50%, rgba(160, 110, 60, 0.08) 100%)",
+                        boxShadow:
+                          "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 1px 0 rgba(220, 170, 110, 0.2)",
+                      }}
+                    ></div>
+
+                    {/* Shine Effect */}
+                    <div
+                      className="absolute inset-0 pointer-events-none rounded-2xl"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 30%, transparent 60%)",
+                        mixBlendMode: "overlay",
+                      }}
+                    ></div>
+
+                    {/* Instagram Profile */}
+                    <div className="relative z-10 p-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-primary/50 flex-shrink-0">
+                          {INSTAGRAM_PROFILE.profilePic ? (
+                            <img
+                              src={INSTAGRAM_PROFILE.profilePic}
+                              alt={`${INSTAGRAM_PROFILE.username} profile`}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                // Fallback to icon if image fails to load
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = "none";
+                                const parent = target.parentElement;
+                                if (parent) {
+                                  parent.innerHTML = '<div class="w-full h-full bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center"><svg class="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>';
+                                }
+                              }}
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center">
+                              <Instagram className="h-8 w-8 text-primary" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="text-lg font-bold text-foreground mb-1">
+                            @{INSTAGRAM_PROFILE.username}
+                          </h5>
+                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                            <span>
+                              <strong className="text-foreground">{INSTAGRAM_PROFILE.followers}</strong>{" "}
+                              {INSTAGRAM_PROFILE.followers === 1 ? "follower" : "followers"}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed whitespace-pre-line">
+                        {INSTAGRAM_PROFILE.bio}
+                      </p>
+                      <motion.a
+                        href={INSTAGRAM_PROFILE.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCB045] hover:from-[#933AB4] hover:via-[#FD2D2D] hover:to-[#FCC055] text-white font-semibold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Instagram className="h-5 w-5" />
+                        <span>Follow on Instagram</span>
+                      </motion.a>
+                    </div>
                   </div>
                 </div>
               </div>
